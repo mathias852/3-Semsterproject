@@ -2,7 +2,6 @@ package org.example.BeerMachine.data.payloads.request;
 
 import org.example.BeerMachine.data.models.Type;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class BatchRequest {
@@ -10,7 +9,11 @@ public class BatchRequest {
     private Integer amount;
 
     @NotNull
-    private Type type;
+    private int type_id;
+
+    private Type ale = new Type(1, "Ale");
+    private Type ipa = new Type(2, "IPA");
+    private Type alcfree = new Type(3, "Alcohol Free");
 
     public Integer getAmount() {
         return amount;
@@ -22,10 +25,14 @@ public class BatchRequest {
 
     public Type getType() {
 
-        return type;
+        if(type_id == 1){
+            return ale;
+        } else {
+            return alcfree;
+        }
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setType(int t) {
+        this.type_id = t;
     }
 }

@@ -20,7 +20,7 @@ public class BatchController {
     BatchService batchService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Batch>> getAllBatchs () {
+    public ResponseEntity<List<Batch>> getAllBatches () {
         List<Batch> batches = batchService.getAllBatches();
         return new ResponseEntity<>(batches, HttpStatus.OK);
     }
