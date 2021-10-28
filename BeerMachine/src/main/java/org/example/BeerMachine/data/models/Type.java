@@ -13,13 +13,6 @@ public class Type {
 
     private String name;
 
-    public Type() {}
-
-    public Type(Integer id, String name){
-        this.id = id;
-        this.name = name;
-    }
-
     @OneToMany(mappedBy="type")
     private Set<Batch> batches;
 
