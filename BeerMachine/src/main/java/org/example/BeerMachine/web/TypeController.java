@@ -1,5 +1,6 @@
 package org.example.BeerMachine.web;
 
+import org.example.BeerMachine.BeerMachineApplication;
 import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.payloads.request.TypeRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
@@ -15,7 +16,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/type")
 public class TypeController {
-
     @Autowired
     TypeService typeService;
 

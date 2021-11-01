@@ -4,6 +4,7 @@ import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchRepository;
+import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +17,14 @@ public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchRepository batchRepository;
 
+    @Autowired
+    TypeRepository typeRepository;
+
     @Override
     public MessageResponse createBatch(BatchRequest batchRequest) {
         Batch newBatch = new Batch();
         newBatch.setAmount(batchRequest.getAmount());
-        newBatch.setType(batchRequest.getType());
+        newBatch.setType(batchRequest.getType(typeRepository));
         batchRepository.save(newBatch);
         return new MessageResponse("New Batch created successfully");
     }
@@ -32,7 +36,7 @@ public class BatchServiceImpl implements BatchService {
             return null;
         }
         else {
-            batch.get().setType(batchRequest.getType());
+            batch.get().setType(batchRequest.getType(typeRepository));
             batch.get().setAmount(batchRequest.getAmount());
             batchRepository.save(batch.get());
         }
