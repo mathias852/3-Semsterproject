@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="">
+    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,14 +20,6 @@
   </component>
   <component name="ComposerSettings">
     <execution />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,30 +34,26 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RunAnythingCache">
-    <option name="myCommands">
-      <command value="mvn clean" />
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="BeerMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -87,9 +74,18 @@
       <updated>1634716311595</updated>
       <workItem from="1634716328429" duration="132000" />
       <workItem from="1634716636873" duration="1205000" />
-      <workItem from="1635409564096" duration="675000" />
-      <workItem from="1635410263611" duration="5830000" />
+      <workItem from="1635407756288" duration="4395000" />
+      <workItem from="1635419110664" duration="8829000" />
+      <workItem from="1635694319073" duration="4289000" />
     </task>
+    <task id="LOCAL-00001" summary="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work">
+      <created>1635421917155</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635421917155</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,5 +105,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
   </component>
 </project>

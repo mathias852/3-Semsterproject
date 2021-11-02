@@ -1,35 +1,42 @@
 package org.example.BeerMachine.data.payloads.request;
 
 import org.example.BeerMachine.data.models.Type;
+import org.example.BeerMachine.data.repository.TypeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
+@Component
 public class BatchRequest {
     @NotNull
     private Integer amount;
 
     @NotNull
-    private int type_id;
-
-    private Type ale = new Type(1, "Ale");
-    private Type ipa = new Type(2, "IPA");
-    private Type alcfree = new Type(3, "Alcohol Free");
+    private Integer type_id;
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public Integer getType_id() {
+        return type_id;
     }
 
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    public Type getType() {
-
-        if(type_id == 1){
-            return ale;
-        } else {
-            return alcfree;
+    //Missing the types from DB
+    public Type getType(TypeRepository typeRepository) {
+        List<Type> typeList = typeRepository.findAll();
+        for (Type type : typeList) {
+            if (type.getId().equals(getType_id()))
+                    return type;
         }
+        return null;
     }
 
     public void setType(int t) {
