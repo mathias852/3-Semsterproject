@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" afterDir="false" />
-    </list>
+    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +14,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1zlIaYdFQK59PoNrUTyqVRPMOpy" />
@@ -44,6 +41,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CPS/Java" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
