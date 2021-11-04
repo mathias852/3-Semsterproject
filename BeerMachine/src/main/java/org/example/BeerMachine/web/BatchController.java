@@ -4,7 +4,6 @@ import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.service.BatchService;
-import org.example.BeerMachine.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +35,7 @@ public class BatchController {
         return new ResponseEntity<>(newBatch, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Batch>> updateBatch( @PathVariable Integer id, @RequestBody BatchRequest batch) {
+    public ResponseEntity<Optional<Batch>> updateBatch(@PathVariable Integer id, @RequestBody BatchRequest batch) {
         Optional<Batch> updateBatch = batchService.updateBatch(id, batch);
         return new ResponseEntity<>(updateBatch, HttpStatus.OK);
     }

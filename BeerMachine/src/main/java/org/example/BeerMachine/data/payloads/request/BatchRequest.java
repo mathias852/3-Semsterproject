@@ -2,8 +2,6 @@ package org.example.BeerMachine.data.payloads.request;
 
 import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.repository.TypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;

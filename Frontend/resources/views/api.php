@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<h1>Current batches: </h1>
+<h1>Current batch: </h1>
 </head>
 <body>
     <?php foreach ($result as $item): ?>

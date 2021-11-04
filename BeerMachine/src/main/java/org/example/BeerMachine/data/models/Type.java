@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="type")
+@Table(name="types")
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,7 +13,7 @@ public class Type {
 
     private String name;
 
-    @OneToMany(mappedBy="type")
+    @OneToMany(mappedBy="types")
     private Set<Batch> batches;
 
     public Integer getId() {

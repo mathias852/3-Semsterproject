@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="" />
+    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Humidity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/TimeState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Vibration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Batch.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Batch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TypeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TypeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/resources/views/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/api.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +31,13 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -20,6 +45,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1zlIaYdFQK59PoNrUTyqVRPMOpy" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
