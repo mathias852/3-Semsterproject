@@ -12,5 +12,17 @@
 
         </li>
     <?php endforeach;?>
+
+
+    <h2>New batch:</h2>
+    <form action="<?php echo route("api.store")?>" method="post">
+        <?php echo csrf_field(); ?>
+
+        <label>Amount: </label>
+        <input type="text" id="amount" name="amount">
+        <label>Type ID:</label>
+        <input type="text" id="type" name="type">
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

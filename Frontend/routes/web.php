@@ -19,4 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api', [APIController::class, "index"]);
+Route::get('/api', [APIController::class, "index"])->name("api.index");
+Route::post('/api', [APIController::class, "store"])->name("api.store");
