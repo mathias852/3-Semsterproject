@@ -9,7 +9,6 @@ import java.util.Set;
 @Entity
 @Table(name = "temperatures")
 public class Temperature {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

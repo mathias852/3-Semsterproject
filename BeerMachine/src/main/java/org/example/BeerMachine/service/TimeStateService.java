@@ -9,12 +9,13 @@ import org.example.BeerMachine.data.payloads.request.TimeStateRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 public interface TimeStateService {
-    MessageResponse createTimeState(TimeStateRequest timeStateRequest);
+    MessageResponse createTimeState(TimeStateRequest timeStateRequest) throws ParseException;
 
     TimeState getTimeState(Integer timeStateId);
 

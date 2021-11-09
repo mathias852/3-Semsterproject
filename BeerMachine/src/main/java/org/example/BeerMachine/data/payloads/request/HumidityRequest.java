@@ -7,6 +7,8 @@ import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class HumidityRequest {
     private Double humidity;
 
     @NotNull
-    private Date timestamp;
+    private String timestamp;
 
     public Integer getBatchReportId() {
         return batchReportId;
@@ -47,11 +49,15 @@ public class HumidityRequest {
         this.humidity = humidity;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp(){
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public Date getTimestampFormat(String timestamp) throws ParseException {
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(timestamp);
+    }
+
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

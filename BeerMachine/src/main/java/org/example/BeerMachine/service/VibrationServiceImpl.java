@@ -11,6 +11,7 @@ import org.example.BeerMachine.data.repository.VibrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,11 +24,11 @@ public class VibrationServiceImpl implements VibrationService {
     BatchReportRepository batchReportRepository;
 
     @Override
-    public MessageResponse createVibration(VibrationRequest vibrationRequest) {
+    public MessageResponse createVibration(VibrationRequest vibrationRequest) throws ParseException {
         Vibration newVibration = new Vibration();
         newVibration.setBatchReport(vibrationRequest.getBatchReport(batchReportRepository));
         newVibration.setVibration(vibrationRequest.getVibration());
-        newVibration.setTimestamp(vibrationRequest.getTimestamp());
+        newVibration.setTimestamp(vibrationRequest.getTimestampFormat(vibrationRequest.getTimestamp()));
         vibrationRepository.save(newVibration);
         return new MessageResponse("New vibration entry created successfully");
     }

@@ -11,6 +11,7 @@ import org.example.BeerMachine.data.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +25,12 @@ public class TimeStateServiceImpl implements TimeStateService {
 
 
     @Override
-    public MessageResponse createTimeState(TimeStateRequest timeStateRequest) {
+    public MessageResponse createTimeState(TimeStateRequest timeStateRequest) throws ParseException {
         TimeState newTimeState = new TimeState();
         newTimeState.setBatchReport(timeStateRequest.getBatchReport(batchReportRepository));
         newTimeState.setStateId(timeStateRequest.getStateId());
-        newTimeState.setStartTime(timeStateRequest.getStartTime());
-        newTimeState.setEndTime(timeStateRequest.getEndTime());
+        newTimeState.setStartTime(timeStateRequest.getStartTimeFormat(timeStateRequest.getStartTime()));
+        newTimeState.setEndTime(timeStateRequest.getEndTimeFormat(timeStateRequest.getEndTime()));
         newTimeState.setStopReason(timeStateRequest.getStopReason());
         timeStateRepository.save(newTimeState);
         return new MessageResponse("New time state entry created successfully");

@@ -13,6 +13,7 @@ import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +26,11 @@ public class TemperatureServiceImpl implements TemperatureService {
     BatchReportRepository batchReportRepository;
 
     @Override
-    public MessageResponse createTemperature(TemperatureRequest temperatureRequest) {
+    public MessageResponse createTemperature(TemperatureRequest temperatureRequest) throws ParseException {
         Temperature newTemperature = new Temperature();
         newTemperature.setBatchReport(temperatureRequest.getBatchReport(batchReportRepository));
         newTemperature.setTemperature(temperatureRequest.getTemperature());
-        newTemperature.setTimestamp(temperatureRequest.getTimestamp());
+        newTemperature.setTimestamp(temperatureRequest.getTimestampFormat(temperatureRequest.getTimestamp()));
         temperatureRepository.save(newTemperature);
         return new MessageResponse("New temperature entry created successfully");
     }

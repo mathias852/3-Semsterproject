@@ -9,12 +9,13 @@ import org.example.BeerMachine.data.payloads.request.TemperatureRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 public interface TemperatureService {
-    MessageResponse createTemperature(TemperatureRequest temperatureRequest);
+    MessageResponse createTemperature(TemperatureRequest temperatureRequest) throws ParseException;
 
     Temperature getTemperature(Integer temperatureId);
 

@@ -15,7 +15,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/batch")
 public class BatchController {
-
     @Autowired
     BatchService batchService;
 

@@ -13,7 +13,7 @@ public class Type {
 
     private String name;
 
-    @OneToMany(mappedBy="types")
+    @OneToMany(mappedBy="type")
     private Set<Batch> batches;
 
     public Integer getId() {

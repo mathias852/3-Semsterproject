@@ -13,14 +13,9 @@ public class BatchReport {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-
     @OneToOne()
     @JoinColumn(name = "batchId", referencedColumnName = "id")
     private Batch batch;
-
-    @OneToOne()
-    @JoinColumn(name = "batchReportId", referencedColumnName = "id")
-    private BatchReport batchReport;
 
     @NotNull
     private Integer speed;
@@ -64,14 +59,6 @@ public class BatchReport {
 
     public void setBatch(Batch batch) {
         this.batch = batch;
-    }
-
-    public BatchReport getBatchReport() {
-        return batchReport;
-    }
-
-    public void setBatchReport(BatchReport batchReport) {
-        this.batchReport = batchReport;
     }
 
     public Integer getSpeed() {

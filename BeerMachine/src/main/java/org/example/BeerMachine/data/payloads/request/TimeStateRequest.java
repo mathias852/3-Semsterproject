@@ -7,6 +7,8 @@ import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class TimeStateRequest {
     private Integer stateId;
 
     @NotNull
-    private Date startTime, endTime;
+    private String startTime, endTime;
 
     private Integer stopReason;
 
@@ -49,19 +51,27 @@ public class TimeStateRequest {
         this.stateId = stateId;
     }
 
-    public Date getStartTime() {
+    public String getStartTime(){
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public Date getStartTimeFormat(String startTime) throws ParseException {
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(startTime);
+    }
+
+    public String getEndTime(){
+        return startTime;
+    }
+
+    public Date getEndTimeFormat(String getEndTime) throws ParseException {
+        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(getEndTime);
+    }
+
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 

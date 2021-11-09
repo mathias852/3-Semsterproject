@@ -12,6 +12,7 @@ import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,11 +26,11 @@ public class HumidityServiceImpl implements HumidityService {
 
 
     @Override
-    public MessageResponse createHumidity(HumidityRequest humidityRequest) {
+    public MessageResponse createHumidity(HumidityRequest humidityRequest) throws ParseException {
         Humidity newHumidity = new Humidity();
         newHumidity.setBatchReport(humidityRequest.getBatchReport(batchReportRepository));
         newHumidity.setHumidity(humidityRequest.getHumidity());
-        newHumidity.setTimestamp(humidityRequest.getTimestamp());
+        newHumidity.setTimestamp(humidityRequest.getTimestampFormat(humidityRequest.getTimestamp()));
         humidityRepository.save(newHumidity);
         return new MessageResponse("New humidity entry created successfully");
     }
