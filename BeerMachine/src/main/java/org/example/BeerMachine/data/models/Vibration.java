@@ -23,4 +23,31 @@ public class Vibration {
     @NotNull
     private Date timestamp;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public BatchReport getBatchReport() {
+        return batchReport;
+    }
+
+    public void setBatchReport(BatchReport batchReport) {
+        this.batchReport = batchReport;
+    }
+
+    public Double getVibration() {
+        return vibration;
+    }
+
+    public void setVibration(Double vibration) {
+        this.vibration = vibration;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }

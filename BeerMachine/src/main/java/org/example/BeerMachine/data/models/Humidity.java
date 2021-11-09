@@ -23,5 +23,31 @@ public class Humidity {
     @NotNull
     private Date timestamp;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public BatchReport getBatchReport() {
+        return batchReport;
+    }
+
+    public void setBatchReport(BatchReport batchReport) {
+        this.batchReport = batchReport;
+    }
+
+    public Double getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Double humidity) {
+        this.humidity = humidity;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }

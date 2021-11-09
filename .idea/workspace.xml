@@ -5,23 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Humidity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/TimeState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Vibration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/HumidityRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TemperatureRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TimeStateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/VibrationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/BatchReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/HumidityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TemperatureRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TimeStateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/VibrationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Batch.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Batch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Humidity.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Humidity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/TimeState.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/TimeState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Vibration.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Vibration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TypeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TypeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/repository/TypeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/resources/views/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +98,25 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.BeerMachine.service" />
+      <recent name="org.example.BeerMachine.data.payloads.request" />
+      <recent name="org.example.BeerMachine.data.repository" />
+    </key>
+  </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BeerMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="BeerMachine" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.BeerMachine.BeerMachineApplication" />
@@ -108,6 +138,8 @@
       <workItem from="1635407756288" duration="4395000" />
       <workItem from="1635419110664" duration="8829000" />
       <workItem from="1635694319073" duration="4289000" />
+      <workItem from="1636037244247" duration="511000" />
+      <workItem from="1636449346239" duration="6043000" />
     </task>
     <task id="LOCAL-00001" summary="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work">
       <created>1635421917155</created>

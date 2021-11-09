@@ -27,4 +27,47 @@ public class TimeState {
     @NotNull
     private Date endTime;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public BatchReport getBatchReport() {
+        return batchReport;
+    }
+
+    public void setBatchReport(BatchReport batchReport) {
+        this.batchReport = batchReport;
+    }
+
+    public Integer getStateId() {
+        return stateId;
+    }
+
+    public void setStateId(Integer stateId) {
+        this.stateId = stateId;
+    }
+
+    public Integer getStopReason() {
+        return stopReason;
+    }
+
+    public void setStopReason(Integer stopReason) {
+        this.stopReason = stopReason;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 }

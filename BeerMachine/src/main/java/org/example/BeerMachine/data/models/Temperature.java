@@ -24,5 +24,31 @@ public class Temperature {
     @NotNull
     private Date timestamp;
 
+    public Integer getId() {
+        return id;
+    }
 
+    public BatchReport getBatchReport() {
+        return batchReport;
+    }
+
+    public void setBatchReport(BatchReport batchReport) {
+        this.batchReport = batchReport;
+    }
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Double temperature) {
+        this.temperature = temperature;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }
