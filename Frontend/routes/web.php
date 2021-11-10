@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\BatchController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIController;
+use Symfony\Component\Console\Input\Input;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api', [APIController::class, "index"])->name("api.index");
-Route::post('/api', [APIController::class, "store"])->name("api.store");
+Route::get('/index', [BatchController::class, "index"])->name("index");
+Route::post('/index', [BatchController::class, "store"])->name("index.store");
+Route::get('/batch/create', [BatchController::class, "create"])->name("batch.create");
+Route::get('/batch/{batchId}/report', [BatchController::class, "showReport"])->name('showReport');
