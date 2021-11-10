@@ -16,6 +16,16 @@ public class Type {
     @OneToMany(mappedBy="type")
     private Set<Batch> batches;
 
+    private int maxSpeed;
+
+    public int getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
     public Integer getId() {
         return id;
     }

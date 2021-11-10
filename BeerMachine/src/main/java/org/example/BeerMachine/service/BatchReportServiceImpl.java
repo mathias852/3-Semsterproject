@@ -26,7 +26,6 @@ public class BatchReportServiceImpl implements BatchReportService {
     @Override
     public MessageResponse createBatchReport(BatchReportRequest batchReportRequest) {
         BatchReport newBatchReport = new BatchReport();
-        newBatchReport.setBatch(batchReportRequest.getBatch(batchRepository));
         newBatchReport.setSpeed(batchReportRequest.getSpeed());
         newBatchReport.setTotalCount(batchReportRequest.getTotalCount());
         batchReportRepository.save(newBatchReport);

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -97,7 +98,7 @@ public class BatchReportController {
         return new ResponseEntity<>(newBatchReport, HttpStatus.CREATED);
     }
     @PutMapping("/update/{batchReportId}")
-    public ResponseEntity<Optional<BatchReport>> updateBatch(@PathVariable("batchReportId") Integer id, @RequestBody BatchReportRequest batchReport) {
+    public ResponseEntity<Optional<BatchReport>> updateBatch(@PathVariable("batchReportId") Integer id, @RequestBody BatchReportRequest batchReport) throws ParseException {
         Optional<BatchReport> updateBatchReport = batchReportService.updateBatchReport(id, batchReport);
         return new ResponseEntity<>(updateBatchReport, HttpStatus.OK);
     }

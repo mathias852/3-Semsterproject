@@ -10,22 +10,27 @@ import java.util.Set;
 @Table(name="batchReports")
 public class BatchReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne()
-    @JoinColumn(name = "batchId", referencedColumnName = "id")
-    private Batch batch;
+    @NotNull
+    private Integer batchId;
 
     @NotNull
     private Integer speed;
 
     @NotNull
-    private Integer totalCount;
+    @ManyToOne
+    private Type type;
 
-    private Integer goodCount;
+    @NotNull
+    private Integer amount; //how many units was wanted
 
-    private Integer rejectedCount;
+    private Integer totalCount; //how many units was actually produced
+
+    private Integer goodCount; //how many was acceptable
+
+    private Integer rejectedCount; //how many was rejected
 
     private Date startTime;
 
@@ -45,20 +50,23 @@ public class BatchReport {
     @OneToMany(mappedBy="batchReport")
     private Set<TimeState> timeStates;
 
+    public BatchReport(Integer batchId, Integer speed, Type type, Integer amount) {
+        this.batchId = batchId;
+        this.speed = speed;
+        this.type = type;
+        this.amount = amount;
+    }
+
+    public BatchReport() {
+
+    }
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Batch getBatch() {
-        return batch;
-    }
-
-    public void setBatch(Batch batch) {
-        this.batch = batch;
     }
 
     public Integer getSpeed() {
@@ -116,4 +124,5 @@ public class BatchReport {
     public void setOEE(Double OEE) {
         this.OEE = OEE;
     }
+
 }
