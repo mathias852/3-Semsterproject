@@ -1,7 +1,5 @@
 package org.example.BeerMachine.data.payloads.request;
 
-import org.example.BeerMachine.data.models.Type;
-
 import javax.validation.constraints.NotNull;
 
 public class TypeRequest {

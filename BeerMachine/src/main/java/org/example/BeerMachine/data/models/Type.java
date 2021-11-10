@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="type")
+@Table(name="types")
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,10 +18,6 @@ public class Type {
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {

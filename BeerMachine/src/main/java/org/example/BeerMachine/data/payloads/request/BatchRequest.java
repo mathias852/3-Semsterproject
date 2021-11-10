@@ -2,8 +2,6 @@ package org.example.BeerMachine.data.payloads.request;
 
 import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.repository.TypeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -15,31 +13,30 @@ public class BatchRequest {
     private Integer amount;
 
     @NotNull
-    private Integer type_id;
+    private Integer typeId;
 
     public Integer getAmount() {
         return amount;
     }
 
-    public Integer getType_id() {
-        return type_id;
+    public Integer getTypeId() {
+        return typeId;
     }
 
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
-    //Missing the types from DB
     public Type getType(TypeRepository typeRepository) {
         List<Type> typeList = typeRepository.findAll();
         for (Type type : typeList) {
-            if (type.getId().equals(getType_id()))
+            if (type.getId().equals(getTypeId()))
                     return type;
         }
         return null;
     }
 
     public void setType(int t) {
-        this.type_id = t;
+        this.typeId = t;
     }
 }

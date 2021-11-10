@@ -1,6 +1,5 @@
 package org.example.BeerMachine.web;
 
-import org.example.BeerMachine.BeerMachineApplication;
 import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.payloads.request.TypeRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
@@ -35,7 +34,7 @@ public class TypeController {
         return new ResponseEntity<>(newType, HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Type>> updateType( @PathVariable Integer id, @RequestBody TypeRequest type) {
+    public ResponseEntity<Optional<Type>> updateType(@PathVariable Integer id, @RequestBody TypeRequest type) {
         Optional<Type> updateType = typeService.updateType(id, type);
         return new ResponseEntity<>(updateType, HttpStatus.OK);
     }

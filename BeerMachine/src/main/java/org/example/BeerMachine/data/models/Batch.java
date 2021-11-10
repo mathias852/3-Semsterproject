@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="batch")
+@Table(name="batches")
 public class Batch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,14 +16,15 @@ public class Batch {
     @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 
+    @OneToOne()
+    @JoinColumn(name = "batchReportId", referencedColumnName = "id")
+    private BatchReport batchReport;
+
+
     public Batch() {}
 
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getAmount() {

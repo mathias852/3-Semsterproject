@@ -5,7 +5,6 @@ import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.springframework.stereotype.Component;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
