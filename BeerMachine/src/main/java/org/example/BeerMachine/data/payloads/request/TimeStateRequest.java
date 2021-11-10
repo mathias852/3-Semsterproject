@@ -56,7 +56,7 @@ public class TimeStateRequest {
     }
 
     public Date getStartTimeFormat(String startTime) throws ParseException {
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(startTime);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startTime);
     }
 
     public String getEndTime(){
@@ -64,7 +64,7 @@ public class TimeStateRequest {
     }
 
     public Date getEndTimeFormat(String getEndTime) throws ParseException {
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(getEndTime);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(getEndTime);
     }
 
     public void setStartTime(String startTime) {

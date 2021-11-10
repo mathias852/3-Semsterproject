@@ -1,9 +1,7 @@
 package org.example.BeerMachine.data.payloads.request;
 
 import org.example.BeerMachine.data.models.BatchReport;
-import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
-import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
@@ -54,7 +52,7 @@ public class TemperatureRequest {
     }
 
     public Date getTimestampFormat(String timestamp) throws ParseException {
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(timestamp);
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timestamp);
     }
 
     public void setTimestamp(String timestamp) {

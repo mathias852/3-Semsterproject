@@ -4,30 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/HumidityController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TemperatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/TimeStateController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/VibrationController.java" afterDir="false" />
+    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Temperature.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/Type.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchReportRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/HumidityRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/HumidityRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TemperatureRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TemperatureRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TimeStateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TimeStateRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/VibrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/VibrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/HumidityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TemperatureServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/TimeStateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/VibrationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635421917155</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers.">
+      <created>1636481653967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636481653967</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +144,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
+    <MESSAGE value="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers." />
   </component>
 </project>

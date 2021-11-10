@@ -54,7 +54,7 @@ public class HumidityRequest {
     }
 
     public Date getTimestampFormat(String timestamp) throws ParseException {
-        return new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(timestamp);
+        return new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(timestamp);
     }
 
     public void setTimestamp(String timestamp) {

@@ -7,6 +7,7 @@ import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +15,7 @@ import java.util.Optional;
 public interface BatchReportService {
     MessageResponse createBatchReport(BatchReportRequest batchReportRequest);
 
-    Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest);
+    Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest) throws ParseException;
 
     void deleteBatchReport(Integer batchReportId);
 

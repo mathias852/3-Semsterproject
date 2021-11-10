@@ -11,6 +11,7 @@ import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class BatchReportServiceImpl implements BatchReportService {
     }
 
     @Override
-    public Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest) {
+    public Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest) throws ParseException {
         Optional<BatchReport> batchReport = batchReportRepository.findById(batchReportId);
         if(batchReport.isEmpty()){
             return null;
@@ -43,8 +44,8 @@ public class BatchReportServiceImpl implements BatchReportService {
             batchReport.get().setTotalCount(batchReportRequest.getTotalCount());
             batchReport.get().setGoodCount(batchReportRequest.getGoodCount());
             batchReport.get().setRejectedCount(batchReportRequest.getRejectedCount());
-            batchReport.get().setStartTime(batchReportRequest.getStartTime());
-            batchReport.get().setEndTime(batchReportRequest.getEndTime());
+            batchReport.get().setStartTime(batchReportRequest.getStartTimeFormat(batchReportRequest.getStartTime()));
+            batchReport.get().setEndTime(batchReportRequest.getEndTimeFormat(batchReportRequest.getEndTime()));
             batchReport.get().setOEE(batchReportRequest.getOEE());
             batchReportRepository.save(batchReport.get());
         }
