@@ -5,10 +5,10 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name="type")
+@Table(name="types")
 public class Type {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
@@ -16,12 +16,18 @@ public class Type {
     @OneToMany(mappedBy="type")
     private Set<Batch> batches;
 
-    public Integer getId() {
-        return id;
+    private int maxSpeed;
+
+    public int getMaxSpeed() {
+        return maxSpeed;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMaxSpeed(int maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

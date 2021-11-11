@@ -2,9 +2,10 @@ package org.example.BeerMachine.web;
 
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
+import org.example.BeerMachine.data.payloads.request.QueueRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.service.BatchService;
-import org.example.BeerMachine.service.TypeService;
+import org.example.BeerMachine.service.QueueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +17,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/batch")
 public class BatchController {
-
     @Autowired
     BatchService batchService;
+
+    @Autowired
+    QueueService queueService;
 
     @GetMapping("/all")
     public ResponseEntity<List<Batch>> getAllBatches () {
@@ -35,8 +38,19 @@ public class BatchController {
         MessageResponse newBatch = batchService.createBatch(batch);
         return new ResponseEntity<>(newBatch, HttpStatus.CREATED);
     }
+    @GetMapping("/get/queue")
+    public ResponseEntity<List<Integer>> getQueue() {
+        List<Integer> queue = queueService.getQueue();
+        return new ResponseEntity<>(queue, HttpStatus.CREATED);
+    }
+    @PostMapping("/set/queue")
+    public ResponseEntity<List<Integer>> setQueue(@RequestBody QueueRequest queue) {
+        List<Integer> newQueue = queueService.updateQueue(queue);
+        return new ResponseEntity<>(newQueue, HttpStatus.CREATED);
+    }
+
     @PutMapping("/update/{id}")
-    public ResponseEntity<Optional<Batch>> updateBatch( @PathVariable Integer id, @RequestBody BatchRequest batch) {
+    public ResponseEntity<Optional<Batch>> updateBatch(@PathVariable Integer id, @RequestBody BatchRequest batch) {
         Optional<Batch> updateBatch = batchService.updateBatch(id, batch);
         return new ResponseEntity<>(updateBatch, HttpStatus.OK);
     }

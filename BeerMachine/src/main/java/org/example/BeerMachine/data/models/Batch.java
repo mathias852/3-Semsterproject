@@ -4,13 +4,18 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name="batch")
+@SequenceGenerator(name = "seqBatch", allocationSize = 0)
+@Table(name="batches")
 public class Batch {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     private Integer amount;
+
+    private Integer speed;
+
+    private Integer queueSpot;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "type_id", nullable = false)
@@ -18,12 +23,15 @@ public class Batch {
 
     public Batch() {}
 
-    public Integer getId() {
-        return id;
+    public Batch(Integer id, Integer speed, Type type, Integer amount) {
+        this.id = id;
+        this.speed = speed;
+        this.type = type;
+        this.amount = amount;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
     public Integer getAmount() {
@@ -42,23 +50,12 @@ public class Batch {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Batch{" +
-                "id=" + id +
-                ", amount=" + amount +
-                ", type=" + type +
-                '}';
+    public Integer getQueueSpot() {
+        return queueSpot;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Batch batch = (Batch) o;
-        return id.equals(batch.id) &&
-                amount.equals(batch.amount) &&
-                type == batch.type;
+    public void setQueueSpot(Integer queueSpot) {
+        this.queueSpot = queueSpot;
     }
 
     @Override

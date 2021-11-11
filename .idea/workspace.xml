@@ -24,6 +24,14 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="spring-beans.schema" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -31,6 +39,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -168,6 +184,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CPS/Java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Web Technologies/Counting Activity 1" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -177,6 +194,14 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.example.BeerMachine.service" />
+      <recent name="org.example.BeerMachine.web" />
+      <recent name="org.example.BeerMachine.data.payloads.request" />
+      <recent name="org.example.BeerMachine.data.repository" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -211,6 +236,8 @@
       <workItem from="1635407756288" duration="4395000" />
       <workItem from="1635419110664" duration="8829000" />
       <workItem from="1635694319073" duration="4289000" />
+      <workItem from="1636037244247" duration="511000" />
+      <workItem from="1636449346239" duration="6043000" />
     </task>
     <task id="LOCAL-00001" summary="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work">
       <created>1635421917155</created>
@@ -219,7 +246,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635421917155</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers.">
+      <created>1636481653967</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636481653967</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated autoGeneration values for models-ids">
+      <created>1636617717860</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636617717860</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +281,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
+    <MESSAGE value="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers." />
+    <MESSAGE value="Updated autoGeneration values for models-ids" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated autoGeneration values for models-ids" />
   </component>
 </project>

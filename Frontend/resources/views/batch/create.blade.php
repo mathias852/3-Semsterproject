@@ -2,9 +2,16 @@
 <body>
 
 <h2>New batch:</h2>
+
+<form action="{{route("batch.store")}}" method="post">
+    @csrf
+    <label>Amount: </label>
+    <input type="text" id="amount" name="amount">
+    <label>Type of Beer:</label>
+    <select  id="type" name="type">
+
 <form action="{{route("index.store")}}" method="post">
     @csrf
-
     <label>Amount: </label>
     <input type="text" id="amount" name="amount">
     <label>Type ID:</label>
