@@ -1,15 +1,7 @@
 <?php
 
-
 use App\Http\Controllers\batchController;
-
-use App\Http\Controllers\BatchController;
-
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\APIController;
-use Symfony\Component\Console\Input\Input;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +14,6 @@ use Symfony\Component\Console\Input\Input;
 |
 */
 
-
 Route::get('/', [batchController::class, "index"])->name("index");
 Route::get('batch/create', [batchController::class, "create"])->name("batch.create");
 Route::post('batch/create', [batchController::class, "store"])->name("batch.store");
@@ -31,14 +22,4 @@ Route::get("batch/*/report", [batchController::class, "showReport", function () 
 }])->name("batch.showReport");
 //Route::get("batch/{id}/report", [batchController::class, "showReport"])->name("batch.showReport");
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/index', [BatchController::class, "index"])->name("index");
-Route::post('/index', [BatchController::class, "store"])->name("index.store");
-Route::get('/batch/create', [BatchController::class, "create"])->name("batch.create");
-Route::get('/batch/{batchId}/report', [BatchController::class, "showReport"])->name('showReport');
 
