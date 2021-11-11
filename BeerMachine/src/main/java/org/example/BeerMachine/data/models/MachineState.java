@@ -1,8 +1,8 @@
 package org.example.BeerMachine.data.models;
 
-import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class MachineState {
     private Batch currentBatch;
@@ -14,6 +14,7 @@ public class MachineState {
     private Map<String, Integer> ingredients;
 
     private StopReason stopreason;
+    private List<Integer> queue;
 
     private State state;
 
@@ -23,6 +24,23 @@ public class MachineState {
         this.currentVibration = currentVibration;
         this.ingredients = ingredients;
         this.state = state;
+        this.queue = new ArrayList<>();
+    }
+
+    public Map<String, Integer> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Map<String, Integer> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<Integer> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(List<Integer> queue) {
+        this.queue = queue;
     }
 
     public Batch getCurrentBatch() {

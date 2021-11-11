@@ -1,22 +1,20 @@
 package org.example.BeerMachine;
 import org.example.BeerMachine.data.models.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-public class Facade {
-    private static Facade facade;
+public class BeerMachineController {
+    private static BeerMachineController beerMachineController;
     private MachineState machineState;
 
-    public static Facade getFacade() {
-        if (facade == null) {
-            facade = new Facade();
+    public static BeerMachineController getBeerMachineController() {
+        if (beerMachineController == null) {
+            beerMachineController = new BeerMachineController();
         }
-        return facade;
+        return beerMachineController;
     }
 
-    public void initiateMachine() {
+    public BeerMachineController() {
         HashMap<String, Integer> ingredients = new HashMap<>();
         ingredients.put("Barley", 100);
         ingredients.put("Hops", 98);
@@ -24,9 +22,19 @@ public class Facade {
         ingredients.put("Wheat", 92);
         ingredients.put("Yeast", 94);
 
-        machineState = new MachineState(1.5, 4.1, 4.2,
+        MachineState newMachineState = new MachineState(1.5, 4.1, 4.2,
                 ingredients,
                 State.ACTIVATING);
+        
+        this.machineState = newMachineState;
+    }
+
+    public MachineState getMachineState() {
+        return this.machineState;
+    }
+
+    public void setMachineState(MachineState machineState) {
+        this.machineState = machineState;
     }
 
     public void setProductionBatch(int id, int amount, int speed, Type type) {

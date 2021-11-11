@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Queue;
 
 @RestController
 @RequestMapping("/batch")
@@ -39,10 +38,14 @@ public class BatchController {
         MessageResponse newBatch = batchService.createBatch(batch);
         return new ResponseEntity<>(newBatch, HttpStatus.CREATED);
     }
-
-    @PostMapping("/queue")
-    public ResponseEntity<List<Batch>> changeQueue(@RequestBody QueueRequest queue) {
-        List<Batch> newQueue = queueService.updateQueue(queue);
+    @GetMapping("/get/queue")
+    public ResponseEntity<List<Integer>> getQueue() {
+        List<Integer> queue = queueService.getQueue();
+        return new ResponseEntity<>(queue, HttpStatus.CREATED);
+    }
+    @PostMapping("/set/queue")
+    public ResponseEntity<List<Integer>> setQueue(@RequestBody QueueRequest queue) {
+        List<Integer> newQueue = queueService.updateQueue(queue);
         return new ResponseEntity<>(newQueue, HttpStatus.CREATED);
     }
 
