@@ -92,6 +92,18 @@ public class BatchReportController {
         BatchReport batchReports = batchReportService.getBatchReport(id);
         return new ResponseEntity<>(batchReports, HttpStatus.OK);
     }
+
+    @GetMapping("/find/batchReport/{batchId}")
+    public ResponseEntity<BatchReport> getBatchReportByBatchId (@PathVariable("batchId") Integer batchId) {
+        List<BatchReport> batchReports = batchReportService.getAllBatchReports();
+        for (BatchReport batchReport: batchReports) {
+            if (batchReport.getBatchId().equals(batchId)){
+                return new ResponseEntity<>(batchReport, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<MessageResponse> addBatch(@RequestBody BatchReportRequest batchReport) {
         MessageResponse newBatchReport = batchReportService.createBatchReport(batchReport);

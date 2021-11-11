@@ -39,11 +39,13 @@ public class BatchController {
         MessageResponse newBatch = batchService.createBatch(batch);
         return new ResponseEntity<>(newBatch, HttpStatus.CREATED);
     }
+
     @PostMapping("/queue")
     public ResponseEntity<List<Batch>> changeQueue(@RequestBody QueueRequest queue) {
         List<Batch> newQueue = queueService.updateQueue(queue);
         return new ResponseEntity<>(newQueue, HttpStatus.CREATED);
     }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Optional<Batch>> updateBatch(@PathVariable Integer id, @RequestBody BatchRequest batch) {
         Optional<Batch> updateBatch = batchService.updateBatch(id, batch);

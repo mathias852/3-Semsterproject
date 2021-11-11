@@ -70,6 +70,14 @@ public class BatchReport {
         this.id = id;
     }
 
+    public Integer getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(Integer batchId) {
+        this.batchId = batchId;
+    }
+
     public Integer getSpeed() {
         return speed;
     }
