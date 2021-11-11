@@ -7,10 +7,11 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@SequenceGenerator(name = "seqBatchReport", allocationSize = 0)
 @Table(name="batchReports")
 public class BatchReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @NotNull
