@@ -11556,4 +11556,20 @@ textarea.form-control-lg {
     }
 }
 
+.batchHead {
+    text-transform: capitalize;
+}
+
+.informationReport {
+
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+.vertical-scroll-table{
+
+    overflow: auto;
+    height: 300px;
+}
+
 /*# sourceMappingURL=app.css.map*/

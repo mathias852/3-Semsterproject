@@ -8,8 +8,7 @@
     <h2>All batches:</h2>
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-        <table id="batchVerticalScroll" class="table table-striped table-bordered table-sm"
-               cellspacing="0" width="100%">
+        <table id="batchVerticalScroll" class="table table-striped table-bordered table-sm">
             <thead>
                 <tr>
                     <th class="th-sm">Batch Id</th>
@@ -20,9 +19,9 @@
             <tbody>
             @foreach($batches as $batch)
                 <tr>
-                    <th scope="row">{{$batch->id}}</th>
-                    <th scope="row">{{$batch->amount}}</th>
-                    <th scope="row">{{$batch->type->name}}</th>
+                    <th scope="row">{{$batch['id']}}</th>
+                    <th scope="row">{{$batch['amount']}}</th>
+                    <th scope="row">{{$batch['type']['name']}}</th>
                 </tr>
             @endforeach
             </tbody>
@@ -31,7 +30,7 @@
 
     <h2>Report</h2>
 
-    <form action="{{route('report.view')}}" method="GET">
+    <form action="{{route('report.show')}}" method="GET">
         <label for="batchId">Enter the ID of the report:
             <input type="number" name="batchId" required>
             @if($errors->has('batchId'))

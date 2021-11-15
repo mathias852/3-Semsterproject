@@ -23,7 +23,7 @@ Route::get('batch/create', [BatchController::class, "create"])->name("batch.crea
 Route::post('batch/create', [BatchController::class, "store"])->name("batch.store");
 
 //reports
-Route::get('/reports', [ReportController::class, "showReports"])->name("report.view");
+Route::get('/report', [ReportController::class, "showReport"])->name("report.show");
 //Route::get("batch/{id}/report", [batchController::class, "showReport"])->name("batch.showReport");
 
 

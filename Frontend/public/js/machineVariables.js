@@ -12,7 +12,7 @@ var getHumidity = function() {
 }
 
 var humidity = function(data) {
-    console.log(data);
+    // console.log(data);
     $(".humidity").html(data + "%");
     setTimeout(getHumidity, 1000);
 }
