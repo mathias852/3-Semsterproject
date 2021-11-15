@@ -9,15 +9,12 @@ use Symfony\Component\Console\Input\Input;
 class batchController extends Controller
 {
     public function index() {
-        $response = Http::get('http://localhost:8081/batch/all');
-        $batches = json_decode($response);
-        return view("index", ['batches' => $batches]);
+        return view("index");
     }
 
     public function create() {
         $response = Http::get('http://localhost:8081/type/all');
         $types = json_decode($response);
-
 
         return view("batch/create")->with("types", $types);
     }
@@ -27,7 +24,13 @@ class batchController extends Controller
             'type' => $request->type,
             'amount' => $request->amount
         ]);
-        return redirect("/")->with('message', "New batch has been made");
+        return redirect("/configuration")->with('message', "New batch has been made");
+    }
+
+    public function config(){
+        $response = Http::get('http://localhost:8081/batch/all');
+        $batches = json_decode($response);
+        return view("config", ['batches' => $batches]);
     }
 
 //    public function showReport(Request $request) {

@@ -19,7 +19,7 @@ class ReportController extends Controller
         $report = $response->json();
 //        dd($report);
         if ($report == null){
-            return back()->withErrors(["batchId" => "Batch with ID: $id does not exist."]);
+            return back()->withErrors(["batchId" => "Batch Report with ID: $id does not exist."]);
         }
 
         return view('batch.report', ['report' => $report]);

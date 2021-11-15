@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\batchController;
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create.blade.php something great!
 |
 */
+//index
+Route::get('/', [BatchController::class, "index"])->name("index");
+
+Route::get('/configuration', [BatchController::class, "config"])->name("batch.config");
 //batches
-Route::get('/', [batchController::class, "index"])->name("index");
-//batches
-Route::get('batch/create', [batchController::class, "create"])->name("batch.create");
-Route::post('batch/create', [batchController::class, "store"])->name("batch.store");
+Route::get('batch/create', [BatchController::class, "create"])->name("batch.create");
+Route::post('batch/create', [BatchController::class, "store"])->name("batch.store");
 
 //reports
 Route::get('/reports', [ReportController::class, "showReports"])->name("report.view");
