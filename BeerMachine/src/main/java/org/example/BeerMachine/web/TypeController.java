@@ -18,26 +18,35 @@ public class TypeController {
     @Autowired
     TypeService typeService;
 
+    @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List<Type>> getAllTypes () {
         List<Type> types = typeService.getAllTypes();
         return new ResponseEntity<>(types, HttpStatus.OK);
     }
+
+    @CrossOrigin
     @GetMapping("/find/{id}")
     public ResponseEntity<Type> getTypeById (@PathVariable("id") Integer id) {
         Type type = typeService.getType(id);
         return new ResponseEntity<>(type, HttpStatus.OK);
     }
+
+    @CrossOrigin
     @PostMapping("/add")
     public ResponseEntity<MessageResponse> addType(@RequestBody TypeRequest type) {
         MessageResponse newType = typeService.createType(type);
         return new ResponseEntity<>(newType, HttpStatus.CREATED);
     }
+
+    @CrossOrigin
     @PutMapping("/update/{id}")
     public ResponseEntity<Optional<Type>> updateType(@PathVariable Integer id, @RequestBody TypeRequest type) {
         Optional<Type> updateType = typeService.updateType(id, type);
         return new ResponseEntity<>(updateType, HttpStatus.OK);
     }
+
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteType(@PathVariable("id") Integer id) {
         typeService.deleteType(id);

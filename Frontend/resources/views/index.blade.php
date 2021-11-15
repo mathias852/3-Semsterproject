@@ -41,6 +41,13 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
+<script src ="humidity.js">
+</script>
+
+
+
+<h1>Humidity: </h1>
+<l class="humidity">Humidity</l>
 <script>
     var refresh = function() {
         $.ajax({

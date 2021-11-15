@@ -4,7 +4,6 @@ package org.example.BeerMachine.data.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(name = "humidities")
