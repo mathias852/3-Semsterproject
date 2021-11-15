@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers.">
+    <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Updated autoGeneration values for models-ids">
+      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/BatchReportRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/HumidityRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/HumidityRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TemperatureRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TemperatureRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TimeStateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/TimeStateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/VibrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/payloads/request/VibrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/BatchReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchReportController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
@@ -78,13 +78,26 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.example.BeerMachine.web" />
       <recent name="org.example.BeerMachine.service" />
+      <recent name="org.example.BeerMachine.web" />
       <recent name="org.example.BeerMachine.data.payloads.request" />
       <recent name="org.example.BeerMachine.data.repository" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BeerMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="BeerMachine" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.BeerMachine.BeerMachineApplication" />
@@ -123,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636481653967</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Updated autoGeneration values for models-ids">
+      <created>1636617717860</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636617717860</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +165,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Added type-routing which allows for types to be added, deleted, updated and found from and to the DB - the getType from BatchRequest cannot find the types from the DB so batch/add does not work" />
     <MESSAGE value="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated models so the database-setup is functional &#10;Added Controller for all new models correspond to the database design - Tested functionality through the python-script. Everything seems to work.&#10;&#10;Two things to note: &#10;The timestamp is converted from string to date through a predefined pattern - Might be a smarter way to do it. But it works&#10;&#10;Second, in the BatchReportController routes to find humidities, temps etc for a specific batch is implemented. Replacing the findAll route in the corresponding controllers." />
+    <MESSAGE value="Updated autoGeneration values for models-ids" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated autoGeneration values for models-ids" />
   </component>
 </project>

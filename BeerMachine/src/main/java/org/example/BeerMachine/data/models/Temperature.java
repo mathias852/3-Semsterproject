@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "temperatures")
 public class Temperature {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(optional = false)

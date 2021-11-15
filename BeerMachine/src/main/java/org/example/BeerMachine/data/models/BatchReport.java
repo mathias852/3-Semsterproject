@@ -7,25 +7,31 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
+@SequenceGenerator(name = "seqBatchReport", allocationSize = 0)
 @Table(name="batchReports")
 public class BatchReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @OneToOne()
-    @JoinColumn(name = "batchId", referencedColumnName = "id")
-    private Batch batch;
+    @NotNull
+    private Integer batchId;
 
     @NotNull
     private Integer speed;
 
     @NotNull
-    private Integer totalCount;
+    @ManyToOne
+    private Type type;
 
-    private Integer goodCount;
+    @NotNull
+    private Integer amount; //how many units was wanted
 
-    private Integer rejectedCount;
+    private Integer totalCount; //how many units was actually produced
+
+    private Integer goodCount; //how many was acceptable
+
+    private Integer rejectedCount; //how many was rejected
 
     private Date startTime;
 
@@ -45,6 +51,17 @@ public class BatchReport {
     @OneToMany(mappedBy="batchReport")
     private Set<TimeState> timeStates;
 
+    public BatchReport(Integer batchId, Integer speed, Type type, Integer amount) {
+        this.batchId = batchId;
+        this.speed = speed;
+        this.type = type;
+        this.amount = amount;
+    }
+
+    public BatchReport() {
+
+    }
+
     public Integer getId() {
         return id;
     }
@@ -53,12 +70,12 @@ public class BatchReport {
         this.id = id;
     }
 
-    public Batch getBatch() {
-        return batch;
+    public Integer getBatchId() {
+        return batchId;
     }
 
-    public void setBatch(Batch batch) {
-        this.batch = batch;
+    public void setBatchId(Integer batchId) {
+        this.batchId = batchId;
     }
 
     public Integer getSpeed() {
@@ -116,4 +133,5 @@ public class BatchReport {
     public void setOEE(Double OEE) {
         this.OEE = OEE;
     }
+
 }
