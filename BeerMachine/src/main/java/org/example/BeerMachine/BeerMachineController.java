@@ -38,8 +38,8 @@ public class BeerMachineController {
     }
 
     public void setProductionBatch(int id, int amount, int speed, Type type) {
-
         BatchReport batchReport = new BatchReport(id, speed, type, amount);
+
         if (type.getMaxSpeed() < speed) {
             try {
                 throw new Exception("Speed greater than max speed.");
