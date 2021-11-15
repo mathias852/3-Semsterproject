@@ -1,4 +1,4 @@
-var refresh = function() {
+var getHumidity = function() {
     $.ajax({
         url: "http://localhost:8081/machineState/getHumidity",
         cache: false,
@@ -7,14 +7,14 @@ var refresh = function() {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        success: success
+        success: humidity
     });
 }
 
-var success = function(data) {
+var humidity = function(data) {
     console.log(data);
-    $(".humidity").html(data);
-    setTimeout(refresh, 1000);
+    $(".humidity").html(data + "%");
+    setTimeout(getHumidity, 1000);
 }
 
-refresh();
+getHumidity();

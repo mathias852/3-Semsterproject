@@ -7,7 +7,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/batchTable.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/humidity.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
@@ -41,42 +41,29 @@
 
 @yield('content')
 
+<h1>Machine Overview</h1>
+<p>Information about the current machine variables</p>
+
+<h3>Humidity: </h3>
+<l class="humidity">Humidity not updating...</l>
+
+<h3>Temperature: </h3>
+<label class="temperature">Temperature is not updating...</label>
+
+<h3>Vibration: </h3>
+<label class="vibration">Vibration is not updating...</label>
+
+<h3>Good count: </h3>
+<label class="gcount">Good count is not updating...</label>
+
+<h3>Bad count: </h3>
+<label class="bcount">Bad count is not updating...</label>
+
+<h3>Total count: </h3>
+<label class="tcount">Total count is not updating...</label>
 
 
-
-
-
-
-
-<h1>Humidity: </h1>
-<l class="humidity">Humidity</l>
-<script>
-    var refresh = function() {
-        $.ajax({
-            url: "http://localhost:8081/machineState/getHumidity",
-            cache: false,
-            type: 'GET',
-            dataType: 'json',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: success
-        });
-    }
-
-    var success = function(data) {
-        console.log(data[0]);
-        $(".field").html(data);
-        setTimeout(refresh, 1000);
-    }
-
-        refresh();
-
-
-<h1 class="field">Test</h1>
 
 {{--</script>--}}
-
-
 
 </html>
