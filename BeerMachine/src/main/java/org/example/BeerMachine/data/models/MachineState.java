@@ -1,5 +1,6 @@
 package org.example.BeerMachine.data.models;
 
+import java.util.List;
 import java.util.Map;
 
 public class MachineState {
@@ -14,6 +15,8 @@ public class MachineState {
 
     private State state;
 
+    private List<Integer> queue;
+
     public MachineState(double currentHumidity, double currentTemperature, double currentVibration, Map<String, Integer> ingredients, State state) {
         this.currentHumidity = currentHumidity;
         this.currentTemperature = currentTemperature;
@@ -24,6 +27,14 @@ public class MachineState {
 
     public Map<String, Integer> getIngredients() {
         return ingredients;
+    }
+
+    public List<Integer> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(List<Integer> queue) {
+        this.queue = queue;
     }
 
     public void setIngredients(Map<String, Integer> ingredients) {
