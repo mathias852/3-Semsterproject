@@ -22,7 +22,7 @@ public class BeerMachineController {
         ingredients.put("Wheat", 92);
         ingredients.put("Yeast", 94);
 
-        MachineState newMachineState = new MachineState(1.5, 4.1, 4.2,
+        MachineState newMachineState = new MachineState(2.0, 4.1, 4.2,
                 ingredients,
                 State.ACTIVATING);
         
