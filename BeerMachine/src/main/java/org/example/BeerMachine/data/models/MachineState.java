@@ -1,12 +1,9 @@
 package org.example.BeerMachine.data.models;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class MachineState {
     private Batch currentBatch;
-
     private double currentHumidity;
     private double currentTemperature;
     private double currentVibration;
@@ -14,7 +11,6 @@ public class MachineState {
     private Map<String, Integer> ingredients;
 
     private StopReason stopreason;
-    private List<Integer> queue;
 
     private State state;
 
@@ -24,7 +20,6 @@ public class MachineState {
         this.currentVibration = currentVibration;
         this.ingredients = ingredients;
         this.state = state;
-        this.queue = new ArrayList<>();
     }
 
     public Map<String, Integer> getIngredients() {
@@ -33,14 +28,6 @@ public class MachineState {
 
     public void setIngredients(Map<String, Integer> ingredients) {
         this.ingredients = ingredients;
-    }
-
-    public List<Integer> getQueue() {
-        return queue;
-    }
-
-    public void setQueue(List<Integer> queue) {
-        this.queue = queue;
     }
 
     public Batch getCurrentBatch() {
