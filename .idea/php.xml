@@ -114,6 +114,7 @@
       <path value="$PROJECT_DIR$/Frontend/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/Frontend/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/Frontend/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/Frontend/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />

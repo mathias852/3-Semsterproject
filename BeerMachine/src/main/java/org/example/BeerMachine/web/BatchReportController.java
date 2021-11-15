@@ -33,6 +33,7 @@ public class BatchReportController {
     @Autowired
     TimeStateService timeStateService;
 
+
     @GetMapping("/all")
     public ResponseEntity<List<BatchReport>> getAllBatchReports () {
         List<BatchReport> batchReports = batchReportService.getAllBatchReports();
