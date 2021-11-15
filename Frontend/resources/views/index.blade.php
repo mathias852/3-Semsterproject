@@ -6,10 +6,15 @@
 @endforeach
 <h2>Report</h2>
 
-<form action="{{route('batch.showReport')}}" method="GET">
+<form action="{{route('report.view')}}" method="GET">
 
     <label for="batchId">Enter the batchid for the report
-        <input type="number" name="batchId">
+        <input type="number" name="batchId" required>
+        @if($errors->has('batchId'))
+{{--            {{dd($errors->first())}}--}}
+            <p>{{($errors->first())}}</p>
+        @endif
+
     </label>
     <button type="submit">Search</button>
 </form>

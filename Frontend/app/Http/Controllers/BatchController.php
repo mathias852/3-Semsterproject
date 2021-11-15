@@ -4,36 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\Console\Input\Input;
 
-class BatchController extends Controller
+class batchController extends Controller
 {
     public function index() {
-        $batches = json_decode(file_get_contents('http://localhost:8081/batch/all'));
-        return view("index")->with("batches", $batches);
+        $response = Http::get('http://localhost:8081/batch/all');
+        $batches = json_decode($response);
+        return view("index", ['batches' => $batches]);
     }
 
-
     public function create() {
-        $types = json_decode(file_get_contents('http://localhost:8081/type/all'));
+        $response = Http::get('http://localhost:8081/type/all');
+        $types = json_decode($response);
+
+
         return view("batch/create")->with("types", $types);
     }
 
     public function store(Request $request){
-        $response = Http::post('http://localhost:8081/batch/add', [
-            'amount' => $request->amount,
-            'type'=> $request->type]);
-        return redirect("index")->with('message', 'A new batch has been made');
+        $post = Http::post('http://localhost:8081/batch/add', [
+            'type' => $request->type,
+            'amount' => $request->amount
+        ]);
+        return redirect("/")->with('message', "New batch has been made");
     }
 
-    public function showReport()
-    {
-        $batches = json_decode(file_get_contents('http://localhost:8081/batch/all'));
-//        dd($batches);
-        return view('batch/report', [
-            'batchId' => $batches[0]
-        ])->with('batchId');
-    }
+//    public function showReport(Request $request) {
+////        $id = $request->get('batchId');
+////        $response = Http::get('http://localhost:8081/batchReport/all');
+////        $reports = json_decode($response);
+////        return redirect(route('batch', $reports[0]->id))->with('$report', $reports);
+////    }
+
 
 
 }
-
