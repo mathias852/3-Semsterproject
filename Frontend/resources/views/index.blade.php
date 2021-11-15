@@ -4,8 +4,11 @@
     <title>Beermachine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/batchTable.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/humidity.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
@@ -39,10 +42,9 @@
 @yield('content')
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script src ="humidity.js">
-</script>
+
+
 
 
 
