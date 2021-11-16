@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Beermachine</title>
+    <title>Beer Machine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -29,7 +29,7 @@
                 <li class="nav-item"></li>
             </ul>
             <ul class="navbar-nav d-flex">
-                <li class="nav-item"></li>
+{{--                <li class="nav-item">Login</li>--}}
                 <li class="nav-item"></li>
                 <li class="nav-item"></li>
             </ul>

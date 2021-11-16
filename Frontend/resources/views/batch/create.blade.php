@@ -4,12 +4,12 @@
 <h2>New batch:</h2>
 <form action="{{route("batch.store")}}" method="post">
     @csrf
-    <label>Amount: </label>
+    <label for="amount">Amount: </label>
     <input type="text" id="amount" name="amount">
-    <label>Type of Beer:</label>
+    <label for="type">Type of Beer:</label>
     <select  id="type" name="type">
         @foreach($types as $type)
-            <option value="{{$type->id}}">{{$type->name}}</option>
+            <option value="{{$type['id']}}">{{$type['name']}}</option>
         @endforeach
     </select>
     <button type="submit">Submit</button>

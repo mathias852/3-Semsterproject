@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 

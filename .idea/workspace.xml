@@ -5,18 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db59c308-f5b8-4255-aa08-1ab0f4ab353b" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/resources/views/info.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/3.-Semesterproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3.-Semesterproject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/testRestAPI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/app/Http/Controllers/BatchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/app/Http/Controllers/BatchController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/app/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/app/Http/Controllers/ReportController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/public/js/machineVariables.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/public/js/machineVariables.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/resources/views/batch/report.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/batch/report.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/resources/views/batch/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/batch/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/resources/views/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/config.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/resources/views/info.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/resources/views/info.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Frontend/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +25,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/Frontend/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -187,6 +188,8 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -225,7 +228,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="95301221-40cc-491a-8deb-3e57aee20979" name="Changes" comment="" />
+      <changelist id="db59c308-f5b8-4255-aa08-1ab0f4ab353b" name="Changes" comment="Changes" />
       <created>1636928381297</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -234,6 +237,7 @@
       <workItem from="1636928811267" duration="1710000" />
       <workItem from="1636975395904" duration="1196000" />
       <workItem from="1636980151573" duration="3127000" />
+      <workItem from="1637062071891" duration="5054000" />
     </task>
     <servers />
   </component>
