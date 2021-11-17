@@ -25,6 +25,7 @@ public class MachineStateController {
     @CrossOrigin
     @GetMapping("/getHumidity")
     public ResponseEntity<Double> getHumidity () {
+        BeerMachineController.getBeerMachineController().getMachineState().setCurrentHumidity(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity() + 1);
         return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity(),
                 HttpStatus.OK);
     }

@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\BatchController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\APIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,12 +11,21 @@ use App\Http\Controllers\APIController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "web" middleware group. Now create.blade.php something great!
 |
 */
+//index
+Route::get('/', [BatchController::class, "index"])->name("index");
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//configuration
+Route::get('/configuration', [BatchController::class, "config"])->name("batch.config");
 
-Route::get('/api', [APIController::class, "index"]);
+//batches
+Route::get('batch/create', [BatchController::class, "create"])->name("batch.create");
+Route::post('batch/create', [BatchController::class, "store"])->name("batch.store");
+
+//reports
+Route::get('/report', [ReportController::class, "showReportWithId"])->name("reportWithId.show");
+//Route::get("batch/{id}/report", [batchController::class, "showReport"])->name("batch.showReport");
+
+
