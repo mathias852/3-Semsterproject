@@ -6,6 +6,8 @@ import org.example.BeerMachine.data.repository.BatchRepository;
 import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,9 +17,10 @@ import java.util.List;
 @Component
 public class BatchReportRequest {
     @NotNull
+    @Column(unique = true)
     private Integer batchId;
 
-    @NotNull
+    //@NotNull
     private Integer speed;
 
     @NotNull
@@ -41,10 +44,6 @@ public class BatchReportRequest {
             }
         }
         return null;
-    }
-
-    public void setBatchId(Integer batchId) {
-        this.batchId = batchId;
     }
 
     public Integer getSpeed() {

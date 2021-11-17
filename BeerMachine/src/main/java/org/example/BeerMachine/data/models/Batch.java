@@ -8,7 +8,7 @@ import java.util.Objects;
 @Table(name="batches")
 public class Batch {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqBatch")
     private Integer id;
 
     private Integer amount;
@@ -48,6 +48,14 @@ public class Batch {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    public Integer getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(Integer speed) {
+        this.speed = speed;
     }
 
     public Integer getQueueSpot() {
