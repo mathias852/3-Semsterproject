@@ -23,7 +23,7 @@ public class Write {
     public static void main(String[] args) {
         try 
         {
-            MachineConnection machineConnection = new MachineConnection("192.168.0.122", 4840);
+            MachineConnection machineConnection = new MachineConnection("127.0.0.1", 4840);
             machineConnection.connect();
             OpcUaClient client = machineConnection.getClient();
 
