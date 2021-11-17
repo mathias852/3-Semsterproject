@@ -3,20 +3,20 @@ import requests
 
 
 # ---------- CREATE TYPE -----------#
-#url = 'http://localhost:8081/type/add'
-#type = {'name': 'Pilsner'}
+url = 'http://localhost:8081/type/add'
+type = {'name': 'Pilsner'}
 
-#x = requests.post(url, json = type)
+x = requests.post(url, json = type)
 
-#url = 'http://localhost:8081/type/add'
-#type = {'name': 'IPA'}
+url = 'http://localhost:8081/type/add'
+type = {'name': 'IPA'}
 
-#x = requests.post(url, json = type)
+x = requests.post(url, json = type)
 
-#url = 'http://localhost:8081/type/add'
-#type = {'name': 'Alcohol_Free'}
+url = 'http://localhost:8081/type/add'
+type = {'name': 'Alcohol_Free'}
 
-#x = requests.post(url, json = type)
+x = requests.post(url, json = type)
 
 
 #---------- CREATE Batch -----------#

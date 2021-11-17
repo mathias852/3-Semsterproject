@@ -5,6 +5,7 @@
         <h1>General Information</h1>
         {{--        Taking the value of each item and outputting it to the html--}}
         @foreach($report as $item => $value1)
+{{--            {{dd($report)}}--}}
             <div class="col-sm-2">
                 <div class="card text-center">
                     <div class="card-header batchHead">{{$item}}</div>

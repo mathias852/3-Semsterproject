@@ -24,12 +24,13 @@
                     <a class="nav-link" aria-current="page" href="{{route('index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('batch.config')}}">Configuration</a>
+                    <a class="nav-link" href="{{route('batch.list')}}">Batches</a>
                 </li>
-                <li class="nav-item"></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('batch.list')}}">Reports</a>
+                </li>
             </ul>
             <ul class="navbar-nav d-flex">
-{{--                <li class="nav-item">Login</li>--}}
                 <li class="nav-item"></li>
                 <li class="nav-item"></li>
             </ul>
