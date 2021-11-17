@@ -35,6 +35,7 @@ class BatchController extends Controller
         //reports
         $responseReport = Http::get('http://localhost:8081/batchReport/all');
         $reports = $responseReport->json();
+//        dd($reports);
         return view("list", ['batches' => $batches,
             'reports' => $reports]);
     }

@@ -5,13 +5,15 @@
         <h1>General Information</h1>
         {{--        Taking the value of each item and outputting it to the html--}}
         @foreach($report as $item => $value1)
-{{--            {{dd($report)}}--}}
             <div class="col-sm-2">
                 <div class="card text-center">
                     <div class="card-header batchHead">{{$item}}</div>
                     <div class="card-body">
+
                         @if($value1 == null)
                             {{$value = 'N/A'}}
+                        @elseif($item == 'type')
+                            {{$value1['name']}}
                         @else
                             <h5 class="card-title">{{$value1}}</h5>
                         @endif
@@ -26,8 +28,8 @@
     <div class="row informationReport ">
         <div class="col-sm ">
             <h1 class="text-center">Humidities</h1>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar vertical-scroll-table " >
-                <table id="vertical-scroll-table" class="table table-striped table-bordered table-sm" >
+            <div class="table-wrapper-scroll-y my-custom-scrollbar vertical-scroll-table ">
+                <table id="vertical-scroll-table" class="table table-striped table-bordered table-sm">
                     <thead>
                     <tr>
                         <th class="th-sm">Id</th>
