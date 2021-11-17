@@ -11556,4 +11556,24 @@ textarea.form-control-lg {
     }
 }
 
+.batchHead {
+    text-transform: capitalize;
+}
+
+.informationReport {
+
+    padding-left: 20px;
+    padding-right: 30px;
+}
+
+
+.vertical-scroll-table{
+
+    overflow: auto;
+    height: 300px;
+}
+.beerMachine-content{
+    padding: 0 1.5em;
+    text-align: center;
+}
 /*# sourceMappingURL=app.css.map*/
