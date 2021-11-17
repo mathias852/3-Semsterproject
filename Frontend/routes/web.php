@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\BatchController;
-use App\Http\Controllers\InfoController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +17,15 @@ use Illuminate\Support\Facades\Route;
 //index
 Route::get('/', [BatchController::class, "index"])->name("index");
 
+//configuration
 Route::get('/configuration', [BatchController::class, "config"])->name("batch.config");
+
 //batches
 Route::get('batch/create', [BatchController::class, "create"])->name("batch.create");
 Route::post('batch/create', [BatchController::class, "store"])->name("batch.store");
 
 //reports
-Route::get('/report', [ReportController::class, "showReport"])->name("report.show");
+Route::get('/report', [ReportController::class, "showReportWithId"])->name("reportWithId.show");
 //Route::get("batch/{id}/report", [batchController::class, "showReport"])->name("batch.showReport");
 
 

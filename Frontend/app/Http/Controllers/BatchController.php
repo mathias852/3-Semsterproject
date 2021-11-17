@@ -23,10 +23,11 @@ class batchController extends Controller
     }
 
     public function store(Request $request){
-        Http::post('http://localhost:8081/batch/add', [
+        $test = Http::post('http://localhost:8081/batch/add', [
             'type' => $request->type,
             'amount' => $request->amount
         ]);
+
         return redirect("/configuration")->with('message', "New batch has been made");
     }
 

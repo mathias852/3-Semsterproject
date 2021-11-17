@@ -41,21 +41,21 @@ x = requests.post(url, json = batch)
 
 #---------- CREATE BatchReport -----------#
 url = 'http://localhost:8081/batchReport/add'
-batchReport = {'batchId': 5,
+batchReport = {'batchId': 1,
               'speed': 50,
               'totalCount': 540}
 
 x = requests.post(url, json = batchReport)
 
 url = 'http://localhost:8081/batchReport/add'
-batchReport = {'batchId': 6,
+batchReport = {'batchId': 2,
               'speed': 20,
               'totalCount': 123}
 
 x = requests.post(url, json = batchReport)
 
 url2 = 'http://localhost:8081/batchReport/add'
-batchReport = {'batchId': 7,
+batchReport = {'batchId': 3,
               'speed': 80,
               'totalCount': 345}
 

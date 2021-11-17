@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class ReportController extends Controller
 {
-    public function showReport(Request $request)
+    public function showReportWithId(Request $request)
     {
         $request->validate([
             'batchId' => "numeric|required"
@@ -30,9 +30,9 @@ class ReportController extends Controller
         $responseVibration = Http::get("http://localhost:8081/batchReport/all/$id/vibrations");
         $vibrations = $responseVibration->json();
 
-        //timestates
-        $responsetimeStates = Http::get("http://localhost:8081/batchReport/all/$id/timeStates");
-        $timeStates = $responsetimeStates->json();
+        //timeStates
+        $responseTimeStates = Http::get("http://localhost:8081/batchReport/all/$id/timeStates");
+        $timeStates = $responseTimeStates->json();
 
         if ($report == null) {
             return back()->withErrors(["batchId" => "Batch Report with ID: $id does not exist."]);
