@@ -28,6 +28,8 @@
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
@@ -36,6 +38,7 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -44,6 +47,7 @@
       <method v="2" />
     </configuration>
     <configuration name="BeerMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="BeerMachineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="BeerMachine" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.example.BeerMachine.BeerMachineApplication" />
       <method v="2">
@@ -65,5 +69,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.BeerMachineApplication" />
+      </list>
+    </recent_temporary>
   </component>
 </project>
