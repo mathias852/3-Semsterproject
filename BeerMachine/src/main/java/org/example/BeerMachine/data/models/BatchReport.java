@@ -68,16 +68,8 @@ public class BatchReport {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getBatchId() {
         return batchId;
-    }
-
-    public void setBatchId(Integer batchId) {
-        this.batchId = batchId;
     }
 
     public Integer getSpeed() {
@@ -136,4 +128,11 @@ public class BatchReport {
         this.OEE = OEE;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
 }
