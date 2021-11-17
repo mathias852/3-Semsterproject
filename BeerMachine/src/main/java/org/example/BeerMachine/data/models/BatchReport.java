@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name="batchReports")
 public class BatchReport {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqBatchReport")
     private Integer id;
 
     @NotNull
@@ -61,6 +61,8 @@ public class BatchReport {
     public BatchReport() {
 
     }
+
+
 
     public Integer getId() {
         return id;

@@ -17,7 +17,7 @@ public class BatchReportRequest {
     @NotNull
     private Integer batchId;
 
-    @NotNull
+    //@NotNull
     private Integer speed;
 
     @NotNull
