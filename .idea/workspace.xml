@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8ab947a-4647-4183-88ef-13252072c644" name="Changes" comment="Updated autoGeneration values for models-ids">
-      <change afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/data/models/BatchReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueService.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/service/QueueService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/web/BatchReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachine/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/src/main/java/Browse.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication/Browse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/src/main/java/MachineConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication/MachineConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/src/main/java/Read.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication/Read.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/src/main/java/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication/Subscription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BeerMachineCommunication/src/main/java/Write.java" beforeDir="false" afterPath="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication/Write.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +80,10 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/BeerMachine/.idea" />
+      <recent name="$PROJECT_DIR$/BeerMachine/src/main/java/org/example/BeerMachine/BeerMachineCommunication" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.BeerMachine.service" />
       <recent name="org.example.BeerMachine.web" />
@@ -85,15 +92,13 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
