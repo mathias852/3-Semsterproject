@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BatchController::class, "index"])->name("index");
 
 //configuration
-Route::get('/configuration', [BatchController::class, "config"])->name("batch.config");
+Route::get('/batches', [BatchController::class, "list"])->name("batch.list");
 
 //batches
 Route::get('batch/create', [BatchController::class, "create"])->name("batch.create");

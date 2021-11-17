@@ -1,8 +1,10 @@
 package org.example.BeerMachine.service;
 
 import org.example.BeerMachine.data.models.Batch;
+import org.example.BeerMachine.data.models.BatchReport;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
+import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
 import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,19 @@ public class BatchServiceImpl implements BatchService {
     @Autowired
     TypeRepository typeRepository;
 
+    @Autowired
+    BatchReportRepository batchReportRepository;
+
     @Override
     public MessageResponse createBatch(BatchRequest batchRequest) {
         Batch newBatch = new Batch();
         newBatch.setAmount(batchRequest.getAmount());
         newBatch.setType(batchRequest.getType(typeRepository));
         batchRepository.save(newBatch);
-        return new MessageResponse("New Batch created successfully");
+        BatchReport newBatchReport = new BatchReport(newBatch.getId(), newBatch.getSpeed(),
+                newBatch.getType(), newBatch.getAmount());
+        batchReportRepository.save(newBatchReport);
+        return new MessageResponse("New Batch created successfully with a corresponding batch report");
     }
 
     @Override
