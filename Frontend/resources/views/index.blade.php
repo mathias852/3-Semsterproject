@@ -27,7 +27,7 @@
                     <a class="nav-link" href="{{route('batch.list')}}">Batches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('batch.list')}}">Reports</a>
+                    <a class="nav-link" href="{{route('report.list')}}">Reports</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex">

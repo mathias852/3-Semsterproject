@@ -23,7 +23,7 @@ class BatchController extends Controller
             'amount' => $request->amount
         ]);
 
-        return redirect("/configuration")->with('message', "New batch has been made");
+        return redirect("/batches")->with('message', "New batch has been made");
     }
 
     public function list(){

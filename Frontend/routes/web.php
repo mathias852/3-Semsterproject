@@ -26,6 +26,6 @@ Route::post('batch/create', [BatchController::class, "store"])->name("batch.stor
 
 //reports
 Route::get('/report', [ReportController::class, "showReportWithId"])->name("reportWithId.show");
-//Route::get("batch/{id}/report", [batchController::class, "showReport"])->name("batch.showReport");
+Route::get('/reports', [ReportController::class, "reportList"])->name("report.list");
 
 
