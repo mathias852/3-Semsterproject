@@ -44,4 +44,13 @@ class ReportController extends Controller
             'vibrations' => $vibrations,
             'timestates' => $timeStates]);
     }
+
+    public function reportList()
+    {
+        //General report
+        $responseReport = Http::get("http://localhost:8081/batchReport/all");
+        $reports = $responseReport->json();
+
+        return view('batch.reportList', ['reports' => $reports]);
+    }
 }

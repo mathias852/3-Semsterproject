@@ -5,6 +5,13 @@
         <div class="row">
             <h1>Machine Overview</h1>
             <p>Live information about the current machine variables</p>
+
+{{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
+            <div>
+                <p class="status">STATUS</p>
+            </div>
+
+
             <div class="row">
                 <div class="col-sm">
                     <h3>Humidity: </h3>

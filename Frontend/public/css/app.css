@@ -11567,13 +11567,30 @@ textarea.form-control-lg {
 }
 
 
-.vertical-scroll-table{
+.vertical-scroll-table {
 
     overflow: auto;
     height: 300px;
 }
-.beerMachine-content{
+
+.beerMachine-content {
     padding: 0 1.5em;
     text-align: center;
 }
+
+.create-form {
+    text-align: center;
+    text-align-last: center;
+    margin-top: 3%;
+    width: 50%;
+    margin-left : 25%
+}
+
+.status{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-size: 40px;
+}
+
+
 /*# sourceMappingURL=app.css.map*/
