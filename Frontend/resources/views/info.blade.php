@@ -18,6 +18,10 @@
                     <label class="humidity">Humidity not updating...</label>
                 </div>
                 <div class="col-sm">
+                    <h3>Stop reason: </h3>
+                    <label class="stopReason">Stop reason not updating...</label>
+                </div>
+                <div class="col-sm">
                     <h3>Temperature: </h3>
                     <label class="temperature">Temperature is not updating...</label>
                 </div>
@@ -37,6 +41,7 @@
                     <h3>Total count: </h3>
                     <label class="tcount">Total count is not updating...</label>
                 </div>
+
             </div>
         </div>
         <br><br>
@@ -47,7 +52,7 @@
             <div class="row">
                 {{--                TODO: Implement corrct calls to reach method for the REST side.--}}
                 {{--                TODO: Maybe do this in a seperate controller to keep it simple--}}
-                <span class="col-sm"><button>Start Machine</button></span>
+                    <span class="col-sm"><button>Start Machine</button></span>
                 <span class="col-sm"><button>Stop Machine</button></span>
                 <span class="col-sm"><button>Reset Machine</button></span>
                 <span class="col-sm"><button>Refill Machine</button></span>
