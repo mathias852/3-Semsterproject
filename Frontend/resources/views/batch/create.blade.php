@@ -4,6 +4,10 @@
     <html>
     <body>
 
+    @if(@session()->has("message"))
+        <p>{{@session()->get("message")}}</p>
+    @endif
+
     <div class=" create-form ">
 
         <h2>New batch:</h2>
@@ -17,7 +21,10 @@
                 @foreach($types as $type)
                     <option value="{{$type['id']}}">{{$type['name']}}</option>
                 @endforeach
-            </select><br>
+            </select>
+            <label for="amount" class="fw-bold">Speed</label>
+            <input type="number" id="speed" name="speed" class="form-control">
+            <br>
             <button type="submit" class="form-control">Submit</button>
         </form>
     </div>

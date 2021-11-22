@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Http;
 class BatchController extends Controller
 {
     public function index() {
-        return view("info");
+        $responseBatch = Http::get('http://localhost:8081/batch/all');
+        $batches = $responseBatch->json();
+
+        return view("info")->with('batches', $batches);
     }
 
     public function create() {
@@ -20,10 +23,29 @@ class BatchController extends Controller
     public function store(Request $request){
         Http::post('http://localhost:8081/batch/add', [
             'type' => $request->type,
-            'amount' => $request->amount
+            'amount' => $request->amount,
+            'speed' => $request->speed
         ]);
 
         return redirect("/batches")->with('message', "New batch has been made");
+    }
+
+    public function start(Request $request){
+        //need java route for starting
+        //
+        //
+        //
+        //
+        return redirect()->route("batch.destroy", $request->id);
+    }
+
+    public function destroy(Request $request){
+
+        $id = $request->id;
+
+        Http::delete("http://localhost:8081/batch/delete/$id");
+
+        return redirect("/")->with('message', "Batch $id has been started");
     }
 
     public function list(){

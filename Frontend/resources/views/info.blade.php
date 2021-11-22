@@ -6,6 +6,10 @@
             <h1>Machine Overview</h1>
             <p>Live information about the current machine variables</p>
 
+            @if(@session()->has("message"))
+                <p>{{@session()->get("message")}}</p>
+            @endif
+
 {{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
             <div>
                 <p class="status">STATUS</p>
@@ -52,7 +56,23 @@
             <div class="row">
                 {{--                TODO: Implement corrct calls to reach method for the REST side.--}}
                 {{--                TODO: Maybe do this in a seperate controller to keep it simple--}}
-                    <span class="col-sm"><button>Start Machine</button></span>
+                <span class="col-sm">
+
+                    @if (empty($batches))
+                        <form action="{{route("batch.create")}}" method="get">
+                        @csrf
+
+                        <button type="submit" class="col-sm">Start batch</button>
+                        </form>
+
+                    @else
+                        <form action="{{route("batch.start")}}" method="post">
+                            @csrf
+                            <input type="hidden" id="id" name="id" value="{{$batches[0]['id']}}">
+                            <button type="submit" class="col-sm">Start batch</button>
+                        </form>
+                    @endif
+                </span>
                 <span class="col-sm"><button>Stop Machine</button></span>
                 <span class="col-sm"><button>Reset Machine</button></span>
                 <span class="col-sm"><button>Refill Machine</button></span>
