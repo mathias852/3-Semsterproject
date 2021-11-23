@@ -30,14 +30,22 @@ import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned;
 
 public class Subscription {
-    public static void main(String[] args) {
+    private MachineConnection machineConnection;
+    private OpcUaClient client;
+
+    private String host = "127.0.0.1";
+
+    public void checkStateCurrent() {
         try
         {
-            MachineConnection machineConnection = new MachineConnection("127.0.0.1", 4840);
+            machineConnection = new MachineConnection(host, 4840);
             machineConnection.connect();
-            OpcUaClient client = machineConnection.getClient();
+            client = machineConnection.getClient();
 
-            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Admin.ProdProcessedCount");
+
+
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.StateCurrent");
 
             // what to read
             ReadValueId readValueId = new ReadValueId(nodeId, AttributeId.Value.uid(), null, null);
@@ -76,14 +84,23 @@ public class Subscription {
             // let the example run for 2 hours then terminate (equivalent to simulation time limit)
             Thread.sleep(7200000L);
         }
-        catch(Throwable ex)
-        {
+        catch(Throwable ex) {
             ex.printStackTrace();
         }
-
     }
 
     private static void onSubscriptionValue(UaMonitoredItem item, DataValue value) {
-        System.out.println("subscription value received: item="+ item.getReadValueId().getNodeId() + ", value=" + value.getValue());
+        int state_value = (int) value.getValue().getValue();
+        System.out.println("subscription value received: item="+ item.getReadValueId().getNodeId() + ", value=" + state_value);
+        if (state_value == 4) {
+
+        }
+    }
+
+    public String getHost() {
+        return host;
+    }
+    public void setHost(String host) {
+        this.host = host;
     }
 }

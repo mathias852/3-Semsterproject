@@ -4,16 +4,56 @@ import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.State;
 import org.example.BeerMachine.data.models.StopReason;
+import org.example.BeerMachine.data.payloads.response.MessageResponse;
+import org.example.BeerMachine.service.MachineService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/machineState")
+@RequestMapping("/machine")
 public class MachineStateController {
+
+    @Autowired
+    MachineService machineService;
+
+    @CrossOrigin
+    @PutMapping("/reset")
+    public ResponseEntity<MessageResponse> resetMachine() {
+        MessageResponse resetMachine = machineService.resetMachine();
+        return new ResponseEntity<>(resetMachine, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/start/{batchId}")
+    public ResponseEntity<MessageResponse> startMachine(@PathVariable Integer batchId) {
+        MessageResponse startMachine = machineService.startMachine(batchId);
+        return new ResponseEntity<>(startMachine, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/stop")
+    public ResponseEntity<MessageResponse> stopMachine() {
+        MessageResponse stopMachine = machineService.stopMachine();
+        return new ResponseEntity<>(stopMachine, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/abort")
+    public ResponseEntity<MessageResponse> abortMachine() {
+        MessageResponse abortMachine = machineService.abortMachine();
+        return new ResponseEntity<>(abortMachine, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @PutMapping("/clear")
+    public ResponseEntity<MessageResponse> clearMachine() {
+        MessageResponse clearMachine = machineService.clearMachine();
+        return new ResponseEntity<>(clearMachine, HttpStatus.OK);
+    }
 
     @CrossOrigin
     @GetMapping("/getTemperature")
