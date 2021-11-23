@@ -33,7 +33,7 @@ public class Subscription {
     private MachineConnection machineConnection;
     private OpcUaClient client;
 
-    private String host = "127.0.0.1";
+    private String host = "192.168.0.122";
 
     public void checkStateCurrent() {
         try

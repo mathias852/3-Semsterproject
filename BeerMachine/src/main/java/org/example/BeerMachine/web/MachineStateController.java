@@ -20,15 +20,13 @@ public class MachineStateController {
     @Autowired
     MachineService machineService;
 
-    @CrossOrigin
-    @PutMapping("/reset")
+    @GetMapping("/reset")
     public ResponseEntity<MessageResponse> resetMachine() {
         MessageResponse resetMachine = machineService.resetMachine();
         return new ResponseEntity<>(resetMachine, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @PutMapping("/start/{batchId}")
+    @PostMapping("/start/{batchId}")
     public ResponseEntity<MessageResponse> startMachine(@PathVariable Integer batchId) {
         MessageResponse startMachine = machineService.startMachine(batchId);
         return new ResponseEntity<>(startMachine, HttpStatus.OK);

@@ -15,7 +15,7 @@ public class Read {
     OpcUaClient client;
     private int state;
     private int defectiveCount;
-    private String host = "127.0.0.1";
+    private String host = "192.168.0.122";
 
     public int getDefectiveCount() {
         try {
