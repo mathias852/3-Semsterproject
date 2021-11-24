@@ -1,7 +1,5 @@
 //Get vibration
 
-
-
 var getVibration = function() {
     $.ajax({
         url: "http://localhost:8081/machineState/getVibration",
