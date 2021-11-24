@@ -3,20 +3,17 @@ package org.example.BeerMachine.service;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
+import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.BatchReport;
-import org.example.BeerMachine.data.payloads.request.BatchRequest;
+import org.example.BeerMachine.data.models.State;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
-import org.example.BeerMachine.data.repository.TypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.eclipse.milo.opcua.stack.core.types.enumerated.OpenFileMode.Write;
+import java.util.ArrayList;
 
 @Service
 public class MachineServiceImpl implements MachineService {
@@ -26,6 +23,8 @@ public class MachineServiceImpl implements MachineService {
 
     @Autowired
     BatchReportRepository batchReportRepository;
+    @Autowired
+    BatchRepository batchRepository;
 
     @Override
     public MessageResponse resetMachine() {
@@ -40,10 +39,31 @@ public class MachineServiceImpl implements MachineService {
             write.startBatch(batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
         } catch (Exception e) {
             System.out.println(e);
-            return null;
+            return new MessageResponse("Machine didn't start...");
         }
         return new MessageResponse("Machine started...");
     }
+    @Override
+    public MessageResponse startQueue() {
+        MessageResponse response = new MessageResponse("Queue didn't start...");
+        try {
+            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findOrderByQueueSpotAndQueueSpotNotNull());
+            if (BeerMachineController.getBeerMachineController().getMachineState().getState() == State.IDLE) {
+                while (batchQueue.size() > 0) {
+                    Integer firstQueue = batchQueue.get(0).getId();
+                    response = startMachine(firstQueue);
+                    batchQueue.remove(0);
+                }
+            } else {
+                response = new MessageResponse("Machine not in idle...");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            response = new MessageResponse("Queue failed...");
+        }
+        return response;
+    }
+
     @Override
     public MessageResponse stopMachine() {
         write.stop();
