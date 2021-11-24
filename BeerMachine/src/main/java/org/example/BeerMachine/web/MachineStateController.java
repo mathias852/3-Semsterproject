@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/machine")
 public class MachineStateController {
@@ -30,6 +28,11 @@ public class MachineStateController {
     public ResponseEntity<MessageResponse> startMachine(@PathVariable Integer batchId) {
         MessageResponse startMachine = machineService.startMachine(batchId);
         return new ResponseEntity<>(startMachine, HttpStatus.OK);
+    }
+    @PostMapping("/queue/start")
+    public ResponseEntity<MessageResponse> startQueue() {
+        MessageResponse startQueue = machineService.startQueue();
+        return new ResponseEntity<>(startQueue, HttpStatus.OK);
     }
 
     @GetMapping("/stop")
