@@ -28,7 +28,6 @@
                                 @endif
                             @endforeach
                         </th>
-
                         <th scope="row">
                             <form action="{{route("batch.start")}}" method="post">
                                 @csrf

@@ -62,14 +62,14 @@
                         <form action="{{route("batch.create")}}" method="get">
                         @csrf
 
-                        <button type="submit" class="col-sm">Start batch</button>
+                        <button type="submit" class="col-sm">Start first batch</button>
                         </form>
 
                     @else
                         <form action="{{route("batch.start")}}" method="post">
                             @csrf
                             <input type="hidden" id="id" name="id" value="{{$batches[0]['id']}}">
-                            <button type="submit" class="col-sm">Start batch</button>
+                            <button type="submit" class="col-sm">Start first batch</button>
                         </form>
                     @endif
                 </span>
