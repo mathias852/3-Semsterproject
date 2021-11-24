@@ -16,25 +16,25 @@
             </div>
 
 
-            <div class="row">
-                <div class="col-sm">
-                    <h3>Yeast</h3>
-                    <label class="yeast">Yeast value not updating...</label>
-                </div>
-                <div class="col-sm">
-                    <h3>Hops</h3>
-                    <label class="hops">Hops value not updating...</label>
-                </div>
-                <div class="col-sm">
-                    <h3>Barley</h3>
-                    <label class="barley">Barley not updating...</label>
-                </div>
-                <div class="col-sm">
-                    <h3>Wheat</h3>
-                    <label class="wheat">Wheat not reading</label>
-                </div>
+{{--            <div class="row">--}}
+{{--                <div class="col-sm">--}}
+{{--                    <h3>Yeast</h3>--}}
+{{--                    <label class="yeast">Yeast value not updating...</label>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm">--}}
+{{--                    <h3>Hops</h3>--}}
+{{--                    <label class="hops">Hops value not updating...</label>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm">--}}
+{{--                    <h3>Barley</h3>--}}
+{{--                    <label class="barley">Barley not updating...</label>--}}
+{{--                </div>--}}
+{{--                <div class="col-sm">--}}
+{{--                    <h3>Wheat</h3>--}}
+{{--                    <label class="wheat">Wheat not reading</label>--}}
+{{--                </div>--}}
 
-            </div>
+{{--            </div>--}}
 
             <div class="row">
                 <div class="col-sm">
