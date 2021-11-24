@@ -21,6 +21,13 @@ class BatchController extends Controller
     }
 
     public function store(Request $request){
+
+        $request->validate([
+            'type' => ['required'],
+            'amount' => ['required'],
+            'speed' => ['required']
+        ]);
+
         Http::post('http://localhost:8081/batch/add', [
             'type' => $request->type,
             'amount' => $request->amount,
@@ -31,7 +38,7 @@ class BatchController extends Controller
     }
 
     public function start(Request $request){
-        //need java route for starting
+        // route::: machine/start/id
         //
         //
         //

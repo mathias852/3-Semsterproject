@@ -37,7 +37,7 @@ var getTemperature = function() {
 }
 
 var temperature = function(data) {
-    console.log(data);
+    // console.log(data);
     $(".temperature").html(data + "%");
     setTimeout(getTemperature, 1000);
 }
