@@ -10,11 +10,31 @@
                 <p>{{@session()->get("message")}}</p>
             @endif
 
-{{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
+            {{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
             <div>
                 <p class="status">STATUS</p>
             </div>
 
+
+            <div class="row">
+                <div class="col-sm">
+                    <h3>Yeast</h3>
+                    <label class="yeast">Yeast value not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Hops</h3>
+                    <label class="hops">Hops value not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Barley</h3>
+                    <label class="barley">Barley not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Wheat</h3>
+                    <label class="wheat">Wheat not reading</label>
+                </div>
+
+            </div>
 
             <div class="row">
                 <div class="col-sm">
@@ -62,28 +82,25 @@
                         <form action="{{route("batch.create")}}" method="get">
                         @csrf
 
-                        <button type="submit" class="col-sm">Start batch</button>
+                        <button type="submit" class="col-sm btn btn-success">Start batch</button>
                         </form>
 
                     @else
                         <form action="{{route("batch.start")}}" method="post">
                             @csrf
                             <input type="hidden" id="id" name="id" value="{{$batches[0]['id']}}">
-                            <button type="submit" class="col-sm">Start batch</button>
+                            <button type="submit" class="col-sm btn btn-success">Start batch</button>
                         </form>
                     @endif
                 </span>
-                <span class="col-sm"><button>Stop Machine</button></span>
-                <span class="col-sm"><button>Reset Machine</button></span>
-                <span class="col-sm"><button>Refill Machine</button></span>
-                <span class="col-sm"><button>Abort</button></span>
-                <span class="col-sm"><button>Maintenance</button></span>
-            </div>
-            <div class="row">
-                <span class="col-sm"><button>ABORT</button></span>
+                <span class="col-sm"><button class="btn btn-danger ">Stop Machine</button></span>
+                <span class="col-sm"><button class="btn btn-danger">Abort</button></span>
+                <span class="col-sm"><button class="btn btn-secondary">Reset Machine</button></span>
+                <span class="col-sm"><button class="btn btn-secondary">Refill Machine</button></span>
+                <span class="col-sm"><button class="btn btn-secondary">Maintenance</button></span>
             </div>
         </div>
     </div>
 
-    {{--</div>--}}
+
 @endsection
