@@ -38,7 +38,7 @@ class BatchController extends Controller
     }
 
     public function start(Request $request){
-        //need java route for starting
+        // route::: machine/start/id
         //
         //
         //
