@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BatchRepository extends JpaRepository<Batch, Integer> {
-    List<Batch> findOrderByQueueSpotAndQueueSpotNotNull();
+    //List<Batch> findOrderByQueueSpotAndQueueSpotNotNull();
 }

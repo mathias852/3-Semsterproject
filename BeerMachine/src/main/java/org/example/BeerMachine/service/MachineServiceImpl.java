@@ -53,7 +53,7 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public MessageResponse startQueue() {
         MessageResponse response = new MessageResponse("Queue didn't start...");
-        try {
+        /*try {
             ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findOrderByQueueSpotAndQueueSpotNotNull());
             if (BeerMachineController.getBeerMachineController().getMachineState().getState() == State.IDLE) {
                 while (batchQueue.size() > 0) {
@@ -67,7 +67,7 @@ public class MachineServiceImpl implements MachineService {
         } catch (Exception e) {
             System.out.println(e);
             response = new MessageResponse("Queue failed...");
-        }
+        }*/
         return response;
     }
 
