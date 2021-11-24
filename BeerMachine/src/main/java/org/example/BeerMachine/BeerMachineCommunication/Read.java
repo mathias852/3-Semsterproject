@@ -15,11 +15,10 @@ public class Read {
     OpcUaClient client;
     private int state;
     private int defectiveCount;
-    private String host = "192.168.0.122";
 
     public int getDefectiveCount() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -38,7 +37,7 @@ public class Read {
 
     public int checkState() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -53,11 +52,5 @@ public class Read {
             ex.printStackTrace();
         }
         return state;
-    }
-    public String getHost() {
-        return host;
-    }
-    public void setHost(String host) {
-        this.host = host;
     }
 }

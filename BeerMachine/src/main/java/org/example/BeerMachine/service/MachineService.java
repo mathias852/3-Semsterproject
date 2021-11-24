@@ -16,5 +16,7 @@ public interface MachineService {
     MessageResponse stopMachine();
     MessageResponse abortMachine();
     MessageResponse clearMachine();
+    MessageResponse getState();
     MessageResponse setHost(String host);
+    MessageResponse getHost();
 }

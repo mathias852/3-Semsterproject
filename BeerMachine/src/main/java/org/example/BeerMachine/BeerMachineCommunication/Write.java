@@ -22,11 +22,10 @@ import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 public class Write {
     private MachineConnection machineConnection;
     private OpcUaClient client;
-    private String host = "192.168.0.122";
 
     public void reset() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -43,7 +42,7 @@ public class Write {
 
     public void startBatch(float machine_speed, int type_id, float amount) {
         try {
-            machineConnection = new MachineConnection(host,4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -72,7 +71,7 @@ public class Write {
 
     public void stop() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -89,7 +88,7 @@ public class Write {
 
     public void abort() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -106,7 +105,7 @@ public class Write {
 
     public void clear() {
         try {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
@@ -119,13 +118,6 @@ public class Write {
         catch(Throwable ex) {
             ex.printStackTrace();
         }
-    }
-
-    public String getHost() {
-        return host;
-    }
-    public void setHost(String host) {
-        this.host = host;
     }
 
     public static void main(String[] args) {

@@ -32,26 +32,40 @@ public class MachineStateController {
         return new ResponseEntity<>(startMachine, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @PutMapping("/stop")
+    @GetMapping("/stop")
     public ResponseEntity<MessageResponse> stopMachine() {
         MessageResponse stopMachine = machineService.stopMachine();
         return new ResponseEntity<>(stopMachine, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @PutMapping("/abort")
+
+    @GetMapping("/abort")
     public ResponseEntity<MessageResponse> abortMachine() {
         MessageResponse abortMachine = machineService.abortMachine();
         return new ResponseEntity<>(abortMachine, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @PutMapping("/clear")
+
+    @GetMapping("/clear")
     public ResponseEntity<MessageResponse> clearMachine() {
         MessageResponse clearMachine = machineService.clearMachine();
         return new ResponseEntity<>(clearMachine, HttpStatus.OK);
     }
+
+    @CrossOrigin
+    @PostMapping("/setHost/{host}")
+    public ResponseEntity<MessageResponse> setHost(@PathVariable String host){
+        MessageResponse setHost = machineService.setHost(host);
+        return new ResponseEntity<>(setHost, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getHost/")
+    public ResponseEntity<MessageResponse> getHost(){
+        MessageResponse getHost = machineService.getHost();
+        return new ResponseEntity<>(getHost, HttpStatus.OK);
+    }
+
 
     @CrossOrigin
     @GetMapping("/getTemperature")
@@ -84,9 +98,9 @@ public class MachineStateController {
 
     @CrossOrigin
     @GetMapping("/getState")
-    public ResponseEntity<State> getState () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getState(),
-                HttpStatus.OK);
+    public ResponseEntity<MessageResponse> getState () {
+        MessageResponse resetMachine = machineService.getState();
+        return new ResponseEntity<>(resetMachine, HttpStatus.OK);
     }
 
     @CrossOrigin

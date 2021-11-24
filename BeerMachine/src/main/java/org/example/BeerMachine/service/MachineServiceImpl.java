@@ -1,5 +1,6 @@
 package org.example.BeerMachine.service;
 
+import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
@@ -20,9 +21,13 @@ import static org.eclipse.milo.opcua.stack.core.types.enumerated.OpenFileMode.Wr
 
 @Service
 public class MachineServiceImpl implements MachineService {
+    private MachineConnection machineConnection = new MachineConnection();
     private Write write = new Write();
     private Read read = new Read();
     private Subscription subscription = new Subscription();
+    Subscription.GetBarley getBarley = new Subscription.GetBarley();
+    Subscription.GetWheat getWheat = new Subscription.GetWheat();
+
 
     @Autowired
     BatchReportRepository batchReportRepository;
@@ -38,6 +43,8 @@ public class MachineServiceImpl implements MachineService {
             BatchReport batchReport = batchReportRepository.findById(batchId).get();
             //The subtraction of 1 from the type_id is used because of different indexing methods (0index!=1index)
             write.startBatch(batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
+            getBarley.start();
+            getWheat.start();
         } catch (Exception e) {
             System.out.println(e);
             return null;
@@ -60,10 +67,22 @@ public class MachineServiceImpl implements MachineService {
         return new MessageResponse("Machine cleared...");
     }
     @Override
-    public MessageResponse setHost(String host) {
-        write.setHost(host);
-        read.setHost(host);
-        subscription.setHost(host);
-        return new MessageResponse("Host set...");
+    public MessageResponse getState() {
+        int message = read.checkState();
+        System.out.println(message);
+        return new MessageResponse("Machine state: " + message);
     }
+
+    @Override
+    public MessageResponse setHost(String host) {
+        machineConnection.setHost(host);
+        return new MessageResponse("Host changed");
+    }
+
+    @Override
+    public MessageResponse getHost(){
+        return new MessageResponse("The host is: " + machineConnection.getHost());
+    }
+
+
 }

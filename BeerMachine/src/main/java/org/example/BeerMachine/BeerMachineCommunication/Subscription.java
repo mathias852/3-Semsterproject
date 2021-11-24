@@ -32,20 +32,16 @@ import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned;
 public class Subscription {
     private MachineConnection machineConnection;
     private OpcUaClient client;
+    private static Subscription subscription = new Subscription();
 
-    private String host = "192.168.0.122";
-
-    public void checkStateCurrent() {
+    public void checkStateCurrent(String node) {
         try
         {
-            machineConnection = new MachineConnection(host, 4840);
+            machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
-
-
-
-            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.StateCurrent");
+            NodeId nodeId = NodeId.parse("ns=6;s=::" + node);
 
             // what to read
             ReadValueId readValueId = new ReadValueId(nodeId, AttributeId.Value.uid(), null, null);
@@ -90,17 +86,23 @@ public class Subscription {
     }
 
     private static void onSubscriptionValue(UaMonitoredItem item, DataValue value) {
-        int state_value = (int) value.getValue().getValue();
+        float state_value = (float) value.getValue().getValue();
         System.out.println("subscription value received: item="+ item.getReadValueId().getNodeId() + ", value=" + state_value);
         if (state_value == 4) {
 
         }
     }
 
-    public String getHost() {
-        return host;
+    public static class GetBarley extends Thread{
+        String node = "Program:Inventory.Barley";
+        public void run(){
+            subscription.checkStateCurrent(node);
+        }
     }
-    public void setHost(String host) {
-        this.host = host;
+    public static class GetWheat extends Thread{
+        String node = "Program:Inventory.Wheat";
+        public void run(){
+            subscription.checkStateCurrent(node);
+        }
     }
 }
