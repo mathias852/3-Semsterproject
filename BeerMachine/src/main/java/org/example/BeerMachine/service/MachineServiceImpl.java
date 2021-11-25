@@ -25,8 +25,6 @@ public class MachineServiceImpl implements MachineService {
     private Write write = new Write();
     private Read read = new Read();
 
-
-
     @Autowired
     BatchReportRepository batchReportRepository;
     @Autowired
@@ -43,10 +41,6 @@ public class MachineServiceImpl implements MachineService {
             BatchReport batchReport = batchReportRepository.findById(batchId).get();
             //The subtraction of 1 from the type_id is used because of different indexing methods (0index!=1index)
             write.startBatch(batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
-            /*Subscription barleySub = new Subscription("Program:Inventory.Barley");
-            Subscription wheatSub = new Subscription("Program:Inventory.Wheat");
-            barleySub.start();
-            wheatSub.start();*/
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -98,23 +92,39 @@ public class MachineServiceImpl implements MachineService {
 
     @Override
     public float getBarley() {
-        return BeerMachineController.getBeerMachineController().getMachineState().getBarley().getBarley();
+        return BeerMachineController.getBeerMachineController().getMachineState().getBarleySub().getBarley();
     }
     @Override
     public float getHops() {
-        return 2.0f;
+        return BeerMachineController.getBeerMachineController().getMachineState().getHopsSub().getHops();
     }
     @Override
     public float getMalt() {
-        return 2.0f;
+        return BeerMachineController.getBeerMachineController().getMachineState().getMaltSub().getMalt();
     }
     @Override
     public float getWheat() {
-        return BeerMachineController.getBeerMachineController().getMachineState().getWheat().getWheat();
+        return BeerMachineController.getBeerMachineController().getMachineState().getWheatSub().getWheat();
     }
     @Override
     public float getYeast() {
-        return 2.0f;
+        return BeerMachineController.getBeerMachineController().getMachineState().getYeastSub().getYeast();
+    }
+    @Override
+    public float getHumidity() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getHumiditySub().getHumidity();
+    }
+    @Override
+    public float getTemperature() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getTemperatureSub().getTemperature();
+    }
+    @Override
+    public float getVibrations() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getVibrationSub().getVibrations();
+    }
+    @Override
+    public int getStopReason() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getStopReasonSub().getStopReason();
     }
 
     @Override
@@ -127,6 +137,4 @@ public class MachineServiceImpl implements MachineService {
     public MessageResponse getHost(){
         return new MessageResponse("The host is: " + machineConnection.getHost());
     }
-
-
 }

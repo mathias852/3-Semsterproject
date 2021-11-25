@@ -41,6 +41,10 @@ public class Subscription extends Thread {
     private float malt;
     private float wheat;
     private float yeast;
+    private float humidity;
+    private float temperature;
+    private float vibrations;
+    private int stopReason;
 
     public Subscription(String node) {
         this.node = node;
@@ -61,7 +65,7 @@ public class Subscription extends Thread {
             // what to read
             ReadValueId readValueId = new ReadValueId(nodeId, AttributeId.Value.uid(), null, null);
 
-            // create a subscription @ 250ms
+            // create a subscription @ ?ms
             UaSubscription subscription = client.getSubscriptionManager().createSubscription(250.0).get();
 
             // important: client handle must be unique per item
@@ -90,26 +94,34 @@ public class Subscription extends Thread {
                 switch (node) {
                     case("Program:Inventory.Barley"):
                         setBarley((Float) v.getValue().getValue());
-                        System.out.println("Barley");
                         break;
                     case("Program:Inventory.Hops"):
                         setHops((Float) v.getValue().getValue());
-                        System.out.println("Hops");
                         break;
                     case("Program:Inventory.Malt"):
                         setMalt((Float) v.getValue().getValue());
-                        System.out.println("Malt");
                         break;
                     case("Program:Inventory.Wheat"):
                         setWheat((Float) v.getValue().getValue());
-                        System.out.println("Wheat");
                         break;
                     case("Program:Inventory.Yeast"):
                         setYeast((Float) v.getValue().getValue());
-                        System.out.println("Yeast");
+                        break;
+                    case("Program:Data.Value.RelHumidity"):
+                        if (!(v.getValue().getValue() instanceof Short)) {
+                            setHumidity((Float) v.getValue().getValue());
+                        }
+                        break;
+                    case("Program:Data.Value.Temperature"):
+                        setTemperature((Float) v.getValue().getValue());
+                        break;
+                    case("Program:Data.Value.Vibration"):
+                        setVibrations((Float) v.getValue().getValue());
+                        break;
+                    case("Program:Cube.Admin.StopReason.Value"):
+                        setStopReason((Integer) v.getValue().getValue());
                         break;
                 }
-                System.out.println(v.getValue().getValue());
             });
 
             /*for (UaMonitoredItem item : items) {
@@ -133,35 +145,31 @@ public class Subscription extends Thread {
         System.out.println("subscription value received: item="+ item.getReadValueId().getNodeId() + ", value=" + state_value);
     }
 
-    //Getters & Setters for inventory
+    //Getters & Setters for live data
     public float getBarley() {
         return barley;
     }
     public void setBarley(float barley) {
         this.barley = barley;
     }
-
     public float getHops() {
         return hops;
     }
     public void setHops(float hops) {
         this.hops = hops;
     }
-
     public float getMalt() {
         return malt;
     }
     public void setMalt(float malt) {
         this.malt = malt;
     }
-
     public float getWheat() {
         return wheat;
     }
     public void setWheat(float wheat) {
         this.wheat = wheat;
     }
-
     public float getYeast() {
         return yeast;
     }
@@ -169,9 +177,28 @@ public class Subscription extends Thread {
         this.yeast = yeast;
     }
 
-
-
-    public void setHumidity(float barley) {
-        this.barley = barley;
+    public float getHumidity() {
+        return humidity;
+    }
+    public void setHumidity(float humidity) {
+        this.humidity = humidity;
+    }
+    public float getTemperature() {
+        return temperature;
+    }
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
+    }
+    public float getVibrations() {
+        return vibrations;
+    }
+    public void setVibrations(float vibrations) {
+        this.vibrations = vibrations;
+    }
+    public int getStopReason() {
+        return stopReason;
+    }
+    public void setStopReason(int stopReason) {
+        this.stopReason = stopReason;
     }
 }

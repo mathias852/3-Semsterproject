@@ -19,6 +19,10 @@ public interface MachineService {
     float getMalt();
     float getWheat();
     float getYeast();
+    float getHumidity();
+    float getTemperature();
+    float getVibrations();
+    int getStopReason();
     MessageResponse setHost(String host);
     MessageResponse getHost();
 }

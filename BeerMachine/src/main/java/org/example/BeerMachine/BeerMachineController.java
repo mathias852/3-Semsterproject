@@ -24,8 +24,11 @@ public class BeerMachineController {
         ingredients.put("Yeast", 94);
 
         MachineState machineState = new MachineState(new Subscription("Program:Inventory.Barley"),
-                new Subscription("Program:Inventory.Wheat"));
-
+                new Subscription("Program:Inventory.Wheat"), new Subscription("Program:Inventory.Hops"),
+                new Subscription("Program:Inventory.Malt"), new Subscription("Program:Inventory.Yeast"),
+                new Subscription("Program:Data.Value.RelHumidity"),new Subscription("Program:Data.Value.Temperature"),
+                new Subscription("Program:Data.Value.Vibration"),new Subscription("Program:Cube.Admin.StopReason.Value"),
+                new Subscription("Program:Cube.Status.StateCurrent"));
 
         this.machineState = machineState;
     }
