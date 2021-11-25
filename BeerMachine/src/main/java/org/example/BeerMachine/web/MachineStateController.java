@@ -46,6 +46,7 @@ public class MachineStateController {
         MessageResponse clearMachine = machineService.clearMachine();
         return new ResponseEntity<>(clearMachine, HttpStatus.OK);
     }
+
     @CrossOrigin
     @PostMapping("/setHost/{host}")
     public ResponseEntity<MessageResponse> setHost(@PathVariable String host){
@@ -86,15 +87,31 @@ public class MachineStateController {
     @CrossOrigin
     @GetMapping("/getHumidity")
     public ResponseEntity<Float> getHumidity (){return new ResponseEntity<>(machineService.getHumidity(), HttpStatus.OK);}
+
     @CrossOrigin
     @GetMapping("/getTemperature")
     public ResponseEntity<Float> getTemperature (){return new ResponseEntity<>(machineService.getTemperature(), HttpStatus.OK);}
+
     @CrossOrigin
     @GetMapping("/getVibrations")
     public ResponseEntity<Float> getVibrations (){return new ResponseEntity<>(machineService.getVibrations(), HttpStatus.OK);}
+
     @CrossOrigin
     @GetMapping("/getStopReason")
     public ResponseEntity<Integer> getStopReason (){return new ResponseEntity<>(machineService.getStopReason(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getTotalCount")
+    public ResponseEntity<Integer> getTotalCount (){return new ResponseEntity<>(machineService.getTotalCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getGoodCount")
+    public ResponseEntity<Integer> getGoodCount (){return new ResponseEntity<>(machineService.getGoodCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getBadCount")
+    public ResponseEntity<Integer> getBadCount (){return new ResponseEntity<>(machineService.getBadCount(), HttpStatus.OK);}
+
 
     @CrossOrigin
     @GetMapping("/getState")

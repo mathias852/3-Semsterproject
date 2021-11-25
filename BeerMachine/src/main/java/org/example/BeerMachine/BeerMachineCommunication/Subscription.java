@@ -45,6 +45,9 @@ public class Subscription extends Thread {
     private float temperature;
     private float vibrations;
     private int stopReason;
+    private int totalCount;
+    private int goodCount;
+    private int badCount;
 
     public Subscription(String node) {
         this.node = node;
@@ -59,6 +62,8 @@ public class Subscription extends Thread {
             machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
+
+            System.out.println(node);
 
             NodeId nodeId = NodeId.parse("ns=6;s=::" + node);
 
@@ -80,12 +85,6 @@ public class Subscription extends Thread {
 
             // creation request
             MonitoredItemCreateRequest request = new MonitoredItemCreateRequest(readValueId, MonitoringMode.Reporting, parameters);
-
-
-            // setting the consumer after the subscription creation
-            //UaSubscription.ItemCreationCallback onItemCreated =  (item, id) -> item.setValueConsumer(Subscription::onSubscriptionValue);
-
-            //List<UaMonitoredItem> items = subscription.createMonitoredItems(TimestampsToReturn.Both, Arrays.asList(request), onItemCreated).get();
 
             List<UaMonitoredItem> items = subscription.createMonitoredItems(TimestampsToReturn.Both, newArrayList(request)).get();
 
@@ -121,16 +120,17 @@ public class Subscription extends Thread {
                     case("Program:Cube.Admin.StopReason.Value"):
                         setStopReason((Integer) v.getValue().getValue());
                         break;
+                    case("Program:Cube.Admin.ProdProcessedCount"):
+                        setTotalCount((Integer) v.getValue().getValue());
+                        break;
+                    case("Program:product.good"):
+                        setGoodCount((Integer) v.getValue().getValue());
+                        break;
+                    case("Program:product.bad"):
+                        setBadCount((Integer) v.getValue().getValue());
+                        break;
                 }
             });
-
-            /*for (UaMonitoredItem item : items) {
-                if (item.getStatusCode().isGood()) {
-                    System.out.println("item created for nodeId=" + item.getReadValueId().getNodeId());
-                } else{
-                    System.out.println("failed to create item for nodeId=" + item.getReadValueId().getNodeId() + " (status=" + item.getStatusCode() + ")");
-                }
-            }*/
 
             // let the example run for 2 hours then terminate (equivalent to simulation time limit)
             Thread.sleep(7200000L);
@@ -138,11 +138,6 @@ public class Subscription extends Thread {
         catch(Throwable ex) {
             ex.printStackTrace();
         }
-    }
-
-    private static void onSubscriptionValue(UaMonitoredItem item, DataValue value) {
-        float state_value = (float) value.getValue().getValue();
-        System.out.println("subscription value received: item="+ item.getReadValueId().getNodeId() + ", value=" + state_value);
     }
 
     //Getters & Setters for live data
@@ -200,5 +195,24 @@ public class Subscription extends Thread {
     }
     public void setStopReason(int stopReason) {
         this.stopReason = stopReason;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
+    public int getGoodCount() {
+        return goodCount;
+    }
+    public void setGoodCount(int goodCount) {
+        this.goodCount = goodCount;
+    }
+    public int getBadCount() {
+        return badCount;
+    }
+    public void setBadCount(int badCount) {
+        this.badCount = badCount;
     }
 }

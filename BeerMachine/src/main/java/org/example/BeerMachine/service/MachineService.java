@@ -23,6 +23,9 @@ public interface MachineService {
     float getTemperature();
     float getVibrations();
     int getStopReason();
+    int getTotalCount();
+    int getGoodCount();
+    int getBadCount();
     MessageResponse setHost(String host);
     MessageResponse getHost();
 }

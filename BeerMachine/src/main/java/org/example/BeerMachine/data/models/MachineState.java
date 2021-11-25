@@ -17,13 +17,16 @@ public class MachineState {
     private Subscription vibrationSub;
     private Subscription stopReasonSub;
     private Subscription stateSub;
+    private Subscription totalCountSub;
+    private Subscription goodCountSub;
+    private Subscription badCountSub;
 
     private Map<String, Subscription> ingredients;
     private List<Integer> queue;
 
     public MachineState(Subscription barleySub, Subscription wheatSub, Subscription hopsSub, Subscription maltSub, Subscription yeastSub,
                         Subscription humiditySub, Subscription temperatureSub, Subscription vibrationSub, Subscription stopReasonSub,
-                        Subscription stateSub) {
+                        Subscription stateSub, Subscription totalCountSub, Subscription goodCountSub, Subscription badCountSub) {
 
         this.barleySub = barleySub;
         this.wheatSub = wheatSub;
@@ -35,18 +38,9 @@ public class MachineState {
         this.vibrationSub = vibrationSub;
         this.stopReasonSub = stopReasonSub;
         this.stateSub = stateSub;
-
-        this.barleySub.start();
-        this.hopsSub.start();
-/*        this.maltSub.start();
-        this.wheatSub.start();
-        this.yeastSub.start();*/
-
-        /*this.humiditySub.start();
-        temperatureSub.start();
-        vibrationSub.start();
-        stopReasonSub.start();
-        stateSub.start();*/
+        this.totalCountSub = totalCountSub;
+        this.goodCountSub = goodCountSub;
+        this.badCountSub = badCountSub;
     }
 
     public Subscription getBarleySub() {
@@ -126,5 +120,23 @@ public class MachineState {
     }
     public void setQueue(List<Integer> queue) {
         this.queue = queue;
+    }
+    public Subscription getTotalCountSub() {
+        return totalCountSub;
+    }
+    public void setTotalCountSub(Subscription totalCountSub) {
+        this.totalCountSub = totalCountSub;
+    }
+    public Subscription getGoodCountSub() {
+        return goodCountSub;
+    }
+    public void setGoodCountSub(Subscription goodCountSub) {
+        this.goodCountSub = goodCountSub;
+    }
+    public Subscription getBadCountSub() {
+        return badCountSub;
+    }
+    public void setBadCountSub(Subscription badCountSub) {
+        this.badCountSub = badCountSub;
     }
 }

@@ -36,7 +36,7 @@ var hops = function(data) {
 }
 getHops();
 
-/*//Malt - inventory
+//Malt - inventory
 var getMalt = function() {
     $.ajax({
         url: "http://localhost:8081/machine/getMalt",
@@ -91,12 +91,12 @@ var yeast = function(data) {
     $(".yeast").html(data);
     setTimeout(getYeast, 500);
 }
-getYeast();*/
+getYeast();
 
 
 
 //Humidity
-/*var getHumidity = function() {
+var getHumidity = function() {
     $.ajax({
         url: "http://localhost:8081/machine/getHumidity",
         cache: false,
@@ -113,4 +113,105 @@ var humidity = function(data) {
     $(".humidity").html(data);
     setTimeout(getHumidity, 500);
 }
-getHumidity();*/
+getHumidity();
+
+//Temperature
+var getTemperature = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getTemperature",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: temperature
+    });
+}
+var temperature = function(data) {
+    // console.log(data);
+    $(".temperature").html(data);
+    setTimeout(getTemperature, 500);
+}
+getTemperature();
+
+//Vibrations
+var getVibrations = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getVibrations",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: vibration
+    });
+}
+var vibration = function(data) {
+    // console.log(data);
+    $(".vibration").html(data);
+    setTimeout(getVibrations, 500);
+}
+getVibrations();
+
+//TotalCount
+var getTotalCount = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getTotalCount",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: totalCount
+    });
+}
+var totalCount = function(data) {
+    // console.log(data);
+    $(".totalCount").html(data);
+    setTimeout(getTotalCount, 500);
+}
+getTotalCount();
+
+//GoodCount
+var getGoodCount = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getGoodCount",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: goodCount
+    });
+}
+var goodCount = function(data) {
+    // console.log(data);
+    $(".goodCount").html(data);
+    setTimeout(getGoodCount, 500);
+}
+getGoodCount();
+
+//BadCount
+var getBadCount = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getBadCount",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: badCount
+    });
+}
+var badCount = function(data) {
+    // console.log(data);
+    $(".badCount").html(data);
+    setTimeout(getBadCount, 500);
+}
+getBadCount();
+
