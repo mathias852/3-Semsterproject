@@ -1,5 +1,6 @@
 package org.example.BeerMachine.service;
 
+import org.example.BeerMachine.BatchQueueComparator;
 import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
@@ -53,8 +54,11 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public MessageResponse startQueue() {
         MessageResponse response = new MessageResponse("Queue didn't start...");
-        /*try {
-            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findOrderByQueueSpotAndQueueSpotNotNull());
+        try {
+            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findAll());
+            batchQueue.forEach( (batch -> {if(batch.getQueueSpot() == null) {batchQueue.remove(batch);}}));
+            BatchQueueComparator myBatchQueueComparator = new BatchQueueComparator();
+            batchQueue.sort(myBatchQueueComparator);
             if (BeerMachineController.getBeerMachineController().getMachineState().getState() == State.IDLE) {
                 while (batchQueue.size() > 0) {
                     Integer firstQueue = batchQueue.get(0).getId();
@@ -67,7 +71,7 @@ public class MachineServiceImpl implements MachineService {
         } catch (Exception e) {
             System.out.println(e);
             response = new MessageResponse("Queue failed...");
-        }*/
+        }
         return response;
     }
 
