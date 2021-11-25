@@ -1,4 +1,5 @@
 package org.example.BeerMachine;
+import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.data.models.*;
 
 import java.util.HashMap;
@@ -22,11 +23,11 @@ public class BeerMachineController {
         ingredients.put("Wheat", 92);
         ingredients.put("Yeast", 94);
 
-        MachineState newMachineState = new MachineState(2.0, 4.1, 4.2,
-                ingredients,
-                State.ACTIVATING);
-        
-        this.machineState = newMachineState;
+        MachineState machineState = new MachineState(new Subscription("Program:Inventory.Barley"),
+                new Subscription("Program:Inventory.Wheat"));
+
+
+        this.machineState = machineState;
     }
 
     public MachineState getMachineState() {

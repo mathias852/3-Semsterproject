@@ -1,31 +1,55 @@
 package org.example.BeerMachine.data.models;
 
+import org.example.BeerMachine.BeerMachineCommunication.Subscription;
+import org.springframework.http.ResponseEntity;
+
 import java.util.List;
 import java.util.Map;
 
 public class MachineState {
-    private Batch currentBatch;
-    private double currentHumidity;
-    private double currentTemperature;
-    private double currentVibration;
+    private Subscription barley;
+    private Subscription wheat;
+    private Subscription hops;
+    private Subscription malt;
+    private Subscription yeast;
+    private BatchReport batchReport;
+    private Subscription humidity;
+    private Subscription temperature;
+    private Subscription vibration;
 
-    private Map<String, Integer> ingredients;
+    private Map<String, Subscription> ingredients;
 
     private StopReason stopreason;
 
-    private State state;
+    private Subscription state;
 
     private List<Integer> queue;
 
-    public MachineState(double currentHumidity, double currentTemperature, double currentVibration, Map<String, Integer> ingredients, State state) {
-        this.currentHumidity = currentHumidity;
-        this.currentTemperature = currentTemperature;
-        this.currentVibration = currentVibration;
-        this.ingredients = ingredients;
-        this.state = state;
+    public MachineState(Subscription barley, Subscription wheat) {
+        this.barley = barley;
+        this.wheat = wheat;
+
+        barley.start();
+        wheat.start();
     }
 
-    public Map<String, Integer> getIngredients() {
+    public Subscription getBarley() {
+        return barley;
+    }
+
+    public void setBarley(Subscription barley) {
+        this.barley = barley;
+    }
+
+    public Subscription getWheat() {
+        return wheat;
+    }
+
+    public void setWheat(Subscription wheat) {
+        this.wheat = wheat;
+    }
+
+    public Map<String, Subscription> getIngredients() {
         return ingredients;
     }
 
@@ -37,40 +61,40 @@ public class MachineState {
         this.queue = queue;
     }
 
-    public void setIngredients(Map<String, Integer> ingredients) {
+    public void setIngredients(Map<String, Subscription> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public Batch getCurrentBatch() {
-        return currentBatch;
+    public BatchReport getCurrentBatch() {
+        return batchReport;
     }
 
-    public void setCurrentBatch(Batch currentBatch) {
-        this.currentBatch = currentBatch;
+    public void setCurrentBatch(BatchReport batchReport) {
+        this.batchReport = batchReport;
     }
 
-    public double getCurrentHumidity() {
-        return currentHumidity;
+    public Subscription getCurrentHumidity() {
+        return humidity;
     }
 
-    public void setCurrentHumidity(double currentHumidity) {
-        this.currentHumidity = currentHumidity;
+    public void setCurrentHumidity(Subscription humidity) {
+        this.humidity = humidity;
     }
 
-    public double getCurrentTemperature() {
-        return currentTemperature;
+    public Subscription getCurrentTemperature() {
+        return temperature;
     }
 
-    public void setCurrentTemperature(double currentTemperature) {
-        this.currentTemperature = currentTemperature;
+    public void setCurrentTemperature(Subscription temperature) {
+        this.temperature = temperature;
     }
 
-    public double getCurrentVibration() {
-        return currentVibration;
+    public Subscription getCurrentVibration() {
+        return vibration;
     }
 
-    public void setCurrentVibration(double currentVibration) {
-        this.currentVibration = currentVibration;
+    public void setCurrentVibration(Subscription vibration) {
+        this.vibration = vibration;
     }
 
     public StopReason getStopreason() {
@@ -81,11 +105,11 @@ public class MachineState {
         this.stopreason = stopreason;
     }
 
-    public State getState() {
+    public Subscription getState() {
         return state;
     }
 
-    public void setState(State state) {
+    public void setState(Subscription state) {
         this.state = state;
     }
 }

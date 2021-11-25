@@ -1,5 +1,6 @@
 package org.example.BeerMachine.service;
 
+import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
 import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
@@ -12,6 +13,8 @@ import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,9 +24,7 @@ public class MachineServiceImpl implements MachineService {
     private MachineConnection machineConnection = new MachineConnection();
     private Write write = new Write();
     private Read read = new Read();
-    private Subscription subscription = new Subscription();
-    Subscription.GetBarley getBarley = new Subscription.GetBarley();
-    Subscription.GetWheat getWheat = new Subscription.GetWheat();
+
 
 
     @Autowired
@@ -42,8 +43,10 @@ public class MachineServiceImpl implements MachineService {
             BatchReport batchReport = batchReportRepository.findById(batchId).get();
             //The subtraction of 1 from the type_id is used because of different indexing methods (0index!=1index)
             write.startBatch(batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
-            getBarley.start();
-            getWheat.start();
+            /*Subscription barleySub = new Subscription("Program:Inventory.Barley");
+            Subscription wheatSub = new Subscription("Program:Inventory.Wheat");
+            barleySub.start();
+            wheatSub.start();*/
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -91,6 +94,27 @@ public class MachineServiceImpl implements MachineService {
         int message = read.checkState();
         System.out.println(message);
         return new MessageResponse("Machine state: " + message);
+    }
+
+    @Override
+    public float getBarley() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getBarley().getBarley();
+    }
+    @Override
+    public float getHops() {
+        return 2.0f;
+    }
+    @Override
+    public float getMalt() {
+        return 2.0f;
+    }
+    @Override
+    public float getWheat() {
+        return BeerMachineController.getBeerMachineController().getMachineState().getWheat().getWheat();
+    }
+    @Override
+    public float getYeast() {
+        return 2.0f;
     }
 
     @Override

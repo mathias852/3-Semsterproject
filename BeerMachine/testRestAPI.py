@@ -4,7 +4,6 @@ import requests
 
 url = 'http://localhost:8081/machine/start/1'
 x = requests.post(url)
-print(x)
 
 
 """ # ---------- CREATE TYPE -----------#

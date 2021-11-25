@@ -13,7 +13,6 @@ public class Communication {
     public static void main(String[] args) {
         Write write = new Write();
         Read read = new Read();
-        Subscription subscription = new Subscription();
 
         float speed = 0;
         int type_id;

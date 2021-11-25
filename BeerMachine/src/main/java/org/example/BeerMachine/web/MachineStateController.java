@@ -1,5 +1,6 @@
 package org.example.BeerMachine.web;
 
+import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
 import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.State;
@@ -9,6 +10,7 @@ import org.example.BeerMachine.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +20,7 @@ public class MachineStateController {
     @Autowired
     MachineService machineService;
 
-    @GetMapping("/reset")
+    @PostMapping("/reset")
     public ResponseEntity<MessageResponse> resetMachine() {
         MessageResponse resetMachine = machineService.resetMachine();
         return new ResponseEntity<>(resetMachine, HttpStatus.OK);
@@ -35,21 +37,21 @@ public class MachineStateController {
         return new ResponseEntity<>(startQueue, HttpStatus.OK);
     }
 
-    @GetMapping("/stop")
+    @PostMapping("/stop")
     public ResponseEntity<MessageResponse> stopMachine() {
         MessageResponse stopMachine = machineService.stopMachine();
         return new ResponseEntity<>(stopMachine, HttpStatus.OK);
     }
 
 
-    @GetMapping("/abort")
+    @PostMapping("/abort")
     public ResponseEntity<MessageResponse> abortMachine() {
         MessageResponse abortMachine = machineService.abortMachine();
         return new ResponseEntity<>(abortMachine, HttpStatus.OK);
     }
 
 
-    @GetMapping("/clear")
+    @PostMapping("/clear")
     public ResponseEntity<MessageResponse> clearMachine() {
         MessageResponse clearMachine = machineService.clearMachine();
         return new ResponseEntity<>(clearMachine, HttpStatus.OK);
@@ -69,22 +71,35 @@ public class MachineStateController {
         return new ResponseEntity<>(getHost, HttpStatus.OK);
     }
 
-
+    //Inventory routes
     @CrossOrigin
-    @GetMapping("/getTemperature")
-    public ResponseEntity<Double> getTemperature () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentTemperature(),
-                HttpStatus.OK);
+    @GetMapping("/getBarley")
+    public ResponseEntity<Float> getBarley (){
+        return new ResponseEntity<>(machineService.getBarley(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getHops")
+    public ResponseEntity<Float> getHops (){
+        return new ResponseEntity<>(machineService.getHops(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getMalt")
+    public ResponseEntity<Float> getMalt (){
+        return new ResponseEntity<>(machineService.getMalt(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getWheat")
+    public ResponseEntity<Float> getWheat () {
+        return new ResponseEntity<>(machineService.getWheat(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getYeast")
+    public ResponseEntity<Float> getYeast (){
+        return new ResponseEntity<>(machineService.getYeast(), HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @GetMapping("/getHumidity")
-    public ResponseEntity<Double> getHumidity () {
-        BeerMachineController.getBeerMachineController().getMachineState().setCurrentHumidity(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity() + 1);
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity(),
-                HttpStatus.OK);
-    }
 
+/*
     @CrossOrigin
     @GetMapping("/getVibration")
     public ResponseEntity<Double> getVibration () {
@@ -92,12 +107,16 @@ public class MachineStateController {
                 HttpStatus.OK);
     }
 
+ */
+/*
     @CrossOrigin
     @GetMapping("/getBatch")
     public ResponseEntity<Batch> getBatch () {
         return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentBatch(),
                 HttpStatus.OK);
     }
+
+ */
 
     @CrossOrigin
     @GetMapping("/getState")
