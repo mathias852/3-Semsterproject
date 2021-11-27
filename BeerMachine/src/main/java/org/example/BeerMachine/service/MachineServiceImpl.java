@@ -1,24 +1,20 @@
 package org.example.BeerMachine.service;
 
-import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
 import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.BatchReport;
 import org.example.BeerMachine.data.models.MachineState;
-import org.example.BeerMachine.data.models.State;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.Map;
 
 @Service
 public class MachineServiceImpl implements MachineService {
@@ -26,6 +22,8 @@ public class MachineServiceImpl implements MachineService {
     private final Write write = new Write();
     private final Read read = new Read();
     private final MachineState machineState = BeerMachineController.getBeerMachineController().getMachineState();
+    private final Map<String, Subscription> ingredients = machineState.getIngredients();
+    private final String barley = "Barley", wheat = "Wheat", hops = "Hops", malt = "Malt", yeast = "Yeast";
 
     @Autowired
     BatchReportRepository batchReportRepository;
@@ -40,9 +38,12 @@ public class MachineServiceImpl implements MachineService {
     @Override
     public MessageResponse startMachine(Integer batchId) {
         try {
+            if(read.checkState() != 4) {
+                write.reset();
+            }
             BatchReport batchReport = batchReportRepository.findById(batchId).get();
             //The subtraction of 1 from the type_id is used because of different indexing methods (0index!=1index)
-            write.startBatch(batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
+            write.startBatch(batchReport.getBatchId(), batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -93,39 +94,54 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
+    public UShort getAmountToProduce() {
+        return read.getAmountToProduce();
+    }
+
+    @Override
+    public UShort getBatchId() {
+        return read.getBatchId();
+    }
+
+    @Override
+    public float getSpeed() {
+        return read.getSpeed();
+    }
+
+    @Override
     public float getBarley() {
-        if (!machineState.getBarleySub().isAlive()) {
-            machineState.getBarleySub().start();
+        if (!ingredients.get(barley).isAlive()) {
+            ingredients.get(barley).start();
         }
-        return machineState.getBarleySub().getBarley();
+        return ingredients.get(barley).getBarley();
     }
     @Override
     public float getHops() {
-        if (!machineState.getHopsSub().isAlive()) {
-            machineState.getHopsSub().start();
+        if (!ingredients.get(hops).isAlive()) {
+            ingredients.get(hops).start();
         }
-        return machineState.getHopsSub().getHops();
+        return ingredients.get(hops).getHops();
     }
     @Override
     public float getMalt() {
-        if (!machineState.getMaltSub().isAlive()) {
-            machineState.getMaltSub().start();
+        if (!ingredients.get(malt).isAlive()) {
+            ingredients.get(malt).start();
         }
-        return machineState.getMaltSub().getMalt();
+        return ingredients.get(malt).getMalt();
     }
     @Override
     public float getWheat() {
-        if (!machineState.getWheatSub().isAlive()) {
-            machineState.getWheatSub().start();
+        if (!ingredients.get(wheat).isAlive()) {
+            ingredients.get(wheat).start();
         }
-        return machineState.getWheatSub().getWheat();
+        return ingredients.get(wheat).getWheat();
     }
     @Override
     public float getYeast() {
-        if (!machineState.getYeastSub().isAlive()) {
-            machineState.getYeastSub().start();
+        if (!ingredients.get(yeast).isAlive()) {
+            ingredients.get(yeast).start();
         }
-        return machineState.getYeastSub().getYeast();
+        return ingredients.get(yeast).getYeast();
     }
     @Override
     public float getHumidity() {
@@ -157,7 +173,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public int getTotalCount() {
+    public UShort getTotalCount() {
         if (!machineState.getTotalCountSub().isAlive()) {
             machineState.getTotalCountSub().start();
         }
@@ -165,7 +181,7 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public int getGoodCount() {
+    public UShort getGoodCount() {
         if (!machineState.getGoodCountSub().isAlive()) {
             machineState.getGoodCountSub().start();
         }
@@ -173,11 +189,19 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public int getBadCount() {
+    public UShort getBadCount() {
         if (!machineState.getBadCountSub().isAlive()) {
             machineState.getBadCountSub().start();
         }
         return machineState.getBadCountSub().getBadCount();
+    }
+
+    @Override
+    public UShort getMaintenanceCount() {
+        if (!machineState.getMaintenanceSub().isAlive()) {
+            machineState.getMaintenanceSub().start();
+        }
+        return machineState.getMaintenanceSub().getMaintenance();
     }
 
 

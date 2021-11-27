@@ -9,17 +9,14 @@ package org.example.BeerMachine.BeerMachineCommunication;/*
  * @author athil
  */
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaMonitoredItem;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaSubscription;
 import org.eclipse.milo.opcua.stack.core.AttributeId;
-import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
-import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.MonitoringMode;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
 import org.eclipse.milo.opcua.stack.core.types.structured.MonitoredItemCreateRequest;
@@ -27,8 +24,6 @@ import org.eclipse.milo.opcua.stack.core.types.structured.MonitoringParameters;
 import org.eclipse.milo.opcua.stack.core.types.structured.ReadValueId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned;
-
-import javax.xml.crypto.Data;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -45,9 +40,10 @@ public class Subscription extends Thread {
     private float temperature;
     private float vibrations;
     private int stopReason;
-    private int totalCount;
-    private int goodCount;
-    private int badCount;
+    private UShort totalCount;
+    private UShort goodCount;
+    private UShort badCount;
+    private UShort maintenance;
 
     public Subscription(String node) {
         this.node = node;
@@ -120,15 +116,17 @@ public class Subscription extends Thread {
                     case("Program:Cube.Admin.StopReason.Value"):
                         setStopReason((Integer) v.getValue().getValue());
                         break;
-                    case("Program:Cube.Admin.ProdProcessedCount"):
-                        setTotalCount((Integer) v.getValue().getValue());
+                    case("Program:product.produced"):
+                        setTotalCount((UShort) v.getValue().getValue());
                         break;
                     case("Program:product.good"):
-                        setGoodCount((Integer) v.getValue().getValue());
+                        setGoodCount((UShort) v.getValue().getValue());
                         break;
-                    case("Program:product.bad"):
-                        setBadCount((Integer) v.getValue().getValue());
+                    case("Program:Cube.Admin.ProdDefectiveCount"):
+                        setBadCount((UShort) v.getValue().getValue());
                         break;
+                    case("Program:Maintenance.Counter"):
+                        setMaintenance((UShort) v.getValue().getValue());
                 }
             });
 
@@ -197,22 +195,28 @@ public class Subscription extends Thread {
         this.stopReason = stopReason;
     }
 
-    public int getTotalCount() {
+    public UShort getTotalCount() {
         return totalCount;
     }
-    public void setTotalCount(int totalCount) {
+    public void setTotalCount(UShort totalCount) {
         this.totalCount = totalCount;
     }
-    public int getGoodCount() {
+    public UShort getGoodCount() {
         return goodCount;
     }
-    public void setGoodCount(int goodCount) {
+    public void setGoodCount(UShort goodCount) {
         this.goodCount = goodCount;
     }
-    public int getBadCount() {
+    public UShort getBadCount() {
         return badCount;
     }
-    public void setBadCount(int badCount) {
+    public void setBadCount(UShort badCount) {
         this.badCount = badCount;
+    }
+    public UShort getMaintenance() {
+        return maintenance;
+    }
+    public void setMaintenance(UShort maintenance) {
+        this.maintenance = maintenance;
     }
 }

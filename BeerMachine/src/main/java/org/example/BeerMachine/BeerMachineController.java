@@ -16,20 +16,18 @@ public class BeerMachineController {
     }
 
     public BeerMachineController() {
-        HashMap<String, Integer> ingredients = new HashMap<>();
-        ingredients.put("Barley", 100);
-        ingredients.put("Hops", 98);
-        ingredients.put("Malt", 88);
-        ingredients.put("Wheat", 92);
-        ingredients.put("Yeast", 94);
+        HashMap<String, Subscription> ingredients = new HashMap<>();
+        ingredients.put("Barley", new Subscription("Program:Inventory.Barley"));
+        ingredients.put("Wheat", new Subscription("Program:Inventory.Wheat"));
+        ingredients.put("Hops", new Subscription("Program:Inventory.Hops"));
+        ingredients.put("Malt", new Subscription("Program:Inventory.Malt"));
+        ingredients.put("Yeast", new Subscription("Program:Inventory.Yeast"));
 
-        this.machineState = new MachineState(new Subscription("Program:Inventory.Barley"),
-                new Subscription("Program:Inventory.Wheat"), new Subscription("Program:Inventory.Hops"),
-                new Subscription("Program:Inventory.Malt"), new Subscription("Program:Inventory.Yeast"),
-                new Subscription("Program:Data.Value.RelHumidity"),new Subscription("Program:Data.Value.Temperature"),
-                new Subscription("Program:Data.Value.Vibration"),new Subscription("Program:Cube.Admin.StopReason.Value"),
-                new Subscription("Program:Cube.Status.StateCurrent"), new Subscription("Program:Cube.Admin.ProdProcessedCount"),
-                new Subscription("Program:product.good"), new Subscription("Program:product.bad"));
+        this.machineState = new MachineState(ingredients, new Subscription("Program:Data.Value.RelHumidity"),
+                new Subscription("Program:Data.Value.Temperature"), new Subscription("Program:Data.Value.Vibration"),
+                new Subscription("Program:Cube.Admin.StopReason.Value"), new Subscription("Program:Cube.Status.StateCurrent"),
+                new Subscription("Program:product.produced"), new Subscription("Program:product.good"),
+                new Subscription("Program:product.bad"), new Subscription("Program:Maintenance.Counter"));
     }
 
     public MachineState getMachineState() {

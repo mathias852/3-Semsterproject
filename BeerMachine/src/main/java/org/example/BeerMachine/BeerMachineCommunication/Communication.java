@@ -17,6 +17,7 @@ public class Communication {
         float speed = 0;
         int type_id;
         float amount = 100;
+        int batchId = 0;
 
         FileWriter csvWriter = null;
         try {
@@ -61,10 +62,11 @@ public class Communication {
             }
 
             for (int j = 0; j < 2; j++) {
+                batchId = i + 1;
                 speedTo = (speed * percentageIncrement);
 
                 percentageIncrement += 0.1;
-                write.startBatch(speedTo, type_id, amount);
+                write.startBatch(batchId, speedTo, type_id, amount);
 
                 int time = 0;
                 while(read.checkState() == 6) {

@@ -1,8 +1,7 @@
 package org.example.BeerMachine.service;
 
-import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -23,9 +22,13 @@ public interface MachineService {
     float getTemperature();
     float getVibrations();
     int getStopReason();
-    int getTotalCount();
-    int getGoodCount();
-    int getBadCount();
+    float getSpeed();
+    UShort getAmountToProduce();
+    UShort getBatchId();
+    UShort getTotalCount();
+    UShort getGoodCount();
+    UShort getBadCount();
+    UShort getMaintenanceCount();
     MessageResponse setHost(String host);
     MessageResponse getHost();
 }

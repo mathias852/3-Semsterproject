@@ -6,11 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MachineState {
-    private Subscription barleySub;
-    private Subscription wheatSub;
-    private Subscription hopsSub;
-    private Subscription maltSub;
-    private Subscription yeastSub;
     private BatchReport batchReport;
     private Subscription humiditySub;
     private Subscription temperatureSub;
@@ -20,19 +15,15 @@ public class MachineState {
     private Subscription totalCountSub;
     private Subscription goodCountSub;
     private Subscription badCountSub;
+    private Subscription maintenanceSub;
 
     private Map<String, Subscription> ingredients;
     private List<Integer> queue;
 
-    public MachineState(Subscription barleySub, Subscription wheatSub, Subscription hopsSub, Subscription maltSub, Subscription yeastSub,
-                        Subscription humiditySub, Subscription temperatureSub, Subscription vibrationSub, Subscription stopReasonSub,
-                        Subscription stateSub, Subscription totalCountSub, Subscription goodCountSub, Subscription badCountSub) {
-
-        this.barleySub = barleySub;
-        this.wheatSub = wheatSub;
-        this.hopsSub = hopsSub;
-        this.maltSub = maltSub;
-        this.yeastSub = yeastSub;
+    public MachineState(Map<String, Subscription> ingredients, Subscription humiditySub, Subscription temperatureSub,
+                        Subscription vibrationSub, Subscription stopReasonSub, Subscription stateSub,
+                        Subscription totalCountSub, Subscription goodCountSub, Subscription badCountSub, Subscription maintenanceSub) {
+        this.ingredients = ingredients;
         this.humiditySub = humiditySub;
         this.temperatureSub = temperatureSub;
         this.vibrationSub = vibrationSub;
@@ -41,37 +32,7 @@ public class MachineState {
         this.totalCountSub = totalCountSub;
         this.goodCountSub = goodCountSub;
         this.badCountSub = badCountSub;
-    }
-
-    public Subscription getBarleySub() {
-        return barleySub;
-    }
-    public void setBarleySub(Subscription barleySub) {
-        this.barleySub = barleySub;
-    }
-    public Subscription getWheatSub() {
-        return wheatSub;
-    }
-    public void setWheatSub(Subscription wheatSub) {
-        this.wheatSub = wheatSub;
-    }
-    public Subscription getHopsSub() {
-        return hopsSub;
-    }
-    public void setHopsSub(Subscription hopsSub) {
-        this.hopsSub = hopsSub;
-    }
-    public Subscription getMaltSub() {
-        return maltSub;
-    }
-    public void setMaltSub(Subscription maltSub) {
-        this.maltSub = maltSub;
-    }
-    public Subscription getYeastSub() {
-        return yeastSub;
-    }
-    public void setYeastSub(Subscription yeastSub) {
-        this.yeastSub = yeastSub;
+        this.maintenanceSub = maintenanceSub;
     }
     public BatchReport getBatchReport() {
         return batchReport;
@@ -138,5 +99,13 @@ public class MachineState {
     }
     public void setBadCountSub(Subscription badCountSub) {
         this.badCountSub = badCountSub;
+    }
+
+    public Subscription getMaintenanceSub() {
+        return maintenanceSub;
+    }
+
+    public void setMaintenanceSub(Subscription maintenanceSub) {
+        this.maintenanceSub = maintenanceSub;
     }
 }

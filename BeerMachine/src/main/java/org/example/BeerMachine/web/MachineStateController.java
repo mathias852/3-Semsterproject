@@ -1,5 +1,7 @@
 package org.example.BeerMachine.web;
 
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.StopReason;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
@@ -24,6 +26,9 @@ public class MachineStateController {
     @PostMapping("/start/{batchId}")
     public ResponseEntity<MessageResponse> startMachine(@PathVariable Integer batchId) {
         MessageResponse startMachine = machineService.startMachine(batchId);
+        if (startMachine.getMessage().equals("Machine didn't start...")){
+            return new ResponseEntity<>(startMachine, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(startMachine, HttpStatus.OK);
     }
     @PostMapping("/queue/start")
@@ -58,6 +63,24 @@ public class MachineStateController {
     public ResponseEntity<MessageResponse> getHost(){
         MessageResponse getHost = machineService.getHost();
         return new ResponseEntity<>(getHost, HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getAmountToProduce")
+    public ResponseEntity<UShort> getAmountToProduce(){
+        return new ResponseEntity<>(machineService.getAmountToProduce(), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getBatchId")
+    public ResponseEntity<UShort> getBatchId(){
+        return new ResponseEntity<>(machineService.getBatchId(), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getSpeed")
+    public ResponseEntity<Float> getSpeed(){
+        return new ResponseEntity<>(machineService.getSpeed(), HttpStatus.OK);
     }
 
     //Live-data routes
@@ -102,15 +125,19 @@ public class MachineStateController {
 
     @CrossOrigin
     @GetMapping("/getTotalCount")
-    public ResponseEntity<Integer> getTotalCount (){return new ResponseEntity<>(machineService.getTotalCount(), HttpStatus.OK);}
+    public ResponseEntity<UShort> getTotalCount (){return new ResponseEntity<>(machineService.getTotalCount(), HttpStatus.OK);}
 
     @CrossOrigin
     @GetMapping("/getGoodCount")
-    public ResponseEntity<Integer> getGoodCount (){return new ResponseEntity<>(machineService.getGoodCount(), HttpStatus.OK);}
+    public ResponseEntity<UShort> getGoodCount (){return new ResponseEntity<>(machineService.getGoodCount(), HttpStatus.OK);}
 
     @CrossOrigin
     @GetMapping("/getBadCount")
-    public ResponseEntity<Integer> getBadCount (){return new ResponseEntity<>(machineService.getBadCount(), HttpStatus.OK);}
+    public ResponseEntity<UShort> getBadCount (){return new ResponseEntity<>(machineService.getBadCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getMaintenanceCount")
+    public ResponseEntity<UShort> getMaintenanceCount (){return new ResponseEntity<>(machineService.getMaintenanceCount(), HttpStatus.OK);}
 
 
     @CrossOrigin
