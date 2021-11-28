@@ -17,6 +17,7 @@ import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
 import org.w3c.dom.Node;
 
@@ -41,7 +42,7 @@ public class Write {
         }
     }
 
-    public void startBatch(int batchId, float machine_speed, int type_id, float amount) {
+    public void startBatch(Float batchId, float machine_speed, int type_id, float amount) {
         try {
             machineConnection = new MachineConnection();
             machineConnection.connect();
@@ -50,7 +51,7 @@ public class Write {
             NodeId mach_speed_node = NodeId.parse("ns=6;s=::Program:Cube.Command.MachSpeed");
             client.writeValue(mach_speed_node, DataValue.valueOnly(new Variant(machine_speed))).get();
 
-            NodeId batchIdNode = NodeId.parse("ns=6;s=::Program:batch_id");
+            NodeId batchIdNode = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
             client.writeValue(batchIdNode, DataValue.valueOnly(new Variant(batchId))).get();
 
 
@@ -126,7 +127,7 @@ public class Write {
 
     public static void main(String[] args) {
         Write write = new Write();
-        write.startBatch(1, 600, 0, 1000);
+        write.startBatch(1f, 600, 0, 1000);
         //write.reset();
     }
 }

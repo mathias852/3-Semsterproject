@@ -40,6 +40,7 @@ public class Subscription extends Thread {
     private float temperature;
     private float vibrations;
     private int stopReason;
+    private int machineState;
     private UShort totalCount;
     private UShort goodCount;
     private UShort badCount;
@@ -127,6 +128,9 @@ public class Subscription extends Thread {
                         break;
                     case("Program:Maintenance.Counter"):
                         setMaintenance((UShort) v.getValue().getValue());
+                        break;
+                    case("Program:Cube.Status.StateCurrent"):
+                        setMachineState((Integer) v.getValue().getValue());
                 }
             });
 
@@ -193,6 +197,14 @@ public class Subscription extends Thread {
     }
     public void setStopReason(int stopReason) {
         this.stopReason = stopReason;
+    }
+
+    public int getMachineState() {
+        return machineState;
+    }
+
+    public void setMachineState(int machineState) {
+        this.machineState = machineState;
     }
 
     public UShort getTotalCount() {

@@ -67,13 +67,13 @@ public class MachineStateController {
 
     @CrossOrigin
     @GetMapping("/getAmountToProduce")
-    public ResponseEntity<UShort> getAmountToProduce(){
+    public ResponseEntity<Float> getAmountToProduce(){
         return new ResponseEntity<>(machineService.getAmountToProduce(), HttpStatus.OK);
     }
 
     @CrossOrigin
     @GetMapping("/getBatchId")
-    public ResponseEntity<UShort> getBatchId(){
+    public ResponseEntity<Float> getBatchId(){
         return new ResponseEntity<>(machineService.getBatchId(), HttpStatus.OK);
     }
 
@@ -138,6 +138,11 @@ public class MachineStateController {
     @CrossOrigin
     @GetMapping("/getMaintenanceCount")
     public ResponseEntity<UShort> getMaintenanceCount (){return new ResponseEntity<>(machineService.getMaintenanceCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getCurrentState")
+    public ResponseEntity<Integer> getCurrentState (){return new ResponseEntity<>(machineService.getCurrentState(), HttpStatus.OK);}
+
 
 
     @CrossOrigin

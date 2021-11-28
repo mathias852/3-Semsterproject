@@ -39,6 +39,8 @@ public class BatchReport {
 
     private Double OEE;
 
+    private boolean updated = false;
+
     @OneToMany(mappedBy="batchReport")
     private Set<Humidity> humidities;
 
@@ -134,5 +136,13 @@ public class BatchReport {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public boolean isUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(boolean updated) {
+        this.updated = updated;
     }
 }

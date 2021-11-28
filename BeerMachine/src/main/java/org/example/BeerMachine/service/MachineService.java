@@ -22,9 +22,10 @@ public interface MachineService {
     float getTemperature();
     float getVibrations();
     int getStopReason();
+    int getCurrentState();
     float getSpeed();
-    UShort getAmountToProduce();
-    UShort getBatchId();
+    float getAmountToProduce();
+    float getBatchId();
     UShort getTotalCount();
     UShort getGoodCount();
     UShort getBadCount();

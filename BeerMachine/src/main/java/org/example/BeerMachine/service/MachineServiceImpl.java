@@ -14,6 +14,8 @@ import org.example.BeerMachine.data.repository.BatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.Map;
 
 @Service
@@ -43,7 +45,10 @@ public class MachineServiceImpl implements MachineService {
             }
             BatchReport batchReport = batchReportRepository.findById(batchId).get();
             //The subtraction of 1 from the type_id is used because of different indexing methods (0index!=1index)
-            write.startBatch(batchReport.getBatchId(), batchReport.getSpeed(), batchReport.getType().getId()-1, batchReport.getAmount());
+            write.startBatch(batchReport.getBatchId().floatValue(), batchReport.getSpeed(),
+                    batchReport.getType().getId()-1, batchReport.getAmount());
+            batchReport.setStartTime(Date.from(Instant.now()));
+            batchReportRepository.save(batchReport);
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -94,12 +99,12 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public UShort getAmountToProduce() {
+    public float getAmountToProduce() {
         return read.getAmountToProduce();
     }
 
     @Override
-    public UShort getBatchId() {
+    public float getBatchId() {
         return read.getBatchId();
     }
 
@@ -204,7 +209,25 @@ public class MachineServiceImpl implements MachineService {
         return machineState.getMaintenanceSub().getMaintenance();
     }
 
-
+    @Override
+    public int getCurrentState(){
+        if (!machineState.getStateSub().isAlive()){
+            machineState.getStateSub().start();
+        }
+        if (machineState.getStateSub().getMachineState() == 17) {
+            System.out.println("At least we got in here");
+            BatchReport batchReport = batchReportRepository.findById((int) read.getBatchId()).get();
+            System.out.println("And we godt the batchreport, I think " + batchReport);
+            //batchReport.get().setOEE(); NOTE: OEE yet to be implemented
+            batchReport.setEndTime(Date.from(Instant.now()));
+            batchReport.setGoodCount(batchReport.getAmount() - read.getDefectiveCount());
+            batchReport.setRejectedCount(read.getDefectiveCount());
+            batchReport.setTotalCount(read.getTotalAmountProduced());
+            batchReport.setUpdated(true);
+            batchReportRepository.save(batchReport);
+        }
+        return machineState.getStateSub().getMachineState();
+    }
 
 
     @Override

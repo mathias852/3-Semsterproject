@@ -66,7 +66,7 @@ public class Communication {
                 speedTo = (speed * percentageIncrement);
 
                 percentageIncrement += 0.1;
-                write.startBatch(batchId, speedTo, type_id, amount);
+                //write.startBatch(batchId, speedTo, type_id, amount);
 
                 int time = 0;
                 while(read.checkState() == 6) {

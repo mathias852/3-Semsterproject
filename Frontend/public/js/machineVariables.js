@@ -178,7 +178,7 @@ getTotalCount();
 //GoodCount
 var getGoodCount = function() {
     $.ajax({
-        url: "http://localhost:8081/machine/getGoodCount",
+        url: "http://localhost:8081/machine/getCurrentState",
         cache: false,
         type: 'GET',
         dataType: 'json',

@@ -16,9 +16,10 @@ public class Read {
     OpcUaClient client;
     private int state;
     private int defectiveCount;
-    private UShort amountToProduce;
-    private UShort batchId;
+    private float amountToProduce;
+    private float batchId;
     private float speed;
+    private int totalAmountProduced;
 
     public int getDefectiveCount() {
         try {
@@ -58,17 +59,17 @@ public class Read {
         return state;
     }
 
-    public UShort getAmountToProduce() {
+    public Float getAmountToProduce() {
         try {
             machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
-            NodeId nodeId = NodeId.parse("ns=6;s=::Program:product.produce_amount");
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.Parameter[1].Value");
 
             DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
             Variant variant = dataValue.getValue();
-            amountToProduce = (UShort) variant.getValue();
+            amountToProduce = (Float) variant.getValue();
             client.disconnect();
 
         } catch (Throwable ex) {
@@ -76,17 +77,17 @@ public class Read {
         }
         return amountToProduce;
     }
-    public UShort getBatchId() {
+    public float getBatchId() {
         try {
             machineConnection = new MachineConnection();
             machineConnection.connect();
             client = machineConnection.getClient();
 
-            NodeId nodeId = NodeId.parse("ns=6;s=::Program:batch_id");
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
 
             DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
             Variant variant = dataValue.getValue();
-            batchId = (UShort) variant.getValue();
+            batchId = (float) variant.getValue();
             client.disconnect();
 
         } catch (Throwable ex) {
@@ -115,6 +116,27 @@ public class Read {
         }
         return speed;
     }
+
+    public int getTotalAmountProduced() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Admin.ProdProcessedCount");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            totalAmountProduced = (int) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return totalAmountProduced;
+    }
+
+
 
 
 
