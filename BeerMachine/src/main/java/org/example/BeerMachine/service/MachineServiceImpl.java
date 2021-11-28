@@ -49,6 +49,13 @@ public class MachineServiceImpl implements MachineService {
                     batchReport.getType().getId()-1, batchReport.getAmount());
             batchReport.setStartTime(Date.from(Instant.now()));
             batchReportRepository.save(batchReport);
+
+            //Might be able to return a more complex statement based on the BeerMachineController
+            //The BeerMachineController method calls are used to later update the batch. This might be a way
+            //To get the needed batchID. As long as the batchReport in BeerMachineController is updated each time
+            //A new batch is started
+            BeerMachineController.getBeerMachineController().setProductionBatch(batchId, batchReport.getAmount(),
+                    batchReport.getSpeed(), batchReport.getType());
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -216,7 +223,7 @@ public class MachineServiceImpl implements MachineService {
         }
         if (machineState.getStateSub().getMachineState() == 17) {
             System.out.println("At least we got in here");
-            BatchReport batchReport = batchReportRepository.findById((int) read.getBatchId()).get();
+            BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
             System.out.println("And we godt the batchreport, I think " + batchReport);
             //batchReport.get().setOEE(); NOTE: OEE yet to be implemented
             batchReport.setEndTime(Date.from(Instant.now()));

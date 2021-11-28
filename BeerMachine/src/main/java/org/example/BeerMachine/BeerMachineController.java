@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
     private MachineState machineState;
+    private BatchReport batchReport;
 
     public static BeerMachineController getBeerMachineController() {
         if (beerMachineController == null) {
@@ -39,7 +40,7 @@ public class BeerMachineController {
     }
 
     public void setProductionBatch(int id, int amount, int speed, Type type) {
-        BatchReport batchReport = new BatchReport(id, speed, type, amount);
+         this.batchReport = new BatchReport(id, speed, type, amount);
 
         if (type.getMaxSpeed() < speed) {
             try {
@@ -58,5 +59,7 @@ public class BeerMachineController {
         Batch batch = new Batch(id, speed, type, amount);
     }
 
-
+    public BatchReport getBatchReport() {
+        return batchReport;
+    }
 }
