@@ -217,14 +217,21 @@ public class MachineServiceImpl implements MachineService {
     }
 
     @Override
-    public int getCurrentState(){
-        if (!machineState.getStateSub().isAlive()){
+    public int getCurrentState() {
+        if (!machineState.getStateSub().isAlive()) {
             machineState.getStateSub().start();
         }
         if (machineState.getStateSub().getMachineState() == 17) {
             System.out.println("At least we got in here");
             BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
-            System.out.println("And we godt the batchreport, I think " + batchReport);
+            updateBatchReport(batchReport);
+        }
+        return machineState.getStateSub().getMachineState();
+    }
+
+    public void updateBatchReport(BatchReport batchReport){
+        if(!batchReport.isUpdated()) {
+            System.out.println("And we got the batchReport, I think " + batchReport);
             //batchReport.get().setOEE(); NOTE: OEE yet to be implemented
             batchReport.setEndTime(Date.from(Instant.now()));
             batchReport.setGoodCount(batchReport.getAmount() - read.getDefectiveCount());
@@ -232,8 +239,9 @@ public class MachineServiceImpl implements MachineService {
             batchReport.setTotalCount(read.getTotalAmountProduced());
             batchReport.setUpdated(true);
             batchReportRepository.save(batchReport);
+            System.out.println("Batch-report with the batchId: " + batchReport.getBatchId() + " has been updated");
         }
-        return machineState.getStateSub().getMachineState();
+        System.out.println("Sorry, but the batchReport has allready been updated. You cannot update it anymore");
     }
 
 
