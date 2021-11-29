@@ -2,46 +2,49 @@
 import requests
 
 
-#
-# url = 'http://localhost:8081/machine/start/2'
-# x = requests.post(url)
+
+url = 'http://localhost:8081/machine/reset'
+x = requests.post(url)
 
 
  # ---------- CREATE TYPE -----------#
-url = 'http://localhost:8081/type/add'
-type = {'name': 'Pilsner'}
+# url = 'http://localhost:8081/type/add'
+# type = {'name': 'Pilsner',
+#         'maxSpeed': 600}
 
-x = requests.post(url, json = type)
+# x = requests.post(url, json = type)
 
-url = 'http://localhost:8081/type/add'
-type = {'name': 'IPA'}
+# url = 'http://localhost:8081/type/add'
+# type = {'name': 'IPA',
+#         'maxSpeed': 300}
 
-x = requests.post(url, json = type)
+# x = requests.post(url, json = type)
 
-url = 'http://localhost:8081/type/add'
-type = {'name': 'Alcohol_Free'}
+# url = 'http://localhost:8081/type/add'
+# type = {'name': 'Alcohol_Free',
+#         'maxSpeed': 125}
 
-x = requests.post(url, json = type)
+# x = requests.post(url, json = type)
 
 
-#---------- CREATE Batch -----------#
-url = 'http://localhost:8081/batch/add'
-batch = {'amount': 10,
-       'typeId': 1}
+# #---------- CREATE Batch -----------#
+# url = 'http://localhost:8081/batch/add'
+# batch = {'amount': 10,
+#        'typeId': 1}
 
-x = requests.post(url, json = batch)
+# x = requests.post(url, json = batch)
 
-url = 'http://localhost:8081/batch/add'
-batch = {'amount': 20,
-        'typeId': 2}
+# url = 'http://localhost:8081/batch/add'
+# batch = {'amount': 20,
+#         'typeId': 2}
 
-x = requests.post(url, json = batch)
+# x = requests.post(url, json = batch)
 
-url = 'http://localhost:8081/batch/add'
-batch = {'amount': 30,
-        'typeId': 3}
+# url = 'http://localhost:8081/batch/add'
+# batch = {'amount': 30,
+#         'typeId': 3}
 
-x = requests.post(url, json = batch)
+# x = requests.post(url, json = batch)
 
 
 #---------- CREATE BatchReport -----------#
