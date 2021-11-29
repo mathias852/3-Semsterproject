@@ -2,11 +2,12 @@
 import requests
 
 
-url = 'http://localhost:8081/machine/start/2'
-x = requests.post(url)
+#
+# url = 'http://localhost:8081/machine/start/2'
+# x = requests.post(url)
 
 
-""" # ---------- CREATE TYPE -----------#
+ # ---------- CREATE TYPE -----------#
 url = 'http://localhost:8081/type/add'
 type = {'name': 'Pilsner'}
 
@@ -40,7 +41,7 @@ url = 'http://localhost:8081/batch/add'
 batch = {'amount': 30,
         'typeId': 3}
 
-x = requests.post(url, json = batch) """
+x = requests.post(url, json = batch)
 
 
 #---------- CREATE BatchReport -----------#
