@@ -2,7 +2,10 @@ package org.example.BeerMachine;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.data.models.*;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
@@ -42,7 +45,7 @@ public class BeerMachineController {
     public void setProductionBatch(int id, int amount, int speed, Type type) {
          this.batchReport = new BatchReport(id, speed, type, amount);
 
-        if (type.getMaxSpeed() < speed) {
+        if (type.getMaxSpeed() <= speed) {
             try {
                 throw new Exception("Speed greater than max speed.");
             } catch (Exception e) {
@@ -57,6 +60,38 @@ public class BeerMachineController {
             }
         }
         Batch batch = new Batch(id, speed, type, amount);
+    }
+
+    public double calculateOEE(double speed, int amount, TreeSet<TimeState> downTime, double goodCount, double totalCount, double idealCycleTime){
+        //OEE is A * P * Q where A is availability, P is performance and Q is quality
+        //Runtime = planedProductionTime - downTime
+        //Quality = goodCount or totalCount-badCount
+        //Performance = (idealCycleTime * totalCount) / runTime
+        //Availability = runTime / PlanedProductionTime
+
+
+        //Everything will be measured in seconds
+
+        //Times 60 to get it in seconds due to the speed being in minutes
+        double planedProductionTimeInSeconds = (amount / speed) * 60;
+        double runTime;
+
+        //Total downTime
+        double totalDownTime = 0;
+        for (TimeState timeState: downTime) {
+            totalDownTime += timeState.getEndTime().getTime() - timeState.getStartTime().getTime();
+        }
+
+        if (totalDownTime != 0) {
+            runTime = planedProductionTimeInSeconds - totalDownTime;
+        } else {
+            runTime = planedProductionTimeInSeconds;
+        }
+
+        double quality = goodCount;
+        double performance = (idealCycleTime * totalCount) / runTime;
+        double availability = runTime / planedProductionTimeInSeconds;
+        return performance * quality * availability;
     }
 
     public BatchReport getBatchReport() {
