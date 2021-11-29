@@ -1,8 +1,8 @@
 package org.example.BeerMachine.web;
 
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.Batch;
-import org.example.BeerMachine.data.models.State;
 import org.example.BeerMachine.data.models.StopReason;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.service.MachineService;
@@ -18,15 +18,17 @@ public class MachineStateController {
     @Autowired
     MachineService machineService;
 
-    @GetMapping("/reset")
+    @PostMapping("/reset")
     public ResponseEntity<MessageResponse> resetMachine() {
         MessageResponse resetMachine = machineService.resetMachine();
         return new ResponseEntity<>(resetMachine, HttpStatus.OK);
     }
-
     @PostMapping("/start/{batchId}")
     public ResponseEntity<MessageResponse> startMachine(@PathVariable Integer batchId) {
         MessageResponse startMachine = machineService.startMachine(batchId);
+        if (startMachine.getMessage().equals("Machine didn't start...")){
+            return new ResponseEntity<>(startMachine, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         return new ResponseEntity<>(startMachine, HttpStatus.OK);
     }
     @PostMapping("/queue/start")
@@ -34,22 +36,17 @@ public class MachineStateController {
         MessageResponse startQueue = machineService.startQueue();
         return new ResponseEntity<>(startQueue, HttpStatus.OK);
     }
-
-    @GetMapping("/stop")
+    @PostMapping("/stop")
     public ResponseEntity<MessageResponse> stopMachine() {
         MessageResponse stopMachine = machineService.stopMachine();
         return new ResponseEntity<>(stopMachine, HttpStatus.OK);
     }
-
-
-    @GetMapping("/abort")
+    @PostMapping("/abort")
     public ResponseEntity<MessageResponse> abortMachine() {
         MessageResponse abortMachine = machineService.abortMachine();
         return new ResponseEntity<>(abortMachine, HttpStatus.OK);
     }
-
-
-    @GetMapping("/clear")
+    @PostMapping("/clear")
     public ResponseEntity<MessageResponse> clearMachine() {
         MessageResponse clearMachine = machineService.clearMachine();
         return new ResponseEntity<>(clearMachine, HttpStatus.OK);
@@ -61,7 +58,6 @@ public class MachineStateController {
         MessageResponse setHost = machineService.setHost(host);
         return new ResponseEntity<>(setHost, HttpStatus.OK);
     }
-
     @CrossOrigin
     @GetMapping("/getHost/")
     public ResponseEntity<MessageResponse> getHost(){
@@ -69,35 +65,85 @@ public class MachineStateController {
         return new ResponseEntity<>(getHost, HttpStatus.OK);
     }
 
+    @CrossOrigin
+    @GetMapping("/getAmountToProduce")
+    public ResponseEntity<Float> getAmountToProduce(){
+        return new ResponseEntity<>(machineService.getAmountToProduce(), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getBatchId")
+    public ResponseEntity<Float> getBatchId(){
+        return new ResponseEntity<>(machineService.getBatchId(), HttpStatus.OK);
+    }
+
+    @CrossOrigin
+    @GetMapping("/getSpeed")
+    public ResponseEntity<Float> getSpeed(){
+        return new ResponseEntity<>(machineService.getSpeed(), HttpStatus.OK);
+    }
+
+    //Live-data routes
+    @CrossOrigin
+    @GetMapping("/getBarley")
+    public ResponseEntity<Float> getBarley (){return new ResponseEntity<>(machineService.getBarley(), HttpStatus.OK);}
+    @CrossOrigin
+    @GetMapping("/getHops")
+    public ResponseEntity<Float> getHops (){
+        return new ResponseEntity<>(machineService.getHops(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getMalt")
+    public ResponseEntity<Float> getMalt (){
+        return new ResponseEntity<>(machineService.getMalt(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getWheat")
+    public ResponseEntity<Float> getWheat () {
+        return new ResponseEntity<>(machineService.getWheat(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getYeast")
+    public ResponseEntity<Float> getYeast (){
+        return new ResponseEntity<>(machineService.getYeast(), HttpStatus.OK);
+    }
+    @CrossOrigin
+    @GetMapping("/getHumidity")
+    public ResponseEntity<Float> getHumidity (){return new ResponseEntity<>(machineService.getHumidity(), HttpStatus.OK);}
 
     @CrossOrigin
     @GetMapping("/getTemperature")
-    public ResponseEntity<Double> getTemperature () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentTemperature(),
-                HttpStatus.OK);
-    }
+    public ResponseEntity<Float> getTemperature (){return new ResponseEntity<>(machineService.getTemperature(), HttpStatus.OK);}
 
     @CrossOrigin
-    @GetMapping("/getHumidity")
-    public ResponseEntity<Double> getHumidity () {
-        BeerMachineController.getBeerMachineController().getMachineState().setCurrentHumidity(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity() + 1);
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentHumidity(),
-                HttpStatus.OK);
-    }
+    @GetMapping("/getVibrations")
+    public ResponseEntity<Float> getVibrations (){return new ResponseEntity<>(machineService.getVibrations(), HttpStatus.OK);}
 
     @CrossOrigin
-    @GetMapping("/getVibration")
-    public ResponseEntity<Double> getVibration () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentVibration(),
-                HttpStatus.OK);
-    }
+    @GetMapping("/getStopReason")
+    public ResponseEntity<Integer> getStopReason (){return new ResponseEntity<>(machineService.getStopReason(), HttpStatus.OK);}
 
     @CrossOrigin
-    @GetMapping("/getBatch")
-    public ResponseEntity<Batch> getBatch () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentBatch(),
-                HttpStatus.OK);
-    }
+    @GetMapping("/getTotalCount")
+    public ResponseEntity<UShort> getTotalCount (){return new ResponseEntity<>(machineService.getTotalCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getGoodCount")
+    public ResponseEntity<UShort> getGoodCount (){return new ResponseEntity<>(machineService.getGoodCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getBadCount")
+    public ResponseEntity<UShort> getBadCount (){return new ResponseEntity<>(machineService.getBadCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getMaintenanceCount")
+    public ResponseEntity<UShort> getMaintenanceCount (){return new ResponseEntity<>(machineService.getMaintenanceCount(), HttpStatus.OK);}
+
+    @CrossOrigin
+    @GetMapping("/getCurrentState")
+    public ResponseEntity<Integer> getCurrentState (){return new ResponseEntity<>(machineService.getCurrentState(), HttpStatus.OK);}
+
+
 
     @CrossOrigin
     @GetMapping("/getState")
@@ -106,15 +152,11 @@ public class MachineStateController {
         return new ResponseEntity<>(resetMachine, HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @GetMapping("/getStopreason")
-    public ResponseEntity<StopReason> getStopreason () {
-        StopReason stopReason = BeerMachineController.getBeerMachineController().getMachineState().getStopreason();
-        if (stopReason != null)
-        return new ResponseEntity<>(stopReason, HttpStatus.OK);
-        else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    /*  @CrossOrigin
+    @GetMapping("/getBatch")
+    public ResponseEntity<Batch> getBatch () {
+        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentBatch(),
+                HttpStatus.OK);
     }
-
+ */
 }

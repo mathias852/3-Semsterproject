@@ -72,4 +72,6 @@ public class BatchReportServiceImpl implements BatchReportService {
     public List<BatchReport> getAllBatchReports() {
         return batchReportRepository.findAll();
     }
+
+
 }

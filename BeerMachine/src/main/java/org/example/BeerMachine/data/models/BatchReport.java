@@ -2,7 +2,6 @@ package org.example.BeerMachine.data.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Time;
 import java.util.Date;
 import java.util.Set;
 
@@ -38,6 +37,8 @@ public class BatchReport {
     private Date endTime;
 
     private Double OEE;
+
+    private boolean updated = false;
 
     @OneToMany(mappedBy="batchReport")
     private Set<Humidity> humidities;
@@ -134,5 +135,13 @@ public class BatchReport {
 
     public Integer getAmount() {
         return amount;
+    }
+
+    public boolean isUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(boolean updated) {
+        this.updated = updated;
     }
 }

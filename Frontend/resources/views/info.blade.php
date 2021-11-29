@@ -27,17 +27,46 @@
                 </div>
                 <div class="col-sm">
                     <h3>Good count: </h3>
-                    <label class="gcount">Good count is not updating...</label>
+                    <label class="goodCount">Good count is not updating...</label>
                 </div>
                 <div class="col-sm">
                     <h3>Bad count: </h3>
-                    <label class="bcount">Bad count is not updating...</label>
+                    <label class="badCount">Bad count is not updating...</label>
                 </div>
                 <div class="col-sm">
                     <h3>Total count: </h3>
-                    <label class="tcount">Total count is not updating...</label>
+                    <label class="totalCount">Total count is not updating...</label>
                 </div>
             </div>
+
+            <br><br>
+
+            <div class="row" style="margin-top: 5%">
+                <div class="col-sm">
+                    <h3>Barley: </h3>
+                    <label class="barley">Barley not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Hops: </h3>
+                    <label class="hops">Hops not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Malt: </h3>
+                    <label class="malt">Malt not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Wheat: </h3>
+                    <label class="wheat">Wheat not updating...</label>
+                </div>
+                <div class="col-sm">
+                    <h3>Yeast: </h3>
+                    <label class="yeast">Yeast not updating...</label>
+                </div>
+
+
+            </div>
+
+
         </div>
         <br><br>
 

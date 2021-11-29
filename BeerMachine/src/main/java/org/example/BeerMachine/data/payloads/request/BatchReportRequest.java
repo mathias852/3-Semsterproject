@@ -32,6 +32,8 @@ public class BatchReportRequest {
 
     private Double OEE;
 
+    private Boolean updated = false;
+
     public Integer getBatchId() {
         return batchId;
     }
@@ -108,5 +110,13 @@ public class BatchReportRequest {
 
     public void setOEE(Double OEE) {
         this.OEE = OEE;
+    }
+
+    public Boolean getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(Boolean updated) {
+        this.updated = updated;
     }
 }
