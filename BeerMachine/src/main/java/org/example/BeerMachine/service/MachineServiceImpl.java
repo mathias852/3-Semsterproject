@@ -232,10 +232,12 @@ public class MachineServiceImpl implements MachineService {
             System.out.println("At least we got in here");
             BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
             updateBatchReport(batchReport);
+            write.reset();
         }
         return machineState.getStateSub().getMachineState();
     }
 
+    @Override
     public void updateBatchReport(BatchReport batchReport){
         if(!batchReport.isUpdated()) {
             System.out.println("And we got the batchReport, I think " + batchReport);

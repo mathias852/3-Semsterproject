@@ -4,10 +4,12 @@
     <title>Beer Machine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery/jquery-3.6.0.min.js') }}"></script>
+{{--
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
+--}}
     <script type="text/javascript" src="{{ asset('js/confirmButton.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

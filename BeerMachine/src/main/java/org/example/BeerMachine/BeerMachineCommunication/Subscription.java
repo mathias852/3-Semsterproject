@@ -24,6 +24,10 @@ import org.eclipse.milo.opcua.stack.core.types.structured.MonitoringParameters;
 import org.eclipse.milo.opcua.stack.core.types.structured.ReadValueId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned;
+import org.example.BeerMachine.BeerMachineController;
+import org.example.BeerMachine.service.MachineService;
+import org.example.BeerMachine.service.MachineServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -123,7 +127,7 @@ public class Subscription extends Thread {
                     case("Program:product.good"):
                         setGoodCount((UShort) v.getValue().getValue());
                         break;
-                    case("Program:Cube.Admin.ProdDefectiveCount"):
+                    case("Program:product.bad"):
                         setBadCount((UShort) v.getValue().getValue());
                         break;
                     case("Program:Maintenance.Counter"):
@@ -131,6 +135,7 @@ public class Subscription extends Thread {
                         break;
                     case("Program:Cube.Status.StateCurrent"):
                         setMachineState((Integer) v.getValue().getValue());
+                        break;
                 }
             });
 
