@@ -1,8 +1,8 @@
 function switchConfirmation() {
     let state = document.getElementById("checkbox").checked;
-    let r = confirm("Are you sure you want to change?!");
+    let r = confirm("Are you sure you want to change host?!");
     if (r === true) {
-        console.log("You pressed OK");
+        // console.log("You pressed OK");
         switchHost();
         if (state) {
             document.getElementById("checkbox").checked;
