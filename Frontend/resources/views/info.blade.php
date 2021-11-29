@@ -15,6 +15,8 @@
                 <p class="status">STATUS</p>
             </div>
 
+            <h2>Current Batch: {{$currentBatch}}</h2>
+
 
             <div class="row">
                 <div class="col-sm">
@@ -93,8 +95,23 @@
                         </form>
                     @endif
                 </span>
-                <span class="col-sm"><button class="btn btn-danger ">Stop Machine</button></span>
-                <span class="col-sm"><button class="btn btn-danger">Abort</button></span>
+                <span class="col-sm">
+
+                @if($currentBatch == null)
+                        <button class="btn btn-secondary ">Stop Machine</button>
+                    @else
+                        <form action="{{route("batch.stop")}}" method="post">
+                        @csrf
+                        <button class="btn btn-danger ">Stop Machine</button>
+                    </form>
+                    @endif
+                </span>
+                <span class="col-sm">
+                    <form action="{{route("batch.abort")}}" method="post">
+                        @csrf
+                        <button class="btn btn-danger">Abort</button>
+                    </form>
+                </span>
                 <span class="col-sm"><button class="btn btn-secondary">Reset Machine</button></span>
                 <span class="col-sm"><button class="btn btn-secondary">Refill Machine</button></span>
                 <span class="col-sm"><button class="btn btn-secondary">Maintenance</button></span>

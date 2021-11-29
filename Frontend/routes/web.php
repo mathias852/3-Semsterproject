@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\MachineController;
 use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,12 @@ Route::get('/batches', [BatchController::class, "list"])->name("batch.list");
 Route::get('batch/create', [BatchController::class, "create"])->name("batch.create");
 Route::post('batch/create', [BatchController::class, "store"])->name("batch.store");
 Route::post('batch/start', [BatchController::class, "start"])->name("batch.start");
+Route::post('batch/stop', [BatchController::class, "stop"])->name("batch.stop");
+Route::post('batch/abort', [BatchController::class, "abort"])->name("batch.abort");
+Route::post('batch/reset', [BatchController::class, "reset"])->name("batch.reset");
+Route::post('batch/clear', [BatchController::class, "clear"])->name("batch.stop");
+Route::post('batch/maintenance', [BatchController::class, "maintenance"])->name("batch.maintenance");
+
 Route::get('batch/destroy/{id}', [BatchController::class, "destroy"])->name("batch.destroy");
 
 //reports
