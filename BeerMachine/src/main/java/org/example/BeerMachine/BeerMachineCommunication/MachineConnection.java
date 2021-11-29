@@ -18,16 +18,16 @@ public class MachineConnection {
     private List<EndpointDescription> endpoints;
     private OpcUaClient client;
     private OpcUaClientConfigBuilder cfg;
-    private String host;
-    private int port;
+    private String host = "127.0.0.1";
+    private int port = 4840;
     private URI uri;
 
-    public MachineConnection() {
+    public String getHost() {
+        return host;
     }
 
-    public MachineConnection(String host, int port) {
+    public void setHost(String host) {
         this.host = host;
-        this.port = port;
     }
 
     public void connect() {

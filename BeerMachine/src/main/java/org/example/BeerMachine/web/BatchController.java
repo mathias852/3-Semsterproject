@@ -23,6 +23,8 @@ public class BatchController {
     @Autowired
     QueueService queueService;
 
+
+
     @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List<Batch>> getAllBatches () {

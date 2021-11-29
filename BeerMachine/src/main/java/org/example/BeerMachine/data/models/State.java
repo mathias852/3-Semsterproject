@@ -24,4 +24,8 @@ public enum State {
     State(int id) {
         this.id = id;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }

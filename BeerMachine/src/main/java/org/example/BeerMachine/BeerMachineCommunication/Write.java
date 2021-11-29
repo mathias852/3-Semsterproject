@@ -17,40 +17,117 @@ import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
+import org.w3c.dom.Node;
 
 public class Write {
-    public static void main(String[] args) {
-        try 
-        {
-            MachineConnection machineConnection = new MachineConnection("127.0.0.1", 4840);
+    private MachineConnection machineConnection;
+    private OpcUaClient client;
+
+    public void reset() {
+        try {
+            machineConnection = new MachineConnection();
             machineConnection.connect();
-            OpcUaClient client = machineConnection.getClient();
+            client = machineConnection.getClient();
 
             NodeId change_request = NodeId.parse("ns=6;s=::Program:Cube.Command.CmdChangeRequest");
-
             NodeId command = NodeId.parse("ns=6;s=::Program:Cube.Command.CntrlCmd");
-
-            NodeId command_machSpeed = NodeId.parse("ns=6;s=::Program:Cube.Command.MachSpeed");
-            client.writeValue(command_machSpeed, DataValue.valueOnly(new Variant(500f))).get();
-
-            NodeId batch_id = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
-            client.writeValue(batch_id, DataValue.valueOnly(new Variant(1))).get();
-
-            NodeId type_id = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[1].Value");
-            client.writeValue(type_id, DataValue.valueOnly(new Variant(0))).get();
-
-            NodeId amount = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[2].Value");
-            client.writeValue(amount, DataValue.valueOnly(new Variant(40000f))).get();
-
-
-            client.writeValue(command, DataValue.valueOnly(new Variant(2))).get();
+            client.writeValue(command, DataValue.valueOnly(new Variant(1))).get();
             client.writeValue(change_request, DataValue.valueOnly(new Variant(true))).get();
+            client.disconnect();
         }
-        catch(Throwable ex)
-        {
+        catch(Throwable ex) {
             ex.printStackTrace();
         }
+    }
 
+    public void startBatch(Float batchId, float machine_speed, int type_id, float amount) {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId mach_speed_node = NodeId.parse("ns=6;s=::Program:Cube.Command.MachSpeed");
+            client.writeValue(mach_speed_node, DataValue.valueOnly(new Variant(machine_speed))).get();
+
+            NodeId batchIdNode = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
+            client.writeValue(batchIdNode, DataValue.valueOnly(new Variant(batchId))).get();
+
+
+            NodeId type_id_node = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[1].Value");
+            client.writeValue(type_id_node, DataValue.valueOnly(new Variant(type_id))).get();
+
+            NodeId amount_node = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[2].Value");
+            client.writeValue(amount_node, DataValue.valueOnly(new Variant(amount))).get();
+
+
+            NodeId command = NodeId.parse("ns=6;s=::Program:Cube.Command.CntrlCmd");
+            client.writeValue(command, DataValue.valueOnly(new Variant(2))).get();
+
+            NodeId change_request = NodeId.parse("ns=6;s=::Program:Cube.Command.CmdChangeRequest");
+            client.writeValue(change_request, DataValue.valueOnly(new Variant(true))).get();
+            client.disconnect();
+        }
+        catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void stop() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId change_request = NodeId.parse("ns=6;s=::Program:Cube.Command.CmdChangeRequest");
+            NodeId command = NodeId.parse("ns=6;s=::Program:Cube.Command.CntrlCmd");
+            client.writeValue(command, DataValue.valueOnly(new Variant(3))).get();
+            client.writeValue(change_request, DataValue.valueOnly(new Variant(true))).get();
+            client.disconnect();
+        }
+        catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void abort() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId change_request = NodeId.parse("ns=6;s=::Program:Cube.Command.CmdChangeRequest");
+            NodeId command = NodeId.parse("ns=6;s=::Program:Cube.Command.CntrlCmd");
+            client.writeValue(command, DataValue.valueOnly(new Variant(4))).get();
+            client.writeValue(change_request, DataValue.valueOnly(new Variant(true))).get();
+            client.disconnect();
+        }
+        catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void clear() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId change_request = NodeId.parse("ns=6;s=::Program:Cube.Command.CmdChangeRequest");
+            NodeId command = NodeId.parse("ns=6;s=::Program:Cube.Command.CntrlCmd");
+            client.writeValue(command, DataValue.valueOnly(new Variant(5))).get();
+            client.writeValue(change_request, DataValue.valueOnly(new Variant(true))).get();
+            client.disconnect();
+        }
+        catch(Throwable ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        Write write = new Write();
+        write.startBatch(1f, 600, 0, 1000);
+        //write.reset();
     }
 }

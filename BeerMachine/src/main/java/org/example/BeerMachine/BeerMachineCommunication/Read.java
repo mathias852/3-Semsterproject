@@ -4,44 +4,140 @@ package org.example.BeerMachine.BeerMachineCommunication;/*
  * and open the template in the editor.
  */
 
-import java.util.List;
-
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
-import org.eclipse.milo.opcua.sdk.client.api.config.OpcUaClientConfigBuilder;
-import org.eclipse.milo.opcua.stack.client.DiscoveryClient;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.Variant;
+import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.eclipse.milo.opcua.stack.core.types.enumerated.TimestampsToReturn;
-import org.eclipse.milo.opcua.stack.core.types.structured.EndpointDescription;
-import org.slf4j.Logger;
 
 public class Read {
-    public static void main(String[] args) {
-            try 
-            {
-                MachineConnection machineConnection = new MachineConnection("127.0.0.1", 4840);
-                machineConnection.connect();
-                OpcUaClient client = machineConnection.getClient();
+    MachineConnection machineConnection;
+    OpcUaClient client;
+    private int state;
+    private int defectiveCount;
+    private float amountToProduce;
+    private float batchId;
+    private float speed;
+    private int totalAmountProduced;
 
-                NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.StateCurrent");
+    public int getDefectiveCount() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
 
-                DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId)
-                        .get();
-                System.out.println("DataValue= " + dataValue);
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Admin.ProdDefectiveCount");
 
-                Variant variant = dataValue.getValue();
-                
-                System.out.println("Variant= " + variant);
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            defectiveCount = (int) variant.getValue();
+            client.disconnect();
 
-                int random = (int)variant.getValue();
-                System.out.println("myVariable= " + random);
-
-            }
-            catch(Throwable ex)
-            {
-                ex.printStackTrace();
-            }
-
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return defectiveCount;
     }
+
+    public int checkState() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.StateCurrent");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            state = (int) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return state;
+    }
+
+    public Float getAmountToProduce() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.Parameter[1].Value");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            amountToProduce = (Float) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return amountToProduce;
+    }
+    public float getBatchId() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            batchId = (float) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return batchId;
+    }
+
+
+
+    public float getSpeed() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.MachSpeed");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            speed = (float) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return speed;
+    }
+
+    public int getTotalAmountProduced() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Admin.ProdProcessedCount");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
+            totalAmountProduced = (int) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return totalAmountProduced;
+    }
+
+
+
+
+
 }
