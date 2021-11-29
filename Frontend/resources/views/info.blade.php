@@ -15,7 +15,7 @@
                 <p class="status">STATUS</p>
             </div>
 
-            <h2>Current Batch: {{$currentBatch}}</h2>
+{{--            <h2>Current Batch: {{$currentBatch}}</h2>--}}
 
 {{--            <h2>Ingredients</h2>--}}
 {{--            <div class="row">--}}
