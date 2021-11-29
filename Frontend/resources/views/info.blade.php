@@ -12,87 +12,15 @@
 
             {{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
             <div>
-                <p class="status">STATUS</p>
+                @if($currentState == null)
+                    <p class="status">NOT RUNNING</p>
+                @else
+                    <p class="status">{{$currentState}}</p>
+                @endif
             </div>
-
-{{--            <h2>Current Batch: {{$currentBatch}}</h2>--}}
-
-{{--            <h2>Ingredients</h2>--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-sm">--}}
-{{--                    <h3>Yeast</h3>--}}
-{{--                    <label class="yeast">Yeast value not updating...</label>--}}
-{{--                </div>--}}
-{{--                <div class="col-sm">--}}
-{{--                    <h3>Hops</h3>--}}
-{{--                    <label class="hops">Hops value not updating...</label>--}}
-{{--                </div>--}}
-{{--                <div class="col-sm">--}}
-{{--                    <h3>Barley</h3>--}}
-{{--                    <label class="barley">Barley not updating...</label>--}}
-{{--                </div>--}}
-{{--                <div class="col-sm">--}}
-{{--                    <h3>Wheat</h3>--}}
-{{--                    <label class="wheat">Wheat not reading</label>--}}
-{{--                </div>--}}
-{{--            </div>--}}
         </div>
     </div>
 
-    <div class="machine-variables">
-        <h2>Ingredients</h2>
-        <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Yeast</th>
-                <th scope="col">Hops</th>
-                <th scope="col">Barley</th>
-                <th scope="col">Wheat</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td class="yeast">Yeast value not updating...</td>
-                <td class="hops">Hops value not updating...</td>
-                <td class="barley">Barley value not updating...</td>
-                <td class="wheat">Wheat value not updating...</td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-    <div class="row machine-variables">
-
-
-        <div class="col-sm">
-            <h3>Humidity: </h3>
-            <label class="humidity">Humidity not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Stop reason: </h3>
-            <label class="stopReason">Stop reason not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Temperature: </h3>
-            <label class="temperature">Temperature is not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Vibration: </h3>
-            <label class="vibration">Vibration is not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Good count: </h3>
-            <label class="gcount">Good count is not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Bad count: </h3>
-            <label class="bcount">Bad count is not updating...</label>
-        </div>
-        <div class="col-sm">
-            <h3>Total count: </h3>
-            <label class="tcount">Total count is not updating...</label>
-        </div>
-    </div>
 
 
     <div class="row machine-controls">
@@ -139,6 +67,63 @@
             <span class="col-sm"><button class="btn btn-secondary">Maintenance</button></span>
         </div>
     </div>
+
+    <div class="machine-variables">
+        <h2>Ingredients</h2>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Yeast</th>
+                <th scope="col">Hops</th>
+                <th scope="col">Barley</th>
+                <th scope="col">Wheat</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="yeast">Yeast value not updating...</td>
+                <td class="hops">Hops value not updating...</td>
+                <td class="barley">Barley value not updating...</td>
+                <td class="wheat">Wheat value not updating...</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="row machine-variables">
+
+
+        <div class="col-sm">
+            <h3>Humidity: </h3>
+            <label class="humidity">Humidity not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Temperature: </h3>
+            <label class="temperature">Temperature is not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Vibration: </h3>
+            <label class="vibration">Vibration is not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Stop reason: </h3>
+            <label class="stopReason">Stop reason not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Good count: </h3>
+            <label class="gcount">Good count is not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Bad count: </h3>
+            <label class="bcount">Bad count is not updating...</label>
+        </div>
+        <div class="col-sm">
+            <h3>Total count: </h3>
+            <label class="totalCount">Total count is not updating...</label>
+        </div>
+    </div>
+
+
 
 
 
