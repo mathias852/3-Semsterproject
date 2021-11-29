@@ -7,7 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/confirmButton.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
@@ -31,7 +35,9 @@
                 </li>
             </ul>
             <ul class="navbar-nav d-flex">
-                <li class="nav-item"></li>
+                <li class="nav-item">
+                   <label for="checkbox">Machine: </label><input type="checkbox" id="checkbox" checked data-on="Machine" data-off="Simulator" data-onstyle="success" data-offstyle="danger" onchange="switchConfirmation()">
+                </li>
                 <li class="nav-item"></li>
             </ul>
         </div>

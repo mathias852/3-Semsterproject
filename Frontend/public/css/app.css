@@ -11573,9 +11573,17 @@ textarea.form-control-lg {
     height: 300px;
 }
 
-.beerMachine-content {
+.beerMachine-info {
     padding: 0 1.5em;
     text-align: center;
+}
+
+.machine-variables {
+    margin-top: 2em;
+    padding: 0 1.5em;
+    text-align: center;
+    margin-bottom: 5em;
+
 }
 
 .create-form {
@@ -11583,14 +11591,19 @@ textarea.form-control-lg {
     text-align-last: center;
     margin-top: 3%;
     width: 50%;
-    margin-left : 25%
+    margin-left: 25%
 }
 
-.status{
-    margin-top: 2%;
-    margin-bottom: 2%;
+.status {
+    margin-top: 1%;
+    margin-bottom: 1%;
     font-size: 40px;
 }
 
+
+.machine-controls {
+    margin-top: 15%;
+    text-align: center;
+}
 
 /*# sourceMappingURL=app.css.map*/
