@@ -62,36 +62,13 @@ public class BeerMachineController {
         Batch batch = new Batch(id, speed, type, amount);
     }
 
-    public double calculateOEE(double speed, int amount, TreeSet<TimeState> downTime, double goodCount, double totalCount, double idealCycleTime){
-        //OEE is A * P * Q where A is availability, P is performance and Q is quality
-        //Runtime = planedProductionTime - downTime
-        //Quality = goodCount or totalCount-badCount
-        //Performance = (idealCycleTime * totalCount) / runTime
-        //Availability = runTime / PlanedProductionTime
+    public double calculateOEE(double goodCount, double idealCycleTime, double speed, double amount){
+        //Everything will be measured in minutes
+        //OEE can be calculated based on the following: OEE = (GoodCount * IdealCycleTime) / plannedProductionTime
+        //Where plannedProductionTime is "Shift Length - breaks" or in our case speed * amount
+        double planProductionTime = speed * amount;
 
-
-        //Everything will be measured in seconds
-
-        //Times 60 to get it in seconds due to the speed being in minutes
-        double planedProductionTimeInSeconds = (amount / speed) * 60;
-        double runTime;
-
-        //Total downTime
-        double totalDownTime = 0;
-        for (TimeState timeState: downTime) {
-            totalDownTime += timeState.getEndTime().getTime() - timeState.getStartTime().getTime();
-        }
-
-        if (totalDownTime != 0) {
-            runTime = planedProductionTimeInSeconds - totalDownTime;
-        } else {
-            runTime = planedProductionTimeInSeconds;
-        }
-
-        double quality = goodCount;
-        double performance = (idealCycleTime * totalCount) / runTime;
-        double availability = runTime / planedProductionTimeInSeconds;
-        return performance * quality * availability;
+        return (goodCount * idealCycleTime) / planProductionTime;
     }
 
     public BatchReport getBatchReport() {
