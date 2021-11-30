@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{bootstrap4-toggle, jquery}" />
+    <file url="file://$PROJECT_DIR$" libraries="{@chartisan/echarts, bootstrap4-toggle, echarts, highcharts, jquery, plotly-latest}" />
   </component>
 </project>

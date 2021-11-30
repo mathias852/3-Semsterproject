@@ -12,10 +12,11 @@
 
             {{--            TODO: Get current PACKML status and change "STATUS" live, maybe change the color of the 'p'-element--}}
             <div>
-                @if($currentState == null)
+
+                @if($currentState['message'] == null)
                     <p class="status">NOT RUNNING</p>
                 @else
-                    <p class="status">{{$currentState}}</p>
+                    <p class="status">{{$currentState['message']}}</p>
                 @endif
             </div>
         </div>

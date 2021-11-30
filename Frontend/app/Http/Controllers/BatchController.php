@@ -16,12 +16,13 @@ class BatchController extends Controller
         $getCurrentBatch = Http::get('http://localhost:8081/machineState/getBatch');
         $currentBatch = $getCurrentBatch->json();
 
-        $getState = Http::get('http://localhost/8081/machine/getState');
+        $getState = Http::get('http://localhost:8081/machine/getState');
         $currentState = $getState->json();
 
 
 
         return view("info")->with(['batches' => $batches, 'currentBatch' => $currentBatch, 'currentState' => $currentState]);
+//        return view("info")->with(['batches' => $batches, 'currentBatch' => $currentBatch]);
     }
 
     public function create()

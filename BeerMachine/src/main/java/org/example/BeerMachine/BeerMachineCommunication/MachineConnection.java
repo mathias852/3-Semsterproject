@@ -18,7 +18,7 @@ public class MachineConnection {
     private List<EndpointDescription> endpoints;
     private OpcUaClient client;
     private OpcUaClientConfigBuilder cfg;
-    private String host = "192.168.0.122";
+    private String host = "127.0.0.1";
     private int port = 4840;
     private URI uri;
 

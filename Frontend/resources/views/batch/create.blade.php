@@ -29,6 +29,13 @@
         </form>
     </div>
 
+    <div id="chart" style="height: 300px;"></div>
+    <script>
+        const chart = new Chartisan({
+            el: '#chart',
+            url: "@chart('sample_chart')",
+        });
+    </script>
     </body>
     </html>
 @endsection

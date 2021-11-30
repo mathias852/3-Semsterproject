@@ -115,6 +115,8 @@
       <path value="$PROJECT_DIR$/Frontend/vendor/psr/event-dispatcher" />
       <path value="$PROJECT_DIR$/Frontend/vendor/psr/container" />
       <path value="$PROJECT_DIR$/Frontend/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/Frontend/vendor/consoletvs/charts" />
+      <path value="$PROJECT_DIR$/Frontend/vendor/chartisan/php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
