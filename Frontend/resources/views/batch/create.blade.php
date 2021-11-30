@@ -34,6 +34,8 @@
         const chart = new Chartisan({
             el: '#beerType',
             url: "@chart('sample_chart')",
+            hooks: new ChartisanHooks()
+                .datasets([{type: 'line', fill: false}, 'bar'])
         });
     </script>
     </body>
