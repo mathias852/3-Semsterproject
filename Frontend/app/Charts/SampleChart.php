@@ -18,8 +18,8 @@ class SampleChart extends BaseChart
     public function handler(Request $request): Chartisan
     {
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [1, 2, 3])
-            ->dataset('Sample 2', [3, 2, 1]);
+            ->labels([30,60,90,120,150,180,210,240,270,300,330,360,390,420,450,480,510,540,600])
+            ->dataset('Sample',  [1, 2, 3]);
+
     }
 }
