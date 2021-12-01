@@ -7,14 +7,15 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/changeChart.js') }}"></script>
+    {{--    <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>--}}
 
     <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>
     <!-- Chartisan -->
     <script src="https://unpkg.com/@chartisan/echarts/dist/chartisan_echarts.js"></script>
 
 
-{{--    <script type="text/javascript" src="{{ asset('js/graph.js') }}"></script>--}}
+    {{--    <script type="text/javascript" src="{{ asset('js/graph.js') }}"></script>--}}
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap4-toggle.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
