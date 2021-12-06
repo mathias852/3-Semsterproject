@@ -14,29 +14,32 @@
             @csrf
             <label for="amount" class="fw-bold">Amount</label>
             <input type="number" id="amount" name="amount" class="form-control" required>
-            <label for="type" class="fw-bold">Type of Beer</label>
-            <select id="typeBeer" name="type" class="typeBeer">
+            <label for="beerType" class="fw-bold">Type of Beer</label>
+            <select id="beerType" name="type" class="form-control dropdown" onchange="chartScript()">
                 {{--        TODO: Make queue implementation--}}
                 @foreach($types as $type)
                     <option value="{{$type['id']}}">{{$type['name']}}</option>
                 @endforeach
             </select>
-            <label for="speed" class="fw-bold">Speed</label>
+            <label class="fw-bold">Speed</label>
             <input type="number" id="speed" name="speed" class="form-control" required>
             <br>
             <button type="submit" class="form-control">Submit</button>
         </form>
     </div>
 
-    <div id="beerType" style="height: 300px;"></div>
+    <div id="pilsnerChart" style="height: 300px;"></div>
     <script>
         const chart = new Chartisan({
-            el: '#beerType',
+            el: '#pilsnerChart',
             url: "@chart('sample_chart')",
             hooks: new ChartisanHooks()
                 .datasets([{type: 'line', fill: false}, 'bar'])
         });
     </script>
+
+
+
     </body>
     </html>
 @endsection

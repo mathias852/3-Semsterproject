@@ -8,6 +8,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery/jquery-3.6.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/changeChart.js') }}"></script>
+
     {{--    <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>--}}
 
     <script src="https://unpkg.com/echarts/dist/echarts.min.js"></script>

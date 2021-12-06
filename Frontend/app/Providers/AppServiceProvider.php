@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Charts\PilsnerChart;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\ServiceProvider;
 
@@ -17,5 +18,6 @@ class AppServiceProvider extends ServiceProvider
         $charts->register([
             \App\Charts\SampleChart::class
         ]);
+
     }
 }
