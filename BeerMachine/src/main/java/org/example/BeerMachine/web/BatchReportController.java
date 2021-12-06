@@ -118,13 +118,6 @@ public class BatchReportController {
     }
 
     @CrossOrigin
-    @PutMapping("/update/{batchReportId}")
-    public ResponseEntity<Optional<BatchReport>> updateBatch(@PathVariable("batchReportId") Integer id, @RequestBody BatchReportRequest batchReport) throws ParseException {
-        Optional<BatchReport> updateBatchReport = batchReportService.updateBatchReport(id, batchReport);
-        return new ResponseEntity<>(updateBatchReport, HttpStatus.OK);
-    }
-
-    @CrossOrigin
     @DeleteMapping("/delete/{batchReportId}")
     public ResponseEntity<?> deleteBatch(@PathVariable("batchReportId") Integer id) {
         batchReportService.deleteBatchReport(id);

@@ -7,23 +7,31 @@ import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
 import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.Batch;
-import org.example.BeerMachine.data.models.BatchReport;
-import org.example.BeerMachine.data.models.MachineState;
-import org.example.BeerMachine.data.models.State;
+import org.example.BeerMachine.data.models.*;
+import org.example.BeerMachine.data.payloads.request.TimeStateRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
+import org.example.BeerMachine.data.repository.TimeStateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class MachineServiceImpl implements MachineService {
+    @Autowired
+    BatchReportRepository batchReportRepository;
+    @Autowired
+    BatchRepository batchRepository;
+    @Autowired
+    TimeStateRepository timeStateRepository;
+
+
     private final MachineConnection machineConnection = new MachineConnection();
     private final Write write = new Write();
     private final Read read = new Read();
@@ -31,10 +39,13 @@ public class MachineServiceImpl implements MachineService {
     private final Map<String, Subscription> ingredients = machineState.getIngredients();
     private final String barley = "Barley", wheat = "Wheat", hops = "Hops", malt = "Malt", yeast = "Yeast";
 
-    @Autowired
-    BatchReportRepository batchReportRepository;
-    @Autowired
-    BatchRepository batchRepository;
+    //Variables used for timeState
+    TimeState timeState = null;
+    boolean downTime = false;
+
+    //Used for down time
+    List<TimeState> timeStates = timeStateRepository.findAll();
+
 
     @Override
     public MessageResponse resetMachine() {
@@ -228,6 +239,21 @@ public class MachineServiceImpl implements MachineService {
         if (!machineState.getStateSub().isAlive()) {
             machineState.getStateSub().start();
         }
+        if(machineState.getStateSub().getMachineState() == 11) {
+            downTime = true;
+            timeState = new TimeState();
+            timeState.setStartTime(Date.from(Instant.now()));
+            timeState.setStopReason(read.checksStopState());
+            timeState.setStateId(read.checkState());
+            timeState.setBatchReport(BeerMachineController.getBeerMachineController().getBatchReport());
+
+        }
+        if(machineState.getStateSub().getMachineState() == 6 && downTime) {
+            if(timeState != null) {
+                timeState.setEndTime(Date.from(Instant.now()));
+                downTime = false;
+            }
+        }
         if (machineState.getStateSub().getMachineState() == 17) {
             System.out.println("At least we got in here");
             BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
@@ -238,17 +264,35 @@ public class MachineServiceImpl implements MachineService {
 
     public void updateBatchReport(BatchReport batchReport){
         if(!batchReport.isUpdated()) {
-            System.out.println("And we got the batchReport, I think " + batchReport);
-            //batchReport.get().setOEE(); NOTE: OEE yet to be implemented
-            batchReport.setEndTime(Date.from(Instant.now()));
-            batchReport.setGoodCount(batchReport.getAmount() - read.getDefectiveCount());
+            int goodCount = batchReport.getAmount() - read.getDefectiveCount();
+            Date endTime = Date.from(Instant.now());
+            double planedProductionTime = endTime.getTime() - batchReport.getStartTime().getTime();
+            double downTime = 0;
+
+            for (TimeState timeState : timeStates) {
+                if (timeState.getBatchReport().getBatchId().equals(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId())) {
+                    downTime += timeState.getEndTime().getTime() - timeState.getStartTime().getTime();
+                }
+            }
+
+            //Everything OEE-related
+            batchReport.setOEE(BeerMachineController.getBeerMachineController().calculateOEE(
+                    goodCount, batchReport.getType().getIdealCycleTime(), planedProductionTime));
+            batchReport.setAvailability(BeerMachineController.getBeerMachineController().getAvailability(
+                    downTime, planedProductionTime));
+
+
+            //batchReport.setPerformance(BeerMachineController.getBeerMachineController().getPerformance());
+
+            batchReport.setGoodCount(goodCount);
             batchReport.setRejectedCount(read.getDefectiveCount());
             batchReport.setTotalCount(read.getTotalAmountProduced());
+            batchReport.setEndTime(endTime);
             batchReport.setUpdated(true);
             batchReportRepository.save(batchReport);
             System.out.println("Batch-report with the batchId: " + batchReport.getBatchId() + " has been updated");
         }
-        System.out.println("Sorry, but the batchReport has allready been updated. You cannot update it anymore");
+        System.out.println("Sorry, but the batchReport has all ready been updated. You cannot update it anymore");
     }
 
 

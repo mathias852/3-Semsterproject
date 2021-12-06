@@ -62,14 +62,27 @@ public class BeerMachineController {
         Batch batch = new Batch(id, speed, type, amount);
     }
 
-    public double calculateOEE(double goodCount, double idealCycleTime, double speed, double amount){
+    public double calculateOEE(double goodCount, double idealCycleTime, double plannedProductionTime){
         //Everything will be measured in minutes
         //OEE can be calculated based on the following: OEE = (GoodCount * IdealCycleTime) / plannedProductionTime
-        //Where plannedProductionTime is "Shift Length - breaks" or in our case speed * amount
-        double planProductionTime = speed * amount;
-
-        return (goodCount * idealCycleTime) / planProductionTime;
+        //Where plannedProductionTime is the time between a batch start to a batch end
+        return (goodCount * idealCycleTime) / plannedProductionTime;
     }
+
+    public double getAvailability(double downTime, double plannedProductionTime){
+        //Planned Production Time - down time = run Time
+        return (plannedProductionTime - downTime)/plannedProductionTime;
+    }
+
+    public double getPerformance(double idealCycleTime, double totalCount, double speed, double amount){
+        //Speed * amount = run Time
+        return (idealCycleTime * totalCount)/(speed * amount);
+    }
+
+    public double getQuality(double goodCount, double totalCount){
+        return goodCount/totalCount;
+    }
+
 
     public BatchReport getBatchReport() {
         return batchReport;

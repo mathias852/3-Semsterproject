@@ -33,25 +33,6 @@ public class BatchReportServiceImpl implements BatchReportService {
     }
 
     @Override
-    public Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest) throws ParseException {
-        Optional<BatchReport> batchReport = batchReportRepository.findById(batchReportId);
-        if(batchReport.isEmpty()){
-            return null;
-        }
-        else {
-            batchReport.get().setSpeed(batchReportRequest.getSpeed());
-            batchReport.get().setTotalCount(batchReportRequest.getTotalCount());
-            batchReport.get().setGoodCount(batchReportRequest.getGoodCount());
-            batchReport.get().setRejectedCount(batchReportRequest.getRejectedCount());
-            batchReport.get().setStartTime(batchReportRequest.getStartTimeFormat(batchReportRequest.getStartTime()));
-            batchReport.get().setEndTime(batchReportRequest.getEndTimeFormat(batchReportRequest.getEndTime()));
-            batchReport.get().setOEE(batchReportRequest.getOEE());
-            batchReportRepository.save(batchReport.get());
-        }
-        return batchReport;
-    }
-
-    @Override
     public void deleteBatchReport(Integer batchReportId) {
         if (batchReportRepository.getById(batchReportId).getId().equals(batchReportId)){
             batchReportRepository.deleteById(batchReportId);

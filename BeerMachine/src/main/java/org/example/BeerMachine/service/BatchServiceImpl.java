@@ -29,6 +29,7 @@ public class BatchServiceImpl implements BatchService {
         Batch newBatch = new Batch();
         newBatch.setAmount(batchRequest.getAmount());
         newBatch.setType(batchRequest.getType(typeRepository));
+        newBatch.setSpeed(batchRequest.getSpeed());
         batchRepository.save(newBatch);
         BatchReport newBatchReport = new BatchReport(newBatch.getId(), newBatch.getSpeed(),
                 newBatch.getType(), newBatch.getAmount());
