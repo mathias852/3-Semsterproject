@@ -24,11 +24,21 @@ public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchReportRepository batchReportRepository;
 
+    @Autowired
+    QueueService queueService;
+
     @Override
     public MessageResponse createBatch(BatchRequest batchRequest) {
         Batch newBatch = new Batch();
         newBatch.setAmount(batchRequest.getAmount());
         newBatch.setType(batchRequest.getType(typeRepository));
+        if (queueService.getQueue() != null & queueService.getQueue().size() > 0) {
+            Integer lastQueueIndex = queueService.getQueue().size();
+            Integer lastQueueSpot = queueService.getQueue().get(lastQueueIndex-1).getQueueSpot();
+            newBatch.setQueueSpot(lastQueueSpot + 1);
+        } else {
+            newBatch.setQueueSpot(1);
+        }
         batchRepository.save(newBatch);
         BatchReport newBatchReport = new BatchReport(newBatch.getId(), newBatch.getSpeed(),
                 newBatch.getType(), newBatch.getAmount());
