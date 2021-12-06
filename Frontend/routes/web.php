@@ -33,6 +33,11 @@ Route::post('batch/maintenance', [BatchController::class, "maintenance"])->name(
 
 Route::get('batch/destroy/{id}', [BatchController::class, "destroy"])->name("batch.destroy");
 
+//queue
+Route::post('queue/up/{id}', [BatchController::class, "queueUp"])->name("queue.up");
+Route::post('queue/down/{id}', [BatchController::class, "queueDown"])->name("queue.down");
+
+
 //reports
 Route::get('/report', [ReportController::class, "showReportWithId"])->name("reportWithId.show");
 Route::get('/reports', [ReportController::class, "reportList"])->name("report.list");

@@ -75,6 +75,10 @@ class BatchController extends Controller
         $responseReport = Http::get('http://localhost:8081/batchReport/all');
         $reports = $responseReport->json();
 
+        usort($batches, function ($a, $b) {
+            return $a['queueSpot'] - $b['queueSpot'];
+        });
+
         return view("list", ['batches' => $batches,
             'reports' => $reports]);
     }
@@ -108,5 +112,45 @@ class BatchController extends Controller
     {
         Http::post('http://localhost/8081/machine/maintenance');
         return redirect("/")->with('message', "Maintenance is starting...");
+    }
+
+    public function queueUp(Request $request) {
+        $id = $request->id;
+
+        Http::post("http://localhost:8081/batch/set/queue/up/$id");
+
+        $responseBatch = Http::get('http://localhost:8081/batch/all');
+        $batches = $responseBatch->json();
+
+        //reports
+        $responseReport = Http::get('http://localhost:8081/batchReport/all');
+        $reports = $responseReport->json();
+
+        usort($batches, function ($a, $b) {
+            return $a['queueSpot'] - $b['queueSpot'];
+        });
+
+        return view("list", ['batches' => $batches,
+            'reports' => $reports]);
+    }
+
+    public function queueDown(Request $request) {
+        $id = $request->id;
+
+        Http::post("http://localhost:8081/batch/set/queue/down/$id");
+
+        $responseBatch = Http::get('http://localhost:8081/batch/all');
+        $batches = $responseBatch->json();
+
+        //reports
+        $responseReport = Http::get('http://localhost:8081/batchReport/all');
+        $reports = $responseReport->json();
+
+        usort($batches, function ($a, $b) {
+            return $a['queueSpot'] - $b['queueSpot'];
+        });
+
+        return view("list", ['batches' => $batches,
+            'reports' => $reports]);
     }
 }
