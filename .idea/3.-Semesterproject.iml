@@ -10,8 +10,6 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/Frontend/vendor/laravel/ui" />
-      <excludeFolder url="file://$MODULE_DIR$/Frontend/vendor/consoletvs/charts" />
-      <excludeFolder url="file://$MODULE_DIR$/Frontend/vendor/chartisan/php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -21,5 +19,6 @@
     <orderEntry type="library" name="highcharts" level="application" />
     <orderEntry type="library" name="@chartisan/echarts" level="application" />
     <orderEntry type="library" name="echarts" level="application" />
+    <orderEntry type="library" name="chartist" level="application" />
   </component>
 </module>

@@ -2,6 +2,11 @@
 @section('content')
 
     <html>
+    <head>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <script type="text/javascript" src="{{ asset('js/changeChart.js') }}"></script>
+    </head>
     <body>
 
     @if(@session()->has("message"))
@@ -22,22 +27,13 @@
                 @endforeach
             </select>
             <label class="fw-bold">Speed</label>
-            <input type="number" id="speed" name="speed" class="form-control" required>
+            <input type="number" id="speed" name="speed" class="form-control" placeholder="460" required>
             <br>
             <button type="submit" class="form-control">Submit</button>
         </form>
     </div>
 
-    <div id="pilsnerChart" style="height: 300px;"></div>
-    <script>
-        const chart = new Chartisan({
-            el: '#pilsnerChart',
-            url: "@chart('sample_chart')",
-            hooks: new ChartisanHooks()
-                .datasets([{type: 'line', fill: false}, 'bar'])
-        });
-    </script>
-
+    <div class="ct-chart ct-golden-section" id="beerChart" style="height: 300px"></div>
 
 
     </body>
