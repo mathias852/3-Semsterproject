@@ -60,6 +60,10 @@ public class BatchServiceImpl implements BatchService {
                 goodCountPerMin = (0.9968 * speed + 0.0835);
                 break;
         }
+        //100 was picked randomly
+        if(goodCountPerMin > speed){
+            return amount + 100;
+        }
         double totalAmountToProduce = (amount / goodCountPerMin) * speed;
         return Math.round(totalAmountToProduce);
     }

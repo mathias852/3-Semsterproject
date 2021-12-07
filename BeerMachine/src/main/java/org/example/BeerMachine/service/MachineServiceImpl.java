@@ -43,10 +43,6 @@ public class MachineServiceImpl implements MachineService {
     TimeState timeState = null;
     boolean downTime = false;
 
-    //Used for down time
-    List<TimeState> timeStates = timeStateRepository.findAll();
-
-
     @Override
     public MessageResponse resetMachine() {
         write.reset();
@@ -262,11 +258,18 @@ public class MachineServiceImpl implements MachineService {
 
     public void updateBatchReport(BatchReport batchReport){
         if(!batchReport.isUpdated()) {
+            //Used for down time
+            List<TimeState> timeStates = null;
+            if(timeStateRepository != null) {
+                 timeStates = timeStateRepository.findAll();
+            }
+
             Date endTime = Date.from(Instant.now());
             int goodCount = batchReport.getAmount() - read.getDefectiveCount();
             double planedProductionTime = endTime.getTime() - batchReport.getStartTime().getTime();
             double downTime = 0;
 
+            assert timeStates != null;
             for (TimeState timeState : timeStates) {
                 if (timeState.getBatchReport().getBatchId().equals(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId())) {
                     downTime += timeState.getEndTime().getTime() - timeState.getStartTime().getTime();
