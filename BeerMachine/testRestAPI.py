@@ -9,7 +9,7 @@ x = requests.post(url)
 '''# ---------- CREATE TYPE -----------#
 url = 'http://localhost:8081/type/add'
 type = {'name': 'Pilsner',
-        'idealCycleTime': 437,
+        'idealCycleTime': 460,
         'maxSpeed': 600}
 
 x = requests.post(url, json = type)
