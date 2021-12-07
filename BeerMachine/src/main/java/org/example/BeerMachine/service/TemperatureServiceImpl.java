@@ -1,7 +1,10 @@
 package org.example.BeerMachine.service;
 
+import org.example.BeerMachine.BeerMachineCommunication.Read;
+import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.Humidity;
+import org.example.BeerMachine.data.models.MachineState;
 import org.example.BeerMachine.data.models.Temperature;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.request.TemperatureRequest;
@@ -14,11 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TemperatureServiceImpl implements TemperatureService {
+    private Read read = new Read();
+    private final MachineState machineState = BeerMachineController.getBeerMachineController().getMachineState();
+
     @Autowired
     TemperatureRepository temperatureRepository;
 
@@ -26,13 +34,18 @@ public class TemperatureServiceImpl implements TemperatureService {
     BatchReportRepository batchReportRepository;
 
     @Override
-    public MessageResponse createTemperature(TemperatureRequest temperatureRequest) throws ParseException {
-        Temperature newTemperature = new Temperature();
-        newTemperature.setBatchReport(temperatureRequest.getBatchReport(batchReportRepository));
-        newTemperature.setTemperature(temperatureRequest.getTemperature());
-        newTemperature.setTimestamp(temperatureRequest.getTimestampFormat(temperatureRequest.getTimestamp()));
-        temperatureRepository.save(newTemperature);
-        return new MessageResponse("New temperature entry created successfully");
+    public void createTemperature() {
+        try {
+            TemperatureRequest temperatureRequest = new TemperatureRequest();
+            temperatureRequest.setBatchReportId((int)read.getBatchId());
+            Temperature newTemperature = new Temperature();
+            newTemperature.setBatchReport(temperatureRequest.getBatchReport(batchReportRepository));
+            newTemperature.setTemperature(machineState.getTemperatureSub().getTemperature());
+            newTemperature.setTimestamp(temperatureRequest.getTimestampFormat().format(new Date()));
+            temperatureRepository.save(newTemperature);
+        } catch (NullPointerException e){
+            System.out.println("BatchReportRepository NullPointerException");
+        }
     }
 
     @Override

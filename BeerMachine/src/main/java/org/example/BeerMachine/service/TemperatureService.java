@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Component
 public interface TemperatureService {
-    MessageResponse createTemperature(TemperatureRequest temperatureRequest) throws ParseException;
+    void createTemperature();
 
     Temperature getTemperature(Integer temperatureId);
 

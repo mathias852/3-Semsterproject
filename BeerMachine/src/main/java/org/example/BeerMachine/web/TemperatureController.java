@@ -27,8 +27,8 @@ public class TemperatureController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public ResponseEntity<MessageResponse> addTemperature(@RequestBody TemperatureRequest temperature) throws ParseException {
-        MessageResponse newTemperature = temperatureService.createTemperature(temperature);
-        return new ResponseEntity<>(newTemperature, HttpStatus.CREATED);
+    public ResponseEntity<MessageResponse> addTemperature() {
+        temperatureService.createTemperature();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
