@@ -239,14 +239,13 @@ public class MachineServiceImpl implements MachineService {
         if (!machineState.getStateSub().isAlive()) {
             machineState.getStateSub().start();
         }
-        if(machineState.getStateSub().getMachineState() == 11) {
+        if(machineState.getStateSub().getMachineState() == 11 && !downTime) {
             downTime = true;
             timeState = new TimeState();
             timeState.setStartTime(Date.from(Instant.now()));
             timeState.setStopReason(read.checksStopState());
             timeState.setStateId(read.checkState());
             timeState.setBatchReport(BeerMachineController.getBeerMachineController().getBatchReport());
-
         }
         if(machineState.getStateSub().getMachineState() == 6 && downTime) {
             if(timeState != null) {
@@ -255,7 +254,6 @@ public class MachineServiceImpl implements MachineService {
             }
         }
         if (machineState.getStateSub().getMachineState() == 17) {
-            System.out.println("At least we got in here");
             BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
             updateBatchReport(batchReport);
         }
@@ -264,8 +262,8 @@ public class MachineServiceImpl implements MachineService {
 
     public void updateBatchReport(BatchReport batchReport){
         if(!batchReport.isUpdated()) {
-            int goodCount = batchReport.getAmount() - read.getDefectiveCount();
             Date endTime = Date.from(Instant.now());
+            int goodCount = batchReport.getAmount() - read.getDefectiveCount();
             double planedProductionTime = endTime.getTime() - batchReport.getStartTime().getTime();
             double downTime = 0;
 
@@ -280,9 +278,10 @@ public class MachineServiceImpl implements MachineService {
                     goodCount, batchReport.getType().getIdealCycleTime(), planedProductionTime));
             batchReport.setAvailability(BeerMachineController.getBeerMachineController().getAvailability(
                     downTime, planedProductionTime));
-
-
-            //batchReport.setPerformance(BeerMachineController.getBeerMachineController().getPerformance());
+            batchReport.setPerformance(BeerMachineController.getBeerMachineController().getPerformance(
+                    batchReport.getType().getIdealCycleTime(), read.getTotalAmountProduced(), batchReport.getSpeed(), batchReport.getAmount()));
+            batchReport.setQuality(BeerMachineController.getBeerMachineController().getQuality(
+                    goodCount, read.getTotalAmountProduced()));
 
             batchReport.setGoodCount(goodCount);
             batchReport.setRejectedCount(read.getDefectiveCount());

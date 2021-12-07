@@ -70,7 +70,7 @@ public class BeerMachineController {
     }
 
     public double getAvailability(double downTime, double plannedProductionTime){
-        //Planned Production Time - down time = run Time
+        //Planned Production Time - downTime = run Time
         return (plannedProductionTime - downTime)/plannedProductionTime;
     }
 

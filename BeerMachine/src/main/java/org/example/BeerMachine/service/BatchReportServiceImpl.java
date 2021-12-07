@@ -2,6 +2,7 @@ package org.example.BeerMachine.service;
 
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.models.BatchReport;
+import org.example.BeerMachine.data.models.Type;
 import org.example.BeerMachine.data.payloads.request.BatchReportRequest;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
@@ -53,6 +54,5 @@ public class BatchReportServiceImpl implements BatchReportService {
     public List<BatchReport> getAllBatchReports() {
         return batchReportRepository.findAll();
     }
-
 
 }
