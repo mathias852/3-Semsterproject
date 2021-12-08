@@ -11,11 +11,7 @@
     <script type="text/javascript" src="{{ asset('js/jQueryScript.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootStrap.js') }}"></script>
 
-
-
-        <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>
-
-
+    <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>
 
     {{--    <script type="text/javascript" src="{{ asset('js/graph.js') }}"></script>--}}
 
