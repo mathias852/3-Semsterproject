@@ -105,7 +105,7 @@ public class Read {
             machineConnection.connect();
             client = machineConnection.getClient();
 
-            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Command.Parameter[0].Value");
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Status.Parameter[0].Value");
 
             DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
             Variant variant = dataValue.getValue();

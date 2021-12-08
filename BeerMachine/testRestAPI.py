@@ -1,7 +1,6 @@
 
 import requests
 
-
 url = 'http://localhost:8081/batch/set/queue/down/27'
 x = requests.post(url)
 

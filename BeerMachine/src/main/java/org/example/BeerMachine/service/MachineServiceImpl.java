@@ -252,10 +252,12 @@ public class MachineServiceImpl implements MachineService {
         if (machineState.getStateSub().getMachineState() == 17) {
             BatchReport batchReport = batchReportRepository.findById(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId()).get();
             updateBatchReport(batchReport);
+            write.reset();
         }
         return machineState.getStateSub().getMachineState();
     }
 
+    @Override
     public void updateBatchReport(BatchReport batchReport){
         if(!batchReport.isUpdated()) {
             //Used for down time

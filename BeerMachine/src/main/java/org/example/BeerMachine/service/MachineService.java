@@ -1,6 +1,7 @@
 package org.example.BeerMachine.service;
 
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
+import org.example.BeerMachine.data.models.BatchReport;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.springframework.stereotype.Component;
 
@@ -32,4 +33,5 @@ public interface MachineService {
     UShort getMaintenanceCount();
     MessageResponse setHost(String host);
     MessageResponse getHost();
+    void updateBatchReport(BatchReport batchReport);
 }

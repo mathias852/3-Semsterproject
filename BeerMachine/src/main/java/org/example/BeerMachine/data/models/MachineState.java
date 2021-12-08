@@ -31,6 +31,8 @@ public class MachineState {
         this.goodCountSub = goodCountSub;
         this.badCountSub = badCountSub;
         this.maintenanceSub = maintenanceSub;
+
+        this.stateSub.start();
     }
     public BatchReport getBatchReport() {
         return batchReport;

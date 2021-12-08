@@ -15,9 +15,14 @@ class BatchController extends Controller
 
         $getCurrentBatch = Http::get('http://localhost:8081/machineState/getBatch');
         $currentBatch = $getCurrentBatch->json();
-//        dd($currentBatch);
 
-        return view("info")->with(['batches' => $batches, 'currentBatch' => $currentBatch]);
+        $getState = Http::get('http://localhost:8081/machine/getState');
+        $currentState = $getState->json();
+
+
+
+        return view("info")->with(['batches' => $batches, 'currentBatch' => $currentBatch, 'currentState' => $currentState]);
+//        return view("info")->with(['batches' => $batches, 'currentBatch' => $currentBatch]);
     }
 
     public function create()
@@ -47,11 +52,8 @@ class BatchController extends Controller
 
     public function start(Request $request)
     {
-        // route::: machine/start/id
-        //
-        //
-        //
-        //
+        $id = $request->id;
+        Http::post("http://localhost:8081/machine/start/$id");
         return redirect()->route("batch.destroy", $request->id);
     }
 
@@ -92,25 +94,25 @@ class BatchController extends Controller
 
     public function abort()
     {
-        Http::post('http://localhost/8081/machine/abort');
+        Http::post('http://localhost:8081/machine/abort');
         return redirect("/")->with('message', "About has been completed ");
     }
 
     public function reset()
     {
-        Http::post('http://localhost/8081/machine/reset');
+        Http::post('http://localhost:8081/machine/reset');
         return redirect("/")->with('message', "The machine is resetting");
     }
 
     public function clear()
     {
-        Http::post('http://localhost/8081/machine/clear');
+        Http::post('http://localhost:8081/machine/clear');
         return redirect("/")->with('message', "The machine is clearing last production");
     }
 
     public function maintenance()
     {
-        Http::post('http://localhost/8081/machine/maintenance');
+        Http::post('http://localhost:8081/machine/maintenance');
         return redirect("/")->with('message', "Maintenance is starting...");
     }
 
@@ -154,3 +156,4 @@ class BatchController extends Controller
             'reports' => $reports]);
     }
 }
+
