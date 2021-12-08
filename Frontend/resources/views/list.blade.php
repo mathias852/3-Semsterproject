@@ -11,6 +11,7 @@
                     <th class="th-sm">Batch Amount</th>
                     <th class="th-sm">Batch Type</th>
                     <th class="th-sm">Batch Speed</th>
+                    <th class="th-sm">Queue spot</th>
                     <th class="th-sm">Batch Report</th>
                 </tr>
                 </thead>
@@ -21,6 +22,7 @@
                         <th scope="row">{{$batch['amount']}}</th>
                         <th scope="row">{{$batch['type']['name']}}</th>
                         <th scope="row">{{$batch['speed']}}</th>
+                        <th scope="row">{{$batch['queueSpot']}}</th>
                         <th scope="row">
                             @foreach($reports as $report)
                                 @if($report['batchId']==$batch['id'])
@@ -33,6 +35,18 @@
                                 @csrf
                                 <input type="hidden" id="id" name="id" value="{{$batch['id']}}">
                                 <button type="submit" class="form-control">Start batch</button>
+                            </form>
+                        </th>
+                        <th scope="row">
+                            <form action="{{route("queue.up", $batch['id'])}}" method="post">
+                                @csrf
+                                <input type="hidden" id="id" name="id" value="{{$batch['id']}}">
+                                <button type="submit" class="form-control">Move up in queue</button>
+                            </form>
+                            <form action="{{route("queue.down", $batch['id'])}}" method="post">
+                                @csrf
+                                <input type="hidden" id="id" name="id" value="{{$batch['id']}}">
+                                <button type="submit" class="form-control">Move down in queue</button>
                             </form>
                         </th>
                     </tr>
