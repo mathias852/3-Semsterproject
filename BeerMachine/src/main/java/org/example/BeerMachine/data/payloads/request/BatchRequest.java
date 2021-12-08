@@ -15,8 +15,8 @@ public class BatchRequest {
     @NotNull
     private Integer typeId;
 
-    //@NotNull
-    //private Integer Speed;
+    @NotNull
+    private Integer speed;
 
     public Integer getAmount() {
         return amount;
@@ -26,14 +26,13 @@ public class BatchRequest {
         return typeId;
     }
 
-    //Not yet implemented functionality to set a speed when creating a new batch
-    //public Integer getSpeed(){
-    //    return speed;
-    //}
+    public Integer getSpeed(){
+        return speed;
+    }
 
-    //public Integer setSpeed(Integer speed){
-    // this.speed = speed;
-    // }
+    public Integer setSpeed(Integer speed){
+        return this.speed = speed;
+    }
 
     public void setAmount(Integer amount) {
         this.amount = amount;
