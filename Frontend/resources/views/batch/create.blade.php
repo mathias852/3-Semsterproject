@@ -3,8 +3,8 @@
 
     <html>
     <head>
-        <script type="text/javascript" src="{{ asset('js/create.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/chartist.js') }}"></script>
+        <link rel="stylesheet" href="{{asset('css/chartist.min.css')}}">
+        <script src="{{asset('js/chartist.min.js')}}"></script>
         <script type="text/javascript" src="{{ asset('js/changeChart.js') }}"></script>
     </head>
     <body>

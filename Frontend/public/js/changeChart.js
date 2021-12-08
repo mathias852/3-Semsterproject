@@ -1,6 +1,7 @@
 window.addEventListener('load', (event) => {
-   chartScript();
+    chartScript();
 });
+
 function chartScript() {
     $(document).ready(function () {
         const selectElement = document.getElementById('beerType');
@@ -25,7 +26,7 @@ function chartScript() {
             //IPA
             new Chartist.Line('#beerChart', {
                 labels: [8, 15, 23, 30, 38, 45, 53, 60, 68, 75, 83, 90, 98, 105, 113, 120, 128, 135, 143, 150],
-                series: [[30.00, 60.00, 89.40, 120.00, 148.00, 178.80, 208.60, 236.80, 268.20, 290.00, 312.40, 350.40, 366.60, 389.20, 402.00, 403.20, 374.00, 342.00, 288.00]]
+                series: [[7.50, 15.00, 22.50, 30.00, 37.50, 45.00, 52.15, 60.00, 67.50, 75.00, 82.50, 90.00, 97.50, 105.00, 112.50, 120.00, 126.65, 134.10, 141.55, 148.00]]
             });
             speed.value = 150
         } else if (selectElement.value == 4) {

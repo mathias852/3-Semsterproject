@@ -9,11 +9,10 @@
                 <div class="card text-center">
                     <div class="card-header batchHead">{{$item}}</div>
                     <div class="card-body">
-
                         @if($value1 == null)
-                            {{$value = 'N/A'}}
+                            <h5>{{$value = 'N/A'}}</h5>
                         @elseif($item == 'type')
-                            {{$value1['name']}}
+                            <h5 class="card-title">{{$value1['name']}}</h5>
                         @else
                             <h5 class="card-title">{{$value1}}</h5>
                         @endif
