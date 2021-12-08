@@ -34,6 +34,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.example.BeerMachine.BeerMachineController;
+import org.example.BeerMachine.service.MachineService;
+import org.example.BeerMachine.service.MachineServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -48,7 +52,7 @@ public class Subscription extends Thread {
     private float malt;
     private float wheat;
     private float yeast;
-    private float humidity;
+    private Short humidity;
     private float temperature;
     private float vibrations;
     private int stopReason;
@@ -116,7 +120,8 @@ public class Subscription extends Thread {
                         setYeast((Float) v.getValue().getValue());
                         break;
                     case("Program:Data.Value.RelHumidity"):
-                        setHumidity((Float) v.getValue().getValue());
+
+                        setHumidity((Short) v.getValue().getValue());
                         if (read.checkState() == 6 || read.checkState() == 11) {
                             restTemplate.postForObject("http://localhost:8081/humidity/add", null, String.class);
                         }
@@ -142,7 +147,7 @@ public class Subscription extends Thread {
                     case("Program:product.good"):
                         setGoodCount((UShort) v.getValue().getValue());
                         break;
-                    case("Program:Cube.Admin.ProdDefectiveCount"):
+                    case("Program:product.bad"):
                         setBadCount((UShort) v.getValue().getValue());
                         break;
                     case("Program:Maintenance.Counter"):
@@ -150,6 +155,7 @@ public class Subscription extends Thread {
                         break;
                     case("Program:Cube.Status.StateCurrent"):
                         setMachineState((Integer) v.getValue().getValue());
+                        break;
                 }
             });
 
@@ -193,10 +199,10 @@ public class Subscription extends Thread {
         this.yeast = yeast;
     }
 
-    public float getHumidity() {
+    public Short getHumidity() {
         return humidity;
     }
-    public void setHumidity(float humidity) {
+    public void setHumidity(Short humidity) {
         this.humidity = humidity;
     }
     public float getTemperature() {

@@ -38,6 +38,12 @@ public class BatchReport {
 
     private Double OEE;
 
+    private Double availability;
+
+    private Double performance;
+
+    private Double quality;
+
     private boolean updated = false;
 
     @OneToMany(mappedBy="batchReport")
@@ -60,7 +66,6 @@ public class BatchReport {
     }
 
     public BatchReport() {}
-
 
     public Integer getId() {
         return id;
@@ -124,6 +129,30 @@ public class BatchReport {
 
     public void setOEE(Double OEE) {
         this.OEE = OEE;
+    }
+
+    public Double getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Double availability) {
+        this.availability = availability;
+    }
+
+    public Double getPerformance() {
+        return performance;
+    }
+
+    public void setPerformance(Double performance) {
+        this.performance = performance;
+    }
+
+    public Double getQuality() {
+        return quality;
+    }
+
+    public void setQuality(Double quality) {
+        this.quality = quality;
     }
 
     public Type getType() {

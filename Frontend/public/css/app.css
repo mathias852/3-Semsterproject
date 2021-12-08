@@ -11556,6 +11556,8 @@ textarea.form-control-lg {
     }
 }
 
+
+
 .batchHead {
     text-transform: capitalize;
 }
@@ -11569,18 +11571,19 @@ textarea.form-control-lg {
 
 .vertical-scroll-table {
 
-    overflow: auto;
+    /*overflow: auto;*/
     height: 300px;
 }
 
 .beerMachine-info {
-    padding: 0 1.5em;
+    /*padding: 0 1.5em;*/
     text-align: center;
 }
 
 .machine-variables {
     margin-top: 2em;
-    padding: 0 1.5em;
+    margin-left: 1%;
+    max-width: 98%;
     text-align: center;
     margin-bottom: 5em;
 
@@ -11602,7 +11605,7 @@ textarea.form-control-lg {
 
 
 .machine-controls {
-    margin-top: 15%;
+    margin-top: 1%;
     text-align: center;
 }
 

@@ -109,7 +109,7 @@ public class MachineStateController {
     }
     @CrossOrigin
     @GetMapping("/getHumidity")
-    public ResponseEntity<Float> getHumidity (){return new ResponseEntity<>(machineService.getHumidity(), HttpStatus.OK);}
+    public ResponseEntity<Short> getHumidity (){return new ResponseEntity<>(machineService.getHumidity(), HttpStatus.OK);}
 
     @CrossOrigin
     @GetMapping("/getTemperature")

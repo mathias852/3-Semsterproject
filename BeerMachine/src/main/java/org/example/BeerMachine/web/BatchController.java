@@ -2,7 +2,6 @@ package org.example.BeerMachine.web;
 
 import org.example.BeerMachine.data.models.Batch;
 import org.example.BeerMachine.data.payloads.request.BatchRequest;
-import org.example.BeerMachine.data.payloads.request.QueueRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.service.BatchService;
 import org.example.BeerMachine.service.QueueService;
@@ -22,8 +21,6 @@ public class BatchController {
 
     @Autowired
     QueueService queueService;
-
-
 
     @CrossOrigin
     @GetMapping("/all")
@@ -45,15 +42,21 @@ public class BatchController {
     }
     @CrossOrigin
     @GetMapping("/get/queue")
-    public ResponseEntity<List<Integer>> getQueue() {
-        List<Integer> queue = queueService.getQueue();
+    public ResponseEntity<List<Batch>> getQueue() {
+        List<Batch> queue = queueService.getQueue();
         return new ResponseEntity<>(queue, HttpStatus.CREATED);
     }
     @CrossOrigin
-    @PostMapping("/set/queue")
-    public ResponseEntity<List<Integer>> setQueue(@RequestBody QueueRequest queue) {
-        List<Integer> newQueue = queueService.updateQueue(queue);
-        return new ResponseEntity<>(newQueue, HttpStatus.CREATED);
+    @PostMapping("/set/queue/up/{id}")
+    public ResponseEntity<List<Batch>> moveUp(@PathVariable Integer id) {
+        List<Batch> newQueue = queueService.moveUp(id);
+        return new ResponseEntity<>(newQueue, HttpStatus.ACCEPTED);
+    }
+    @CrossOrigin
+    @PostMapping("/set/queue/down/{id}")
+    public ResponseEntity<List<Batch>> moveDown(@PathVariable Integer id) {
+        List<Batch> newQueue = queueService.moveDown(id);
+        return new ResponseEntity<>(newQueue, HttpStatus.ACCEPTED);
     }
     @CrossOrigin
     @PutMapping("/update/{id}")

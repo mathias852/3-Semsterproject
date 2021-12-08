@@ -15,6 +15,7 @@ public class Read {
     MachineConnection machineConnection;
     OpcUaClient client;
     private int state;
+    private int stopReason;
     private int defectiveCount;
     private float amountToProduce;
     private float batchId;
@@ -50,6 +51,25 @@ public class Read {
 
             DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
             Variant variant = dataValue.getValue();
+            stopReason = (int) variant.getValue();
+            client.disconnect();
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
+        }
+        return stopReason;
+    }
+
+    public int checksStopState() {
+        try {
+            machineConnection = new MachineConnection();
+            machineConnection.connect();
+            client = machineConnection.getClient();
+
+            NodeId nodeId = NodeId.parse("ns=6;s=::Program:Cube.Admin.StopReason.Value");
+
+            DataValue dataValue = client.readValue(0, TimestampsToReturn.Both, nodeId).get();
+            Variant variant = dataValue.getValue();
             state = (int) variant.getValue();
             client.disconnect();
 
@@ -58,6 +78,8 @@ public class Read {
         }
         return state;
     }
+
+
 
     public Float getAmountToProduce() {
         try {
