@@ -2,7 +2,6 @@ package org.example.BeerMachine.data.models;
 
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 
-import java.util.List;
 import java.util.Map;
 
 public class MachineState {
@@ -18,7 +17,6 @@ public class MachineState {
     private Subscription maintenanceSub;
 
     private Map<String, Subscription> ingredients;
-    private List<Integer> queue;
 
     public MachineState(Map<String, Subscription> ingredients, Subscription humiditySub, Subscription temperatureSub,
                         Subscription vibrationSub, Subscription stopReasonSub, Subscription stateSub,
@@ -77,12 +75,6 @@ public class MachineState {
     }
     public void setStateSub(Subscription stateSub) {
         this.stateSub = stateSub;
-    }
-    public List<Integer> getQueue() {
-        return queue;
-    }
-    public void setQueue(List<Integer> queue) {
-        this.queue = queue;
     }
     public Subscription getTotalCountSub() {
         return totalCountSub;

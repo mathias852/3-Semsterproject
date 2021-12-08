@@ -15,8 +15,6 @@ import java.util.Optional;
 public interface BatchReportService {
     MessageResponse createBatchReport(BatchReportRequest batchReportRequest);
 
-    Optional<BatchReport> updateBatchReport(Integer batchReportId, BatchReportRequest batchReportRequest) throws ParseException;
-
     void deleteBatchReport(Integer batchReportId);
 
     BatchReport getBatchReport(Integer batchReportId);

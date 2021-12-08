@@ -1,6 +1,6 @@
 package org.example.BeerMachine.service;
 
-import org.example.BeerMachine.data.payloads.request.QueueRequest;
+import org.example.BeerMachine.data.models.Batch;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -8,7 +8,10 @@ import java.util.List;
 
 @Component
 public interface QueueService {
-    List<Integer> updateQueue(QueueRequest queueRequest);
 
-    List<Integer> getQueue();
+    List<Batch> getQueue();
+
+    List<Batch> moveUp(Integer id);
+
+    List<Batch> moveDown(Integer id);
 }

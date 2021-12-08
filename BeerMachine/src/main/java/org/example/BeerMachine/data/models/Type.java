@@ -1,6 +1,7 @@
 package org.example.BeerMachine.data.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,18 +12,23 @@ public class Type {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
     private String name;
+
+    @NotNull
+    private Double idealCycleTime;
+
+    @NotNull
+    private Integer maxSpeed;
 
     @OneToMany(mappedBy="type")
     private Set<Batch> batches;
-
-    private int maxSpeed;
 
     public int getMaxSpeed() {
         return maxSpeed;
     }
 
-    public void setMaxSpeed(int maxSpeed) {
+    public void setMaxSpeed(Integer maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
@@ -32,6 +38,14 @@ public class Type {
 
     public String getName() {
         return name;
+    }
+
+    public void setIdealCycleTime(Double idealCycleTime) {
+        this.idealCycleTime = idealCycleTime;
+    }
+
+    public Double getIdealCycleTime() {
+        return idealCycleTime;
     }
 
     public void setName(String name) {

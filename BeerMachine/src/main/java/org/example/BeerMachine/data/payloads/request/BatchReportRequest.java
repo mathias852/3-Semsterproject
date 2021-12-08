@@ -20,7 +20,7 @@ public class BatchReportRequest {
     @Column(unique = true)
     private Integer batchId;
 
-    //@NotNull
+    @NotNull
     private Integer speed;
 
     @NotNull
@@ -31,6 +31,12 @@ public class BatchReportRequest {
     private String startTime, endTime;
 
     private Double OEE;
+
+    private Double availability;
+
+    private Double performance;
+
+    private Double quality;
 
     private Boolean updated = false;
 
@@ -110,6 +116,30 @@ public class BatchReportRequest {
 
     public void setOEE(Double OEE) {
         this.OEE = OEE;
+    }
+
+    public Double getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Double availability) {
+        this.availability = availability;
+    }
+
+    public Double getPerformance() {
+        return performance;
+    }
+
+    public void setPerformance(Double performance) {
+        this.performance = performance;
+    }
+
+    public Double getQuality() {
+        return quality;
+    }
+
+    public void setQuality(Double quality) {
+        this.quality = quality;
     }
 
     public Boolean getUpdated() {
