@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Component
 public interface HumidityService {
-    MessageResponse createHumidity(HumidityRequest humidityRequest) throws ParseException;
+    void createHumidity();
 
     Humidity getHumidity(Integer humidityId);
 

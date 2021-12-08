@@ -24,6 +24,16 @@ import org.eclipse.milo.opcua.stack.core.types.structured.MonitoringParameters;
 import org.eclipse.milo.opcua.stack.core.types.structured.ReadValueId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned;
+import org.example.BeerMachine.data.repository.TemperatureRepository;
+import org.example.BeerMachine.service.TemperatureService;
+import org.example.BeerMachine.service.TemperatureServiceImpl;
+import org.example.BeerMachine.web.TemperatureController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.service.MachineService;
 import org.example.BeerMachine.service.MachineServiceImpl;
@@ -34,6 +44,8 @@ import static com.google.common.collect.Lists.newArrayList;
 public class Subscription extends Thread {
     private MachineConnection machineConnection;
     private OpcUaClient client;
+    private final Read read = new Read();
+    private RestTemplate restTemplate = new RestTemplate();
     private String node;
     private float barley;
     private float hops;
@@ -72,13 +84,13 @@ public class Subscription extends Thread {
             ReadValueId readValueId = new ReadValueId(nodeId, AttributeId.Value.uid(), null, null);
 
             // create a subscription @ ?ms
-            UaSubscription subscription = client.getSubscriptionManager().createSubscription(250.0).get();
+            UaSubscription subscription = client.getSubscriptionManager().createSubscription(500.0).get();
 
             // important: client handle must be unique per item
             UInteger clientHandle = subscription.getSubscriptionId();
             MonitoringParameters parameters = new MonitoringParameters(
                     clientHandle,
-                    250.0,     // sampling interval
+                    500.0,     // sampling interval
                     null,       // filter, null means use default
                     Unsigned.uint(10),   // queue size
                     true        // discard oldest
@@ -108,13 +120,23 @@ public class Subscription extends Thread {
                         setYeast((Float) v.getValue().getValue());
                         break;
                     case("Program:Data.Value.RelHumidity"):
+
                         setHumidity((Short) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/humidity/add", null, String.class);
+                        }
                         break;
                     case("Program:Data.Value.Temperature"):
                         setTemperature((Float) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/temperature/add", null, String.class);
+                        }
                         break;
                     case("Program:Data.Value.Vibration"):
                         setVibrations((Float) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/vibration/add", null, String.class);
+                        }
                         break;
                     case("Program:Cube.Admin.StopReason.Value"):
                         setStopReason((Integer) v.getValue().getValue());

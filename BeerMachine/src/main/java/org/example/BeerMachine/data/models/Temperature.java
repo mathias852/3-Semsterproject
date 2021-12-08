@@ -1,6 +1,5 @@
 package org.example.BeerMachine.data.models;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -18,10 +17,11 @@ public class Temperature {
     private BatchReport batchReport;
 
     @NotNull
-    private Double temperature;
+    private Float temperature;
 
     @NotNull
-    private Date timestamp;
+    private String timestamp;
+
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class Temperature {
         this.batchReport = batchReport;
     }
 
-    public Double getTemperature() {
+    public Float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Double temperature) {
+    public void setTemperature(Float temperature) {
         this.temperature = temperature;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

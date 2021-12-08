@@ -7,11 +7,10 @@ import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Component
-public class TemperatureRequest {
+public class  TemperatureRequest {
     @NotNull
     private Integer batchReportId;
 
@@ -29,7 +28,7 @@ public class TemperatureRequest {
         this.batchReportId = batchReportId;
     }
 
-    public BatchReport getBatchReport(BatchReportRepository batchReportRepository){
+    public BatchReport getBatchReport(BatchReportRepository batchReportRepository) {
         List<BatchReport> batchReportList = batchReportRepository.findAll();
         for (BatchReport batchReport : batchReportList) {
             if (batchReport.getId().equals(getBatchReportId())){
@@ -51,8 +50,8 @@ public class TemperatureRequest {
         return timestamp;
     }
 
-    public Date getTimestampFormat(String timestamp) throws ParseException {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(timestamp);
+    public SimpleDateFormat getTimestampFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     }
 
     public void setTimestamp(String timestamp) {

@@ -65,10 +65,7 @@ public class BatchReport {
         this.amount = amount;
     }
 
-    public BatchReport() {
-
-    }
-
+    public BatchReport() {}
 
     public Integer getId() {
         return id;

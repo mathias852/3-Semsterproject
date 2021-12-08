@@ -1,4 +1,3 @@
-
 import requests
 
 url = 'http://localhost:8081/machine/reset'
@@ -64,6 +63,7 @@ batch = {'amount': 1000,
 x = requests.post(url, json = batch)
 
 url = 'http://localhost:8081/batch/add'
+
 batch = {'amount': 1000,
        'typeId': 3,
        'speed': 150}
