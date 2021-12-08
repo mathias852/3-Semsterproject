@@ -8,7 +8,6 @@ import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
 import org.example.BeerMachine.BeerMachineController;
 import org.example.BeerMachine.data.models.*;
-import org.example.BeerMachine.data.payloads.request.TimeStateRequest;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
@@ -170,7 +169,7 @@ public class MachineServiceImpl implements MachineService {
         return ingredients.get(yeast).getYeast();
     }
     @Override
-    public float getHumidity() {
+    public Short getHumidity() {
         if (!machineState.getHumiditySub().isAlive()) {
             machineState.getHumiditySub().start();
         }
@@ -246,6 +245,7 @@ public class MachineServiceImpl implements MachineService {
         if(machineState.getStateSub().getMachineState() == 6 && downTime) {
             if(timeState != null) {
                 timeState.setEndTime(Date.from(Instant.now()));
+                timeStateRepository.save(timeState);
                 downTime = false;
             }
         }
@@ -269,6 +269,10 @@ public class MachineServiceImpl implements MachineService {
             double planedProductionTime = endTime.getTime() - batchReport.getStartTime().getTime();
             double downTime = 0;
 
+            double availability;
+            double performance;
+            double quality;
+
             assert timeStates != null;
             for (TimeState timeState : timeStates) {
                 if (timeState.getBatchReport().getBatchId().equals(BeerMachineController.getBeerMachineController().getBatchReport().getBatchId())) {
@@ -277,14 +281,20 @@ public class MachineServiceImpl implements MachineService {
             }
 
             //Everything OEE-related
+            availability = BeerMachineController.getBeerMachineController().getAvailability(
+                    downTime, planedProductionTime);
+            performance = BeerMachineController.getBeerMachineController().getPerformance(
+                    batchReport.getType().getIdealCycleTime(), read.getTotalAmountProduced(),
+                    batchReport.getSpeed(), batchReport.getAmount());
+            quality = BeerMachineController.getBeerMachineController().getQuality(
+                    goodCount, read.getTotalAmountProduced());
+
+            batchReport.setAvailability(availability);
+            batchReport.setPerformance(performance);
+            batchReport.setQuality(quality);
+
             batchReport.setOEE(BeerMachineController.getBeerMachineController().calculateOEE(
-                    goodCount, batchReport.getType().getIdealCycleTime(), planedProductionTime));
-            batchReport.setAvailability(BeerMachineController.getBeerMachineController().getAvailability(
-                    downTime, planedProductionTime));
-            batchReport.setPerformance(BeerMachineController.getBeerMachineController().getPerformance(
-                    batchReport.getType().getIdealCycleTime(), read.getTotalAmountProduced(), batchReport.getSpeed(), batchReport.getAmount()));
-            batchReport.setQuality(BeerMachineController.getBeerMachineController().getQuality(
-                    goodCount, read.getTotalAmountProduced()));
+                    availability, performance, quality));
 
             batchReport.setGoodCount(goodCount);
             batchReport.setRejectedCount(read.getDefectiveCount());

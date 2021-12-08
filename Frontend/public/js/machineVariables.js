@@ -178,7 +178,7 @@ getTotalCount();
 //GoodCount
 var getGoodCount = function() {
     $.ajax({
-        url: "http://localhost:8081/machine/getCurrentState",
+        url: "http://localhost:8081/machine/getGoodCount",
         cache: false,
         type: 'GET',
         dataType: 'json',
@@ -214,4 +214,44 @@ var badCount = function(data) {
     setTimeout(getBadCount, 500);
 }
 getBadCount();
+
+//CurrentState
+var getCurrentState = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getCurrentState",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: currentState
+    });
+}
+var currentState = function(data) {
+    // console.log(data);
+    $(".currentState").html(data);
+    setTimeout(getCurrentState, 500);
+}
+getCurrentState();
+
+//StopReason
+var getStopReason = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getStopReason",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: stopReason
+    });
+}
+var stopReason = function(data) {
+    // console.log(data);
+    $(".stopReason").html(data);
+    setTimeout(getStopReason, 500);
+}
+getStopReason();
 
