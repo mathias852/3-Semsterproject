@@ -27,8 +27,6 @@
     <div class="row machine-controls">
         <h1>Controls for the machine</h1>
         <div class="row">
-            {{--                TODO: Implement corrct calls to reach method for the REST side.--}}
-            {{--                TODO: Maybe do this in a seperate controller to keep it simple--}}
             <span class="col-sm">
 
                     @if (empty($batches))
@@ -47,25 +45,23 @@
                 @endif
                 </span>
             <span class="col-sm">
-
-                @if($currentBatch == null)
-                    <button class="btn btn-secondary ">Stop Machine</button>
-                @else
-                    <form action="{{route("batch.stop")}}" method="post">
+                    <form action="{{route("batch.stop")}}" method="POST">
                         @csrf
                         <button class="btn btn-danger ">Stop Machine</button>
                     </form>
-                @endif
                 </span>
             <span class="col-sm">
-                    <form action="{{route("batch.abort")}}" method="post">
+                    <form action="{{route("batch.abort")}}" method="POST">
                         @csrf
                         <button class="btn btn-danger">Abort</button>
                     </form>
                 </span>
-            <span class="col-sm"><button class="btn btn-secondary">Reset Machine</button></span>
-            <span class="col-sm"><button class="btn btn-secondary">Refill Machine</button></span>
-            <span class="col-sm"><button class="btn btn-secondary">Maintenance</button></span>
+            <span class="col-sm">
+                <form action="{{ route("batch.reset") }}" method="POST">
+                @csrf
+                <button class="btn btn-secondary">Reset Machine</button>
+                </form>
+            </span>
         </div>
     </div>
 
@@ -78,6 +74,7 @@
                 <th scope="col">Hops</th>
                 <th scope="col">Barley</th>
                 <th scope="col">Wheat</th>
+                <th scope="col">Maintenance</th>
             </tr>
             </thead>
             <tbody>
@@ -86,6 +83,7 @@
                 <td class="hops">Hops value not updating...</td>
                 <td class="barley">Barley value not updating...</td>
                 <td class="wheat">Wheat value not updating...</td>
+                <td class="maintenance">Maintenance not updating...</td>
             </tr>
             </tbody>
         </table>
@@ -97,7 +95,7 @@
         <div class="col-sm">
             <h3>Humidity: </h3>
             <label class="humidity">Humidity not updating...</label>
-        </div>  
+        </div>
         <div class="col-sm">
             <h3>Temperature: </h3>
             <label class="temperature">Temperature is not updating...</label>

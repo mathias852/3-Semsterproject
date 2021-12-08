@@ -93,6 +93,25 @@ var yeast = function(data) {
 }
 getYeast();
 
+//Maintenance - inventory
+var getMaintenance = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getMaintenanceCount",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: maintenance
+    });
+}
+var maintenance = function(data) {
+    $(".maintenance").html(data);
+    setTimeout(getMaintenance, 500);
+}
+getMaintenance();
+
 
 
 //Humidity
