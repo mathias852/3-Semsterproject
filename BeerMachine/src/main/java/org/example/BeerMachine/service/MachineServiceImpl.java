@@ -39,7 +39,6 @@ public class MachineServiceImpl implements MachineService {
     private final String barley = "Barley", wheat = "Wheat", hops = "Hops", malt = "Malt", yeast = "Yeast";
 
     //Variables used for timeState
-    TimeState timeState = null;
     boolean downTime = false;
 
     @Override
@@ -82,9 +81,11 @@ public class MachineServiceImpl implements MachineService {
             batchQueue.sort(myBatchQueueComparator);
             if (machineState.getStateSub().getMachineState() == State.IDLE.getId()) {
                 while (batchQueue.size() > 0) {
-                    Integer firstQueue = batchQueue.get(0).getId();
-                    response = startMachine(firstQueue);
-                    batchQueue.remove(0);
+                    if (machineState.getStateSub().getMachineState() == State.IDLE.getId()) {
+                        Integer firstQueue = batchQueue.get(0).getId();
+                        response = startMachine(firstQueue);
+                        batchQueue.remove(0);
+                    }
                 }
             } else {
                 response = new MessageResponse("Machine not in idle...");
@@ -235,18 +236,24 @@ public class MachineServiceImpl implements MachineService {
             machineState.getStateSub().start();
         }
         if(machineState.getStateSub().getMachineState() == 11 && !downTime) {
+            System.out.println("We are in here - State = 11 and downTime = false");
             downTime = true;
-            timeState = new TimeState();
+            TimeState timeState = new TimeState();
             timeState.setStartTime(Date.from(Instant.now()));
             timeState.setStopReason(read.checksStopState());
             timeState.setStateId(read.checkState());
             timeState.setBatchReport(BeerMachineController.getBeerMachineController().getBatchReport());
+            timeStateRepository.save(timeState);
+            System.out.print("And we are out and downtime is " + downTime);
         }
         if(machineState.getStateSub().getMachineState() == 6 && downTime) {
+            System.out.print("Downtime is true otherwise we didn't get here and timestate is " + timeState);
             if(timeState != null) {
+                System.out.print("We are in here - timestate is NOT NULL");
                 timeState.setEndTime(Date.from(Instant.now()));
                 timeStateRepository.save(timeState);
                 downTime = false;
+                System.out.println("If it is not in the DB. I do not understand anything");
             }
         }
         if (machineState.getStateSub().getMachineState() == 17) {

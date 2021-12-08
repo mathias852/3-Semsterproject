@@ -45,14 +45,14 @@ public class BeerMachineController {
     public void setProductionBatch(int id, int amount, int speed, Type type) {
          this.batchReport = new BatchReport(id, speed, type, amount);
 
-        if (type.getMaxSpeed() <=    speed) {
+        if (type.getMaxSpeed() < speed) {
             try {
                 throw new Exception("Speed greater than max speed.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (0 > amount | amount > 32767) {
+        if (0 > amount | amount > 37767) {
             try {
                 throw new Exception("Amount is out of bounds.");
             } catch (Exception e) {
@@ -61,6 +61,8 @@ public class BeerMachineController {
         }
         Batch batch = new Batch(id, speed, type, amount);
     }
+
+    //public void setCurrentTimeState();
 
     public double calculateOEE(double availability, double performance, double quality){
         //Everything will be measured in minutes
