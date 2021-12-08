@@ -19,6 +19,8 @@ public class TypeServiceImpl implements TypeService {
     public MessageResponse createType(TypeRequest typeRequest) {
         Type newType = new Type();
         newType.setName(typeRequest.getName());
+        newType.setIdealCycleTime(typeRequest.getIdealCycleTime());
+        newType.setMaxSpeed(typeRequest.getMaxSpeed());
         typeRepository.save(newType);
         return new MessageResponse("New type created successfully");
     }

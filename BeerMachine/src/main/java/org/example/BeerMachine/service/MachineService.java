@@ -18,7 +18,7 @@ public interface MachineService {
     float getMalt();
     float getWheat();
     float getYeast();
-    float getHumidity();
+    Short getHumidity();
     float getTemperature();
     float getVibrations();
     int getStopReason();

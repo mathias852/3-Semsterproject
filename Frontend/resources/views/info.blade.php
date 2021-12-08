@@ -67,7 +67,7 @@
         <div class="col-sm">
             <h3>Humidity: </h3>
             <label class="humidity">Humidity not updating...</label>
-        </div>
+        </div>  
         <div class="col-sm">
             <h3>Stop reason: </h3>
             <label class="stopReason">Stop reason not updating...</label>
@@ -82,15 +82,15 @@
         </div>
         <div class="col-sm">
             <h3>Good count: </h3>
-            <label class="gcount">Good count is not updating...</label>
+            <label class="goodCount">Good count is not updating...</label>
         </div>
         <div class="col-sm">
             <h3>Bad count: </h3>
-            <label class="bcount">Bad count is not updating...</label>
+            <label class="badCount">Bad count is not updating...</label>
         </div>
         <div class="col-sm">
             <h3>Total count: </h3>
-            <label class="tcount">Total count is not updating...</label>
+            <label class="totalCount">Total count is not updating...</label>
         </div>
     </div>
 

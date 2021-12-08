@@ -1,6 +1,7 @@
 package org.example.BeerMachine.data.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
@@ -11,8 +12,10 @@ public class Batch {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqBatch")
     private Integer id;
 
+    @NotNull
     private Integer amount;
 
+    @NotNull
     private Integer speed;
 
     private Integer queueSpot;

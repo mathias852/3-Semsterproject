@@ -2,7 +2,10 @@ package org.example.BeerMachine;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.data.models.*;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
@@ -58,6 +61,28 @@ public class BeerMachineController {
         }
         Batch batch = new Batch(id, speed, type, amount);
     }
+
+    public double calculateOEE(double availability, double performance, double quality){
+        //Everything will be measured in minutes
+        //OEE can be calculated based on the following: OEE = (GoodCount * IdealCycleTime) / plannedProductionTime
+        //Where plannedProductionTime is the time between a batch start to a batch end
+        return availability * performance * quality;
+    }
+
+    public double getAvailability(double downTime, double plannedProductionTime){
+        //Planned Production Time - downTime = run Time
+        return (plannedProductionTime - downTime)/plannedProductionTime;
+    }
+
+    public double getPerformance(double idealCycleTime, double totalCount, double speed, double amount){
+        //Speed * amount = run Time
+        return (idealCycleTime * totalCount)/(speed * amount);
+    }
+
+    public double getQuality(double goodCount, double totalCount){
+        return goodCount/totalCount;
+    }
+
 
     public BatchReport getBatchReport() {
         return batchReport;
