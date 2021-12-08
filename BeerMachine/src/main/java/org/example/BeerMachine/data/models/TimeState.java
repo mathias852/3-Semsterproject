@@ -27,6 +27,16 @@ public class TimeState {
     @NotNull
     private Date endTime;
 
+    public TimeState() {
+    }
+
+    public TimeState(BatchReport batchReport, Integer stateId, Integer stopReason, Date startTime) {
+        this.batchReport = batchReport;
+        this.stateId = stateId;
+        this.stopReason = stopReason;
+        this.startTime = startTime;
+    }
+
     public Integer getId() {
         return id;
     }
