@@ -4,7 +4,8 @@
     <title>Beer Machine</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>--}}
+    <script type="text/javascript" src="{{ asset('js/ajaxJquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/confirmButton.js') }}"></script>

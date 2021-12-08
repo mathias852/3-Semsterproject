@@ -1,11 +1,11 @@
 import requests
 
 # Start machine
-url = 'http://localhost:8081/machine/start/3'
-x = requests.post(url)
+""" url = 'http://localhost:8081/machine/start/3'
+x = requests.post(url) """
 
-# ---------- CREATE TYPE -----------#
-""" url = 'http://localhost:8081/type/add'
+""" # ---------- CREATE TYPE -----------#
+url = 'http://localhost:8081/type/add'
 type = {'name': 'Pilsner'}
 
 x = requests.post(url, json = type)
@@ -39,50 +39,3 @@ batch = {'amount': 30,
         'typeId': 3}
 
 x = requests.post(url, json = batch) """
-
-
-#---------- CREATE BatchReport -----------#
-#url = 'http://localhost:8081/batchReport/add'
-#batchReport = {'batchId': 1,
-#              'speed': 50,
-#              'totalCount': 540}
-
-#x = requests.post(url, json = batchReport)
-
-#url = 'http://localhost:8081/batchReport/add'
-#batchReport = {'batchId': 2,
-#              'speed': 20,
-#              'totalCount': 123}
-
-#x = requests.post(url, json = batchReport)
-
-#url2 = 'http://localhost:8081/batchReport/add'
-#batchReport = {'batchId': 3,
-#              'speed': 80,
-#              'totalCount': 345}
-
-#x = requests.post(url2, json = batchReport)
-
-#---------- CREATE Humidity -----------#
-        # TimePattern: dd/MM/yyyy HH:mm:ss
-#url = 'http://localhost:8081/humidity/add'
-#humidity = {'batchReportId': 7,
-#            'humidity': 100,
-#            'timestamp': '2021-11-15 20:33:46.000000'}
-
-#x = requests.post(url, json = humidity)
-
-#url = 'http://localhost:8081/humidity/add'
-#humidity = {'batchReportId': 7,
-#           'humidity': 50,
-#           'timestamp': '2021-11-15 20:33:46.000000'}
-
-#x = requests.post(url, json = humidity)
-
-#url2 = 'http://localhost:8081/humidity/add'
-#humidity = {'batchReportId': 7,
-#           'humidity': 50,
-#           'timestamp': '2021-11-15 20:33:46.000000'}
-
-#x = requests.post(url2, json = humidity)
-#print(x.text)
