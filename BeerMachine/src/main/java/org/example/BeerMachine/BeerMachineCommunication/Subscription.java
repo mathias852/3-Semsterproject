@@ -102,9 +102,6 @@ public class Subscription extends Thread {
                 switch (node) {
                     case("Program:Inventory.Barley"):
                         setBarley((Float) v.getValue().getValue());
-                        if (read.checkState() == 6 || read.checkState() == 11) {
-                            restTemplate.postForObject("http://localhost:8081/temperature/add", null, String.class);
-                        }
                         break;
                     case("Program:Inventory.Hops"):
                         setHops((Float) v.getValue().getValue());
@@ -119,15 +116,22 @@ public class Subscription extends Thread {
                         setYeast((Float) v.getValue().getValue());
                         break;
                     case("Program:Data.Value.RelHumidity"):
-                        if (!(v.getValue().getValue() instanceof Short)) {
-                            setHumidity((Float) v.getValue().getValue());
+                        setHumidity((Float) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/humidity/add", null, String.class);
                         }
                         break;
                     case("Program:Data.Value.Temperature"):
                         setTemperature((Float) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/temperature/add", null, String.class);
+                        }
                         break;
                     case("Program:Data.Value.Vibration"):
                         setVibrations((Float) v.getValue().getValue());
+                        if (read.checkState() == 6 || read.checkState() == 11) {
+                            restTemplate.postForObject("http://localhost:8081/vibration/add", null, String.class);
+                        }
                         break;
                     case("Program:Cube.Admin.StopReason.Value"):
                         setStopReason((Integer) v.getValue().getValue());

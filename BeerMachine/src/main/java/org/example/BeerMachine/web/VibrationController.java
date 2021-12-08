@@ -27,8 +27,8 @@ public class VibrationController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public ResponseEntity<MessageResponse> addVibration(@RequestBody VibrationRequest vibration) throws ParseException {
-        MessageResponse newVibration = vibrationService.createVibration(vibration);
-        return new ResponseEntity<>(newVibration, HttpStatus.CREATED);
+    public ResponseEntity<MessageResponse> addVibration() {
+        vibrationService.createVibration();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,8 +1,8 @@
 import requests
 
 # Start machine
-""" url = 'http://localhost:8081/machine/start/3'
-x = requests.post(url) """
+url = 'http://localhost:8081/machine/start/3'
+x = requests.post(url)
 
 """ # ---------- CREATE TYPE -----------#
 url = 'http://localhost:8081/type/add'
