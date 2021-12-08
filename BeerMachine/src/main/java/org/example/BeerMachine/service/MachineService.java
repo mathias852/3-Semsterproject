@@ -31,7 +31,5 @@ public interface MachineService {
     UShort getGoodCount();
     UShort getBadCount();
     UShort getMaintenanceCount();
-    MessageResponse setHost(String host);
-    MessageResponse getHost();
     void updateBatchReport(BatchReport batchReport);
 }

@@ -2,15 +2,14 @@ package org.example.BeerMachine;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.data.models.*;
 
-import java.sql.Time;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.TreeSet;
 
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
     private MachineState machineState;
     private BatchReport batchReport;
+    private TimeState timeState;
 
     public static BeerMachineController getBeerMachineController() {
         if (beerMachineController == null) {
@@ -38,10 +37,6 @@ public class BeerMachineController {
         return this.machineState;
     }
 
-    public void setMachineState(MachineState machineState) {
-        this.machineState = machineState;
-    }
-
     public void setProductionBatch(int id, int amount, int speed, Type type) {
          this.batchReport = new BatchReport(id, speed, type, amount);
 
@@ -59,15 +54,18 @@ public class BeerMachineController {
                 e.printStackTrace();
             }
         }
-        Batch batch = new Batch(id, speed, type, amount);
     }
 
-    //public void setCurrentTimeState();
+    public void setCurrentBatchReport(BatchReport batchReport){
+        this.batchReport = batchReport;
+    }
+
+    public void setCurrentTimeState(BatchReport batchReport, int stateId, int stopReason, Date startTime){
+        this.timeState = new TimeState(batchReport, stateId, stopReason, startTime);
+    }
 
     public double calculateOEE(double availability, double performance, double quality){
-        //Everything will be measured in minutes
-        //OEE can be calculated based on the following: OEE = (GoodCount * IdealCycleTime) / plannedProductionTime
-        //Where plannedProductionTime is the time between a batch start to a batch end
+        //Everything is measured in minutes
         return availability * performance * quality;
     }
 
@@ -85,8 +83,11 @@ public class BeerMachineController {
         return goodCount/totalCount;
     }
 
-
     public BatchReport getBatchReport() {
         return batchReport;
+    }
+
+    public TimeState getTimeState() {
+        return timeState;
     }
 }

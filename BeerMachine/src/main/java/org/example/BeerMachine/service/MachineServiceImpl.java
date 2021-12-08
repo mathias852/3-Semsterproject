@@ -2,7 +2,6 @@ package org.example.BeerMachine.service;
 
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.BatchQueueComparator;
-import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
@@ -30,8 +29,6 @@ public class MachineServiceImpl implements MachineService {
     @Autowired
     TimeStateRepository timeStateRepository;
 
-
-    private final MachineConnection machineConnection = new MachineConnection();
     private final Write write = new Write();
     private final Read read = new Read();
     private final MachineState machineState = BeerMachineController.getBeerMachineController().getMachineState();
@@ -59,12 +56,11 @@ public class MachineServiceImpl implements MachineService {
             batchReport.setStartTime(Date.from(Instant.now()));
             batchReportRepository.save(batchReport);
 
-            //Might be able to return a more complex statement based on the BeerMachineController
-            //The BeerMachineController method calls are used to later update the batch. This might be a way
-            //To get the needed batchID. As long as the batchReport in BeerMachineController is updated each time
-            //A new batch is started
+            //Saves the current batch and related data in th beer machine controller
             BeerMachineController.getBeerMachineController().setProductionBatch(batchId, batchReport.getAmount(),
                     batchReport.getSpeed(), batchReport.getType());
+            //Saves the current batchReport to the beer machine controller
+            BeerMachineController.getBeerMachineController().setCurrentBatchReport(batchReport);
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -236,24 +232,20 @@ public class MachineServiceImpl implements MachineService {
             machineState.getStateSub().start();
         }
         if(machineState.getStateSub().getMachineState() == 11 && !downTime) {
-            System.out.println("We are in here - State = 11 and downTime = false");
             downTime = true;
             TimeState timeState = new TimeState();
             timeState.setStartTime(Date.from(Instant.now()));
             timeState.setStopReason(read.checksStopState());
             timeState.setStateId(read.checkState());
             timeState.setBatchReport(BeerMachineController.getBeerMachineController().getBatchReport());
-            timeStateRepository.save(timeState);
-            System.out.print("And we are out and downtime is " + downTime);
+            BeerMachineController.getBeerMachineController().setCurrentTimeState(timeState.getBatchReport(), timeState.getStateId(),
+                    timeState.getStopReason(), timeState.getStartTime());
         }
         if(machineState.getStateSub().getMachineState() == 6 && downTime) {
-            System.out.print("Downtime is true otherwise we didn't get here and timestate is " + timeState);
-            if(timeState != null) {
-                System.out.print("We are in here - timestate is NOT NULL");
-                timeState.setEndTime(Date.from(Instant.now()));
-                timeStateRepository.save(timeState);
+            if(BeerMachineController.getBeerMachineController().getTimeState() != null) {
+                BeerMachineController.getBeerMachineController().getTimeState().setEndTime(Date.from(Instant.now()));
+                timeStateRepository.save(BeerMachineController.getBeerMachineController().getTimeState());
                 downTime = false;
-                System.out.println("If it is not in the DB. I do not understand anything");
             }
         }
         if (machineState.getStateSub().getMachineState() == 17) {
@@ -315,18 +307,4 @@ public class MachineServiceImpl implements MachineService {
         }
         System.out.println("Sorry, but the batchReport has all ready been updated. You cannot update it anymore");
     }
-
-
-    @Override
-    public MessageResponse setHost(String host) {
-        machineConnection.setHost(host);
-        return new MessageResponse("Host changed");
-    }
-
-    @Override
-    public MessageResponse getHost(){
-        return new MessageResponse("The host is: " + machineConnection.getHost());
-    }
-
-
 }

@@ -53,19 +53,6 @@ public class MachineStateController {
     }
 
     @CrossOrigin
-    @PostMapping("/setHost/{host}")
-    public ResponseEntity<MessageResponse> setHost(@PathVariable String host){
-        MessageResponse setHost = machineService.setHost(host);
-        return new ResponseEntity<>(setHost, HttpStatus.OK);
-    }
-    @CrossOrigin
-    @GetMapping("/getHost/")
-    public ResponseEntity<MessageResponse> getHost(){
-        MessageResponse getHost = machineService.getHost();
-        return new ResponseEntity<>(getHost, HttpStatus.OK);
-    }
-
-    @CrossOrigin
     @GetMapping("/getAmountToProduce")
     public ResponseEntity<Float> getAmountToProduce(){
         return new ResponseEntity<>(machineService.getAmountToProduce(), HttpStatus.OK);
@@ -82,6 +69,7 @@ public class MachineStateController {
     public ResponseEntity<Float> getSpeed(){
         return new ResponseEntity<>(machineService.getSpeed(), HttpStatus.OK);
     }
+
 
     //Live-data routes
     @CrossOrigin
@@ -143,20 +131,10 @@ public class MachineStateController {
     @GetMapping("/getCurrentState")
     public ResponseEntity<Integer> getCurrentState (){return new ResponseEntity<>(machineService.getCurrentState(), HttpStatus.OK);}
 
-
-
     @CrossOrigin
     @GetMapping("/getState")
     public ResponseEntity<MessageResponse> getState () {
         MessageResponse resetMachine = machineService.getState();
         return new ResponseEntity<>(resetMachine, HttpStatus.OK);
     }
-
-    /*  @CrossOrigin
-    @GetMapping("/getBatch")
-    public ResponseEntity<Batch> getBatch () {
-        return new ResponseEntity<>(BeerMachineController.getBeerMachineController().getMachineState().getCurrentBatch(),
-                HttpStatus.OK);
-    }
- */
 }
