@@ -10,6 +10,7 @@ public interface MachineService {
     MessageResponse resetMachine();
     MessageResponse startMachine(Integer batchId);
     MessageResponse startQueue();
+    MessageResponse stopQueue();
     MessageResponse stopMachine();
     MessageResponse abortMachine();
     MessageResponse clearMachine();
@@ -24,6 +25,7 @@ public interface MachineService {
     float getVibrations();
     int getStopReason();
     int getCurrentState();
+    boolean getQueueState();
     float getSpeed();
     float getAmountToProduce();
     float getBatchId();

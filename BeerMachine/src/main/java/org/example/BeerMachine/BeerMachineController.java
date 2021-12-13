@@ -1,16 +1,18 @@
 package org.example.BeerMachine;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
-import org.example.BeerMachine.data.models.*;
+import org.example.BeerMachine.data.models.Batch;
+import org.example.BeerMachine.data.models.BatchReport;
+import org.example.BeerMachine.data.models.MachineState;
+import org.example.BeerMachine.data.models.Type;
 
-import java.sql.Time;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.TreeSet;
 
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
     private MachineState machineState;
     private BatchReport batchReport;
+
+    private Boolean isQueuing = false;
 
     public static BeerMachineController getBeerMachineController() {
         if (beerMachineController == null) {
@@ -87,4 +89,13 @@ public class BeerMachineController {
     public BatchReport getBatchReport() {
         return batchReport;
     }
+
+    public Boolean getQueuing() {
+        return isQueuing;
+    }
+
+    public void setQueuing(Boolean queuing) {
+        isQueuing = queuing;
+    }
+
 }

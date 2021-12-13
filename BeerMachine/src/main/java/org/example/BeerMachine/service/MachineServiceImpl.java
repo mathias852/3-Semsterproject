@@ -7,7 +7,10 @@ import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
 import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.*;
+import org.example.BeerMachine.data.models.Batch;
+import org.example.BeerMachine.data.models.BatchReport;
+import org.example.BeerMachine.data.models.MachineState;
+import org.example.BeerMachine.data.models.TimeState;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
@@ -74,26 +77,14 @@ public class MachineServiceImpl implements MachineService {
     }
     @Override
     public MessageResponse startQueue() {
-        MessageResponse response = new MessageResponse("Queue didn't start...");
-        try {
-            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findAll());
-            batchQueue.forEach( (batch -> {if(batch.getQueueSpot() == null) {batchQueue.remove(batch);}}));
-            BatchQueueComparator myBatchQueueComparator = new BatchQueueComparator();
-            batchQueue.sort(myBatchQueueComparator);
-            if (machineState.getStateSub().getMachineState() == State.IDLE.getId()) {
-                while (batchQueue.size() > 0) {
-                    Integer firstQueue = batchQueue.get(0).getId();
-                    response = startMachine(firstQueue);
-                    batchQueue.remove(0);
-                }
-            } else {
-                response = new MessageResponse("Machine not in idle...");
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-            response = new MessageResponse("Queue failed...");
-        }
-        return response;
+        BeerMachineController.getBeerMachineController().setQueuing(true);
+        return new MessageResponse("Started queue.");
+    }
+
+    @Override
+    public MessageResponse stopQueue() {
+        BeerMachineController.getBeerMachineController().setQueuing(false);
+        return new MessageResponse("Stopped queue.");
     }
 
     @Override
@@ -254,7 +245,21 @@ public class MachineServiceImpl implements MachineService {
             updateBatchReport(batchReport);
             write.reset();
         }
+        if (machineState.getStateSub().getMachineState() == 4 & BeerMachineController.getBeerMachineController().getQueuing()) {
+            //queue system
+            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findAll());
+            BatchQueueComparator myBatchQueueComparator = new BatchQueueComparator();
+            batchQueue.sort(myBatchQueueComparator);
+
+            Integer firstQueue = batchQueue.get(0).getId();
+            MessageResponse response = startMachine(firstQueue);
+        }
         return machineState.getStateSub().getMachineState();
+    }
+
+    @Override
+    public boolean getQueueState() {
+        return BeerMachineController.getBeerMachineController().getQueuing();
     }
 
     @Override

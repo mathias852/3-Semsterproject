@@ -1,9 +1,6 @@
 package org.example.BeerMachine.web;
 
-import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UInteger;
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
-import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.StopReason;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.service.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +32,11 @@ public class MachineStateController {
     public ResponseEntity<MessageResponse> startQueue() {
         MessageResponse startQueue = machineService.startQueue();
         return new ResponseEntity<>(startQueue, HttpStatus.OK);
+    }
+    @PostMapping("/queue/stop")
+    public ResponseEntity<MessageResponse> stopQueue() {
+        MessageResponse stopQueue = machineService.stopQueue();
+        return new ResponseEntity<>(stopQueue, HttpStatus.OK);
     }
     @PostMapping("/stop")
     public ResponseEntity<MessageResponse> stopMachine() {
@@ -143,6 +145,9 @@ public class MachineStateController {
     @GetMapping("/getCurrentState")
     public ResponseEntity<Integer> getCurrentState (){return new ResponseEntity<>(machineService.getCurrentState(), HttpStatus.OK);}
 
+    @CrossOrigin
+    @GetMapping("/getQueueState")
+    public ResponseEntity<Boolean> getQueueState (){return new ResponseEntity<>(machineService.getQueueState(), HttpStatus.OK);}
 
 
     @CrossOrigin

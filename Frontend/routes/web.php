@@ -36,6 +36,8 @@ Route::get('batch/destroy/{id}', [BatchController::class, "destroy"])->name("bat
 //queue
 Route::post('queue/up/{id}', [BatchController::class, "queueUp"])->name("queue.up");
 Route::post('queue/down/{id}', [BatchController::class, "queueDown"])->name("queue.down");
+Route::post('queue/start', [BatchController::class, "queueStart"])->name("queue.start");
+Route::post('queue/stop', [BatchController::class, "queueStop"])->name("queue.stop");
 
 
 //reports

@@ -43,31 +43,42 @@
             {{--                TODO: Maybe do this in a seperate controller to keep it simple--}}
             <span class="col-sm">
 
-                    @if (empty($batches))
+                @if (empty($batches))
                     <form action="{{route("batch.create")}}" method="get">
                         @csrf
 
-                        <button type="submit" class="col-sm btn btn-success">Start batch</button>
+                        <button type="submit" class="col-sm btn btn-success mb-1">Start batch</button>
                         </form>
 
                 @else
                     <form action="{{route("batch.start")}}" method="post">
                             @csrf
                             <input type="hidden" id="id" name="id" value="{{$batches[0]['id']}}">
-                            <button type="submit" class="col-sm btn btn-success">Start batch</button>
+                            <button type="submit" class="col-sm btn btn-success mb-1">Start batch</button>
                         </form>
                 @endif
-                </span>
-            <span class="col-sm">
-
                 @if($currentBatch == null)
                     <button class="btn btn-secondary ">Stop Machine</button>
                 @else
                     <form action="{{route("batch.stop")}}" method="post">
-                        @csrf
-                        <button class="btn btn-danger ">Stop Machine</button>
-                    </form>
+                    @csrf
+                    <button class="btn btn-danger ">Stop Machine</button>
+                </form>
                 @endif
+
+                </span>
+            <span class="col-sm">
+                <form action="{{route("queue.start")}}" method="post">
+                    @csrf
+                    <input type="hidden" name="id">
+                    <button type="submit" class="col-sm btn btn-success mb-1">Start queue</button>
+                </form>
+                <form action="{{route("queue.stop")}}" method="post">
+                    @csrf
+                    <input type="hidden" name="id">
+                    <button type="submit" class="col-sm btn btn-danger">Stop queue</button>
+                </form>
+
                 </span>
             <span class="col-sm">
                     <form action="{{route("batch.abort")}}" method="post">
@@ -75,11 +86,10 @@
                         <button class="btn btn-danger">Abort</button>
                     </form>
                 </span>
-            <span class="col-sm"><button class="btn btn-secondary">Reset Machine</button></span>
         </div>
     </div>
 
-    <div class="machine-variables card mx-auto w-75">
+    <div class="card mx-auto w-75 m-2">
         <div class="card-header">
             <h2>Ingredients</h2>
         </div>
@@ -102,7 +112,7 @@
             </tbody>
         </table>
     </div>
-    <div class="row" >
+    <div class="row mb-2" >
         <div class="col"></div>
         <div class="col">
             <div class="card">
