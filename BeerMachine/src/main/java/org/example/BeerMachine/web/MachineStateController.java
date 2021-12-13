@@ -36,6 +36,11 @@ public class MachineStateController {
         MessageResponse startQueue = machineService.startQueue();
         return new ResponseEntity<>(startQueue, HttpStatus.OK);
     }
+    @PostMapping("/queue/stop")
+    public ResponseEntity<MessageResponse> stopQueue() {
+        MessageResponse stopQueue = machineService.stopQueue();
+        return new ResponseEntity<>(stopQueue, HttpStatus.OK);
+    }
     @PostMapping("/stop")
     public ResponseEntity<MessageResponse> stopMachine() {
         MessageResponse stopMachine = machineService.stopMachine();

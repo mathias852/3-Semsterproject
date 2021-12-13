@@ -65,7 +65,6 @@
                     <button>Make new Batch</button>
                 </a>
             </div>
-
         </div>
     </div>
 @endsection

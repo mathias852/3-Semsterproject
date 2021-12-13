@@ -9,15 +9,16 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     {{--    JQUERY JS--}}
     <script type="text/javascript" src="{{ asset('js/jquery/jquery-3.6.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/confirmButton.js') }}"></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.20/js/dataTables.bootstrap4.min.js></script>
+    <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery/jQueryScript.js') }}"></script>
     {{--    BOOTSTRAP CSS+JS--}}
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('css/bootstrap/bootstrap4-toggle.min.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap4-toggle.min.css') }}">
-
-    {{--    SELFSCRIPT--}}
-    <script type="text/javascript" src="{{ asset('js/machineVariables.js') }}"></script>
-
 
     {{--    <script type="text/javascript" src="{{ asset('js/graph.js') }}"></script>--}}
 

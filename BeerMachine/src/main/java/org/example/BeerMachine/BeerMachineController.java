@@ -10,6 +10,7 @@ public class BeerMachineController {
     private MachineState machineState;
     private BatchReport batchReport;
     private TimeState timeState;
+    private Boolean isQueuing = false;
 
     public static BeerMachineController getBeerMachineController() {
         if (beerMachineController == null) {
@@ -89,5 +90,13 @@ public class BeerMachineController {
 
     public TimeState getTimeState() {
         return timeState;
+    }
+  
+      public Boolean getQueuing() {
+        return isQueuing;
+    }
+
+    public void setQueuing(Boolean queuing) {
+        isQueuing = queuing;
     }
 }

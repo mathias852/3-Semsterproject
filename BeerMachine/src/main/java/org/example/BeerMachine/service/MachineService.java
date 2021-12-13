@@ -24,6 +24,7 @@ public interface MachineService {
     float getVibrations();
     int getStopReason();
     int getCurrentState();
+    boolean getQueueState();
     float getSpeed();
     float getAmountToProduce();
     float getBatchId();

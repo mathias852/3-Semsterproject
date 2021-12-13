@@ -254,6 +254,26 @@ var currentState = function(data) {
 }
 getCurrentState();
 
+//queueState
+var getQueueState = function() {
+    $.ajax({
+        url: "http://localhost:8081/machine/getQueueState",
+        cache: false,
+        type: 'GET',
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: queueState
+    });
+}
+var queueState = function(data) {
+    // console.log(data);
+    $(".queueState").html(data);
+    setTimeout(getQueueState, 500);
+}
+getQueueState();
+
 //StopReason
 var getStopReason = function() {
     $.ajax({

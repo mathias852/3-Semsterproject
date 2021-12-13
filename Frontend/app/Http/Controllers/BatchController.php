@@ -149,5 +149,16 @@ class BatchController extends Controller
         return view("list", ['batches' => $batches,
             'reports' => $reports]);
     }
+
+    public function queueStart() {
+        $responseReport = Http::get('http://localhost:8081/machine/queue/start');
+        $reports = $responseReport->json();
+        return redirect("/")->with('queueMessage', $reports);
+    }
+    public function queueStop() {
+        $responseReport = Http::get('http://localhost:8081/machine/queue/stop');
+        $reports = $responseReport->json();
+        return redirect("/")->with('queueMessage', $reports);
+    }
 }
 

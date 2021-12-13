@@ -2,11 +2,15 @@ package org.example.BeerMachine.service;
 
 import org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.UShort;
 import org.example.BeerMachine.BatchQueueComparator;
+import org.example.BeerMachine.BeerMachineCommunication.MachineConnection;
 import org.example.BeerMachine.BeerMachineCommunication.Read;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
 import org.example.BeerMachine.BeerMachineCommunication.Write;
 import org.example.BeerMachine.BeerMachineController;
-import org.example.BeerMachine.data.models.*;
+import org.example.BeerMachine.data.models.Batch;
+import org.example.BeerMachine.data.models.BatchReport;
+import org.example.BeerMachine.data.models.MachineState;
+import org.example.BeerMachine.data.models.TimeState;
 import org.example.BeerMachine.data.payloads.response.MessageResponse;
 import org.example.BeerMachine.data.repository.BatchReportRepository;
 import org.example.BeerMachine.data.repository.BatchRepository;
@@ -29,6 +33,8 @@ public class MachineServiceImpl implements MachineService {
     @Autowired
     TimeStateRepository timeStateRepository;
 
+
+    private final MachineConnection machineConnection = new MachineConnection();
     private final Write write = new Write();
     private final Read read = new Read();
     private final MachineState machineState = BeerMachineController.getBeerMachineController().getMachineState();
@@ -36,6 +42,7 @@ public class MachineServiceImpl implements MachineService {
     private final String barley = "Barley", wheat = "Wheat", hops = "Hops", malt = "Malt", yeast = "Yeast";
 
     //Variables used for timeState
+    TimeState timeState = null;
     boolean downTime = false;
 
     @Override
@@ -56,11 +63,12 @@ public class MachineServiceImpl implements MachineService {
             batchReport.setStartTime(Date.from(Instant.now()));
             batchReportRepository.save(batchReport);
 
-            //Saves the current batch and related data in th beer machine controller
+            //Might be able to return a more complex statement based on the BeerMachineController
+            //The BeerMachineController method calls are used to later update the batch. This might be a way
+            //To get the needed batchID. As long as the batchReport in BeerMachineController is updated each time
+            //A new batch is started
             BeerMachineController.getBeerMachineController().setProductionBatch(batchId, batchReport.getAmount(),
                     batchReport.getSpeed(), batchReport.getType());
-            //Saves the current batchReport to the beer machine controller
-            BeerMachineController.getBeerMachineController().setCurrentBatchReport(batchReport);
         } catch (Exception e) {
             System.out.println(e);
             return new MessageResponse("Machine didn't start...");
@@ -69,28 +77,14 @@ public class MachineServiceImpl implements MachineService {
     }
     @Override
     public MessageResponse startQueue() {
-        MessageResponse response = new MessageResponse("Queue didn't start...");
-        try {
-            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findAll());
-            batchQueue.forEach( (batch -> {if(batch.getQueueSpot() == null) {batchQueue.remove(batch);}}));
-            BatchQueueComparator myBatchQueueComparator = new BatchQueueComparator();
-            batchQueue.sort(myBatchQueueComparator);
-            if (machineState.getStateSub().getMachineState() == State.IDLE.getId()) {
-                while (batchQueue.size() > 0) {
-                    if (machineState.getStateSub().getMachineState() == State.IDLE.getId()) {
-                        Integer firstQueue = batchQueue.get(0).getId();
-                        response = startMachine(firstQueue);
-                        batchQueue.remove(0);
-                    }
-                }
-            } else {
-                response = new MessageResponse("Machine not in idle...");
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-            response = new MessageResponse("Queue failed...");
-        }
-        return response;
+        BeerMachineController.getBeerMachineController().setQueuing(true);
+        return new MessageResponse("Started queue.");
+    }
+
+    @Override
+    public MessageResponse stopQueue() {
+        BeerMachineController.getBeerMachineController().setQueuing(false);
+        return new MessageResponse("Stopped queue.");
     }
 
     @Override
@@ -233,18 +227,16 @@ public class MachineServiceImpl implements MachineService {
         }
         if(machineState.getStateSub().getMachineState() == 11 && !downTime) {
             downTime = true;
-            TimeState timeState = new TimeState();
+            timeState = new TimeState();
             timeState.setStartTime(Date.from(Instant.now()));
             timeState.setStopReason(read.checksStopState());
             timeState.setStateId(read.checkState());
             timeState.setBatchReport(BeerMachineController.getBeerMachineController().getBatchReport());
-            BeerMachineController.getBeerMachineController().setCurrentTimeState(timeState.getBatchReport(), timeState.getStateId(),
-                    timeState.getStopReason(), timeState.getStartTime());
         }
         if(machineState.getStateSub().getMachineState() == 6 && downTime) {
-            if(BeerMachineController.getBeerMachineController().getTimeState() != null) {
-                BeerMachineController.getBeerMachineController().getTimeState().setEndTime(Date.from(Instant.now()));
-                timeStateRepository.save(BeerMachineController.getBeerMachineController().getTimeState());
+            if(timeState != null) {
+                timeState.setEndTime(Date.from(Instant.now()));
+                timeStateRepository.save(timeState);
                 downTime = false;
             }
         }
@@ -253,7 +245,21 @@ public class MachineServiceImpl implements MachineService {
             updateBatchReport(batchReport);
             write.reset();
         }
+        if (machineState.getStateSub().getMachineState() == 4 & BeerMachineController.getBeerMachineController().getQueuing()) {
+            //queue system
+            ArrayList<Batch> batchQueue = new ArrayList<>(batchRepository.findAll());
+            BatchQueueComparator myBatchQueueComparator = new BatchQueueComparator();
+            batchQueue.sort(myBatchQueueComparator);
+
+            Integer firstQueue = batchQueue.get(0).getId();
+            MessageResponse response = startMachine(firstQueue);
+        }
         return machineState.getStateSub().getMachineState();
+    }
+
+    @Override
+    public boolean getQueueState() {
+        return BeerMachineController.getBeerMachineController().getQueuing();
     }
 
     @Override

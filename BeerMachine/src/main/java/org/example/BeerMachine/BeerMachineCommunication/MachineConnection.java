@@ -59,7 +59,7 @@ public class MachineConnection {
 
             this.client = OpcUaClient.create(this.cfg.build());
             this.client.connect().get();
-            /*System.out.println("Connected");*/
+            System.out.println("Connected");
 
         } catch (UaException ex) {
             Logger.getLogger(MachineConnection.class.getName()).log(Level.SEVERE, null, ex);
