@@ -10,7 +10,6 @@ public interface MachineService {
     MessageResponse resetMachine();
     MessageResponse startMachine(Integer batchId);
     MessageResponse startQueue();
-    MessageResponse stopQueue();
     MessageResponse stopMachine();
     MessageResponse abortMachine();
     MessageResponse clearMachine();
@@ -33,7 +32,5 @@ public interface MachineService {
     UShort getGoodCount();
     UShort getBadCount();
     UShort getMaintenanceCount();
-    MessageResponse setHost(String host);
-    MessageResponse getHost();
     void updateBatchReport(BatchReport batchReport);
 }

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Component
 public interface VibrationService {
-    MessageResponse createVibration(VibrationRequest vibrationRequest) throws ParseException;
+    void createVibration();
 
     Vibration getVibration(Integer vibrationId);
 

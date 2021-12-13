@@ -313,18 +313,4 @@ public class MachineServiceImpl implements MachineService {
         }
         System.out.println("Sorry, but the batchReport has all ready been updated. You cannot update it anymore");
     }
-
-
-    @Override
-    public MessageResponse setHost(String host) {
-        machineConnection.setHost(host);
-        return new MessageResponse("Host changed");
-    }
-
-    @Override
-    public MessageResponse getHost(){
-        return new MessageResponse("The host is: " + machineConnection.getHost());
-    }
-
-
 }

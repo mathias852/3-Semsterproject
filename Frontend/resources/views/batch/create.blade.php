@@ -3,8 +3,8 @@
 
     <html>
     <head>
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-        <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+        <link rel="stylesheet" href="{{asset('css/chartist.min.css')}}">
+        <script src="{{asset('js/chartist.min.js')}}"></script>
         <script type="text/javascript" src="{{ asset('js/changeChart.js') }}"></script>
     </head>
     <body>

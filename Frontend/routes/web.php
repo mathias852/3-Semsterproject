@@ -28,7 +28,6 @@ Route::post('batch/start', [BatchController::class, "start"])->name("batch.start
 Route::post('batch/stop', [BatchController::class, "stop"])->name("batch.stop");
 Route::post('batch/abort', [BatchController::class, "abort"])->name("batch.abort");
 Route::post('batch/reset', [BatchController::class, "reset"])->name("batch.reset");
-Route::post('batch/clear', [BatchController::class, "clear"])->name("batch.stop");
 Route::post('batch/maintenance', [BatchController::class, "maintenance"])->name("batch.maintenance");
 
 Route::get('batch/destroy/{id}', [BatchController::class, "destroy"])->name("batch.destroy");

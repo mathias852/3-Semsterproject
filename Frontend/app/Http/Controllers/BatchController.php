@@ -95,19 +95,13 @@ class BatchController extends Controller
     public function abort()
     {
         Http::post('http://localhost:8081/machine/abort');
-        return redirect("/")->with('message', "About has been completed ");
+        return redirect("/")->with('message', "Abort has been completed ");
     }
 
     public function reset()
     {
         Http::post('http://localhost:8081/machine/reset');
         return redirect("/")->with('message', "The machine is resetting");
-    }
-
-    public function clear()
-    {
-        Http::post('http://localhost:8081/machine/clear');
-        return redirect("/")->with('message', "The machine is clearing last production");
     }
 
     public function maintenance()

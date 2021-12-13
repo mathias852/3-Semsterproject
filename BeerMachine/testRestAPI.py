@@ -1,7 +1,6 @@
-
 import requests
 
-url = 'http://localhost:8081/batch/set/queue/down/27'
+url = 'http://localhost:8081/machine/reset'
 x = requests.post(url)
 
 
@@ -50,9 +49,9 @@ x = requests.post(url, json = type)
 
 #---------- CREATE Batch -----------#
 url = 'http://localhost:8081/batch/add'
-batch = {'amount': 1000,
+batch = {'amount': 10000,
        'typeId': 1,
-       'speed': 300}
+       'speed': 460}
 
 x = requests.post(url, json = batch)
 
@@ -64,6 +63,7 @@ batch = {'amount': 1000,
 x = requests.post(url, json = batch)
 
 url = 'http://localhost:8081/batch/add'
+
 batch = {'amount': 1000,
        'typeId': 3,
        'speed': 150}

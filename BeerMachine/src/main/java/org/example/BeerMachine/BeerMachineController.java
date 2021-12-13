@@ -1,17 +1,15 @@
 package org.example.BeerMachine;
 import org.example.BeerMachine.BeerMachineCommunication.Subscription;
-import org.example.BeerMachine.data.models.Batch;
-import org.example.BeerMachine.data.models.BatchReport;
-import org.example.BeerMachine.data.models.MachineState;
-import org.example.BeerMachine.data.models.Type;
+import org.example.BeerMachine.data.models.*;
 
+import java.util.Date;
 import java.util.HashMap;
 
 public class BeerMachineController {
     private static BeerMachineController beerMachineController;
     private MachineState machineState;
     private BatchReport batchReport;
-
+    private TimeState timeState;
     private Boolean isQueuing = false;
 
     public static BeerMachineController getBeerMachineController() {
@@ -40,34 +38,35 @@ public class BeerMachineController {
         return this.machineState;
     }
 
-    public void setMachineState(MachineState machineState) {
-        this.machineState = machineState;
-    }
-
     public void setProductionBatch(int id, int amount, int speed, Type type) {
          this.batchReport = new BatchReport(id, speed, type, amount);
 
-        if (type.getMaxSpeed() <=    speed) {
+        if (type.getMaxSpeed() < speed) {
             try {
                 throw new Exception("Speed greater than max speed.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        if (0 > amount | amount > 32767) {
+        if (0 > amount | amount > 37767) {
             try {
                 throw new Exception("Amount is out of bounds.");
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        Batch batch = new Batch(id, speed, type, amount);
+    }
+
+    public void setCurrentBatchReport(BatchReport batchReport){
+        this.batchReport = batchReport;
+    }
+
+    public void setCurrentTimeState(BatchReport batchReport, int stateId, int stopReason, Date startTime){
+        this.timeState = new TimeState(batchReport, stateId, stopReason, startTime);
     }
 
     public double calculateOEE(double availability, double performance, double quality){
-        //Everything will be measured in minutes
-        //OEE can be calculated based on the following: OEE = (GoodCount * IdealCycleTime) / plannedProductionTime
-        //Where plannedProductionTime is the time between a batch start to a batch end
+        //Everything is measured in minutes
         return availability * performance * quality;
     }
 
@@ -85,17 +84,19 @@ public class BeerMachineController {
         return goodCount/totalCount;
     }
 
-
     public BatchReport getBatchReport() {
         return batchReport;
     }
 
-    public Boolean getQueuing() {
+    public TimeState getTimeState() {
+        return timeState;
+    }
+  
+      public Boolean getQueuing() {
         return isQueuing;
     }
 
     public void setQueuing(Boolean queuing) {
         isQueuing = queuing;
     }
-
 }

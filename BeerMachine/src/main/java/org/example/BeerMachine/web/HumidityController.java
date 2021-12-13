@@ -27,8 +27,8 @@ public class HumidityController {
 
     @CrossOrigin
     @PostMapping("/add")
-    public ResponseEntity<MessageResponse> addHumidity(@RequestBody HumidityRequest humidity) throws ParseException {
-        MessageResponse newHumidity = humidityService.createHumidity(humidity);
-        return new ResponseEntity<>(newHumidity, HttpStatus.CREATED);
+    public ResponseEntity<MessageResponse> addHumidity() {
+        humidityService.createHumidity();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

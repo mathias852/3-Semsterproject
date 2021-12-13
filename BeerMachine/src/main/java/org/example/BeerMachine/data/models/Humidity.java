@@ -17,10 +17,10 @@ public class Humidity {
     private BatchReport batchReport;
 
     @NotNull
-    private Double humidity;
+    private float humidity;
 
     @NotNull
-    private Date timestamp;
+    private String timestamp;
 
     public Integer getId() {
         return id;
@@ -34,19 +34,19 @@ public class Humidity {
         this.batchReport = batchReport;
     }
 
-    public Double getHumidity() {
+    public float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Double humidity) {
+    public void setHumidity(float humidity) {
         this.humidity = humidity;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }

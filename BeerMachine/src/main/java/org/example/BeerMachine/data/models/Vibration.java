@@ -18,10 +18,10 @@ public class Vibration {
     private BatchReport batchReport;
 
     @NotNull
-    private Double vibration;
+    private float vibration;
 
     @NotNull
-    private Date timestamp;
+    private String timestamp;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class Vibration {
         this.batchReport = batchReport;
     }
 
-    public Double getVibration() {
+    public float getVibration() {
         return vibration;
     }
 
-    public void setVibration(Double vibration) {
+    public void setVibration(float vibration) {
         this.vibration = vibration;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 }
