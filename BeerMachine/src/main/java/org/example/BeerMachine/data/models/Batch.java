@@ -33,6 +33,12 @@ public class Batch {
         this.amount = amount;
     }
 
+    public Batch(Integer speed, Type type, Integer amount) {
+        this.speed = speed;
+        this.type = type;
+        this.amount = amount;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -72,5 +78,14 @@ public class Batch {
     @Override
     public int hashCode() {
         return Objects.hash(id, amount, type);
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "amount:" + amount +
+                ", speed=" + speed +
+                ", type=" + type +
+                '}';
     }
 }
