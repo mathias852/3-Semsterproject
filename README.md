@@ -39,3 +39,5 @@ You can use UA Expert to see values reated to the beer machine but guidance for 
 * The URL for the OPC-UA client is **opc:tcp://192.168.0.122:4840**  for the physical machine and for the simulation **opc:tcp://127.0.0.1:4840**.
 * Username: **sdu** 
 * Password: **1234**
+
+The projects backend directory needs to be opened in order to run the backend. That goes for the frontend as well where the frontend directory needs to be open in order to run the php artisan serve commando 
