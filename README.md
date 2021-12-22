@@ -21,7 +21,7 @@ In order to run the frontend Laravel, Composer as well as PHP 8 needs to be inst
 
 When everything is installed you will need to run the system in the following order
 * Connect to the physical beer machines wifi or start the simulation locally
-* The dockerfilæe using the command: **docker-compose up -d**
+* The dockerfile using the command: **docker-compose up -d**
 * The java-backend where the BeerMachineApplication class is the one you will run - When the red warnings stop comming it should be ready
 * The frontend using the command: **php artisan serve** in a terminal inside PHP-storm (Be sure to **not** close this termianl as it will stop the frontend)
 
